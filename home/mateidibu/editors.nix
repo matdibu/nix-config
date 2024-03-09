@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     # package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
@@ -43,7 +43,11 @@
       lua-language-server
     ];
 
-    extraConfig = builtins.readFile neovim/init.lua;
+    extraLuaConfig =
+      builtins.readFile neovim/basic.lua
+      + builtins.readFile neovim/jump-to-last-position.lua
+      + builtins.readFile neovim/lsp-conf.lua
+      + builtins.readFile neovim/lsp-list.lua;
   };
   home.sessionVariables.EDITOR = "nvim";
 }
