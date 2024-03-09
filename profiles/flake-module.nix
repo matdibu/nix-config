@@ -10,6 +10,7 @@
     profiles-nvidia = ./nvidia.nix;
     profiles-opengl = ./opengl.nix;
     profiles-openssh = ./openssh.nix;
+    profiles-qemu-guest = ./qemu-guest.nix;
     profiles-security = ./security.nix;
     profiles-users = ./users.nix;
     profiles-wayland = ./wayland.nix;
