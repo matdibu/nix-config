@@ -1,7 +1,8 @@
-{...}: {
+{inputs, ...}: {
   # disko.devices.disk."root".device = device;
 
-  imports = [
-    ./OLD.nix
+  imports = with inputs.self.nixosModules; [
+    profiles-impermanence-root
+    # ./OLD.nix
   ];
 }
