@@ -1,18 +1,12 @@
-{
-  inputs,
-  modulesPath,
-  ...
-}: {
+{inputs, ...}: {
   imports =
     [
-      "${modulesPath}/profiles/qemu-guest.nix"
       ./disks
     ]
     ++ (with inputs.self.nixosModules; [
       profiles-nvidia
+      profiles-qemu-guest
     ]);
-
-  services.qemuGuest.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
