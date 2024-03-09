@@ -1,13 +1,4 @@
-{inputs, ...}: {
-  imports = [
-    inputs.disko.nixosModules.disko
-    ./zfs.nix
-    ./zfs-volumes.nix
-  ];
-
-  # Don't allow mutation of users outside of the config.
-  users.mutableUsers = false;
-
+{
   disko.devices = {
     nodev."/" = {
       fsType = "tmpfs";

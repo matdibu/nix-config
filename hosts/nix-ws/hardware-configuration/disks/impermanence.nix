@@ -1,9 +1,4 @@
-{
-  inputs,
-  config,
-  ...
-}: let
-  sshHostKeys = builtins.catAttrs "path" config.services.openssh.hostKeys;
+{inputs, ...}: let
   persist_path = "/mnt/persist";
 in {
   imports = [
@@ -12,6 +7,7 @@ in {
 
   # set machine id for log continuity
   environment.etc.machine-id.source = ./machine-id;
+
   environment.persistence.${persist_path} = {
     hideMounts = true;
     directories = [
@@ -19,7 +15,5 @@ in {
       # "/var/lib/systemd/coredump"
       # "/tmp" # Make builds not crash by running them on disk instead of RAM (We still clean /tmp on boot)
     ];
-    files =
-      sshHostKeys;
   };
 }
