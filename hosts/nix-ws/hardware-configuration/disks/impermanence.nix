@@ -6,7 +6,7 @@ in {
   ];
 
   # set machine id for log continuity
-  environment.etc.machine-id.source = ./machine-id;
+  # environment.etc.machine-id.source = ./machine-id;
 
   environment.persistence.${persist_path} = {
     hideMounts = true;
@@ -14,6 +14,10 @@ in {
       "/var/log"
       # "/var/lib/systemd/coredump"
       # "/tmp" # Make builds not crash by running them on disk instead of RAM (We still clean /tmp on boot)
+    ];
+    files = [
+      # machine id for log continuity
+      "/etc/machine-id"
     ];
   };
 }
