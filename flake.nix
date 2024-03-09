@@ -1,7 +1,4 @@
 {
-  nixConfig.extra-substituters = ["https://mateidibu.cachix.org"];
-  nixConfig.extra-trusted-public-keys = ["mateidibu.cachix.org-1:9YiZ97RR2tUHvt79sMP0oXhP+nA3OYanCs5A2/bnmAA="];
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts = {
