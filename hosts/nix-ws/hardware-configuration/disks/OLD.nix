@@ -1,9 +1,14 @@
 # SPDX-FileCopyrightText: 2024 Matei Dibu <matei@mateidibu.dev>
 #
 # SPDX-License-Identifier: MIT
-{inputs, lib,config, ...}: {
+{
+  inputs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
-inputs.disko.nixosModules.disko
+    inputs.disko.nixosModules.disko
     ./zfs-tank.nix
   ];
 
@@ -15,17 +20,14 @@ inputs.disko.nixosModules.disko
   };
   systemd.services.zfs-mount.enable = false;
 
-
-
-
   disko.devices = {
     nodev."/" = {
-fsType = "tmpfs";
-          mountOptions = [
-            "mode=755"
-             "noatime"
-          ];
-};
+      fsType = "tmpfs";
+      mountOptions = [
+        "mode=755"
+        "noatime"
+      ];
+    };
     disk = {
       "root" = {
         type = "disk";
@@ -60,4 +62,3 @@ fsType = "tmpfs";
     };
   };
 }
-

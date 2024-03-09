@@ -2,16 +2,16 @@
   imports = [
     inputs.disko.nixosModules.disko
     ./zfs.nix
-./zfs-volumes.nix
+    ./zfs-volumes.nix
   ];
   disko.devices = {
     nodev."/" = {
-fsType = "tmpfs";
-          mountOptions = [
-            "mode=755"
-             "noatime"
-          ];
-};
+      fsType = "tmpfs";
+      mountOptions = [
+        "mode=755"
+        "noatime"
+      ];
+    };
     disk = {
       "root" = {
         # inherit device;

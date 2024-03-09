@@ -1,10 +1,8 @@
-{lib, ...}:
-let
+{lib, ...}: let
   pool_name = "tank";
   root_snapshot_name = "${pool_name}/system/tmp@blank";
   persist_path = "/mnt/persist";
-in
-{
+in {
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     zfs rollback -r ${root_snapshot_name}
   '';

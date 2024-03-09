@@ -1,12 +1,13 @@
-{lib, inputs, config, ...}: 
-let
+{
+  lib,
+  inputs,
+  config,
+  ...
+}: let
   pool_name = "tank";
   root_snapshot_name = "${pool_name}/system/tmp@blank";
   persist_path = "/mnt/persist";
-in
-
-
-{
+in {
   imports = [
     inputs.disko.nixosModules.disko
   ];
@@ -15,11 +16,11 @@ in
     initrd.supportedFilesystems = ["zfs"];
     supportedFilesystems = ["zfs"];
     zfs = {
-devNodes = "/dev/disk/by-partuuid";
-    forceImportRoot = true;
-    forceImportAll = true;
-extraPools = [ "tank" ];
-};
+      devNodes = "/dev/disk/by-partuuid";
+      forceImportRoot = true;
+      forceImportAll = true;
+      extraPools = ["tank"];
+    };
   };
   systemd.services.zfs-mount.enable = false;
 
@@ -29,12 +30,12 @@ extraPools = [ "tank" ];
 
   disko.devices = {
     nodev."/" = {
-fsType = "tmpfs";
-          mountOptions = [
-            "mode=755"
-             "noatime"
-          ];
-};
+      fsType = "tmpfs";
+      mountOptions = [
+        "mode=755"
+        "noatime"
+      ];
+    };
     disk = {
       "root" = {
         # inherit device;
@@ -102,10 +103,5 @@ fsType = "tmpfs";
         };
       };
     };
-
   };
 }
-
-
-
-

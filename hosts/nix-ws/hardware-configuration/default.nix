@@ -1,7 +1,11 @@
-{inputs, modulesPath, ...}: {
+{
+  inputs,
+  modulesPath,
+  ...
+}: {
   imports =
     [
-  "${modulesPath}/profiles/qemu-guest.nix"
+      "${modulesPath}/profiles/qemu-guest.nix"
       ./disks
     ]
     ++ (with inputs.self.nixosModules; [
