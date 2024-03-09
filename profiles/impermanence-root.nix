@@ -1,13 +1,20 @@
-{inputs, ...}: let
-  device = "/dev/disk/by-path/virtio-pci-0000:00:07.0";
-in {
+{inputs, ...}: {
   imports = [
     inputs.disko.nixosModules.disko
+    ./zfs.nix
+./zfs-volumes.nix
   ];
   disko.devices = {
+    nodev."/" = {
+fsType = "tmpfs";
+          mountOptions = [
+            "mode=755"
+             "noatime"
+          ];
+};
     disk = {
-      "${baseNameOf device}" = {
-        inherit device;
+      "root" = {
+        # inherit device;
         type = "disk";
         content = {
           type = "gpt";
@@ -26,11 +33,11 @@ in {
                 ];
               };
             };
-            nixos = {
+            zfs = {
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "nixos";
+                pool = "tank";
               };
             };
           };

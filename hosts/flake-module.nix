@@ -13,7 +13,7 @@
     {
       home-manager = {
         useGlobalPkgs = true;
-	useUserPackages = true;
+        useUserPackages = true;
         extraSpecialArgs = {inherit inputs;};
         users.mateidibu = import ../home/mateidibu;
       };
@@ -39,7 +39,7 @@ in {
     nix-ws = nixosSystemWithDefaults {
       system = "x86_64-linux";
       hostName = "nix-ws";
-      modules = commonHome;
+      # modules = commonHome;
     };
     #hetzner = nixosSystemWithDefaults {
     #  system = "x86_64-linux";

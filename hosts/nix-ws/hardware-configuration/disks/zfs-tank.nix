@@ -1,11 +1,7 @@
-{lib, ...}: let
-  root_snapshot_name = "nixos/tmp@blank";
-  persist_path = "/mnt/persist";
-in {
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r ${root_snapshot_name}
-  '';
-
+# SPDX-FileCopyrightText: 2024 Matei Dibu <matei@mateidibu.dev>
+#
+# SPDX-License-Identifier: MIT
+_: {
   disko.devices = {
     zpool = {
       "tank" = {
@@ -21,22 +17,25 @@ in {
           xattr = "sa";
           acltype = "posixacl";
         };
-        postCreateHook = "zfs snapshot ${root_snapshot_name}";
         datasets = {
-          "tmp" = {
+          "system" = {
             type = "zfs_fs";
-            mountpoint = "/tmp";
           };
-          "nix" = {
+          "system/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
           };
-          "persist" = {
+          "system/persist" = {
             type = "zfs_fs";
-            mountpoint = "${persist_path}";
+            mountpoint = "/persist";
+          };
+          "system/tmp" = {
+            type = "zfs_fs";
+            mountpoint = "/tmp";
           };
         };
       };
     };
   };
 }
+
