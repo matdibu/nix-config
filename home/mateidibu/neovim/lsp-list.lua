@@ -69,10 +69,10 @@ require("lspconfig").cmake.setup({
     on_attach = on_attach,
 })
 
-require("lspconfig").nixd.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-})
+-- require("lspconfig").nixd.setup({
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+-- })
 
 require("lspconfig").html.setup({
     capabilities = capabilities,
