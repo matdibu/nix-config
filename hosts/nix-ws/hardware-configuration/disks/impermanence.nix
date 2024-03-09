@@ -5,9 +5,6 @@ in {
     inputs.impermanence.nixosModules.impermanence
   ];
 
-  # set machine id for log continuity
-  # environment.etc.machine-id.source = ./machine-id;
-
   environment.persistence.${persist_path} = {
     hideMounts = true;
     directories = [
