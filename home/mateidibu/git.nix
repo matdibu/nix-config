@@ -2,7 +2,6 @@
   programs.git = {
     enable = true;
     userName = "Matei Dibu";
-    userEmail = "contact@mateidibu.dev";
     ignores = ["result"];
     extraConfig = {
       push.autoSetupRemote = true;
@@ -10,16 +9,28 @@
     includes = [
       {
         contents = {
+          user.email = "contact@mateidibu.dev";
           user.signingkey = "F957752F1459A485552EEA729194B194C140DBED";
           # commit.gpgsign = true;
           # tag.gpgsign = true;
           extraConfig = {
             core = {
-              sshCommand = "ssh -i ~/.ssh/id_ed25519";
+              sshCommand = "ssh -4 -i ~/.ssh/id_ed25519_sk_rk_yubi-backup_mateidibu";
             };
           };
         };
-        condition = "hasconfig:remote.*.url:git@codeberg.org:*";
+        condition = "gitdir:~/git/personal/";
+      }
+      {
+        contents = {
+          user.email = "contact@mateidibu.dev";
+          extraConfig = {
+            core = {
+              sshCommand = "ssh -4 -i ~/.ssh/id_ed25519_sk_rk_yubi-backup_mateidibu";
+            };
+          };
+        };
+        condition = "gitdir:~/git/work/";
       }
     ];
   };
