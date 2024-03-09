@@ -41,9 +41,5 @@ in {
       hostName = "nix-ws";
       modules = commonHome;
     };
-    #hetzner = nixosSystemWithDefaults {
-    #  system = "x86_64-linux";
-    #  hostName = "hetzner";
-    #};
   };
 }
