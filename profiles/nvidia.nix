@@ -29,12 +29,12 @@
 
   boot.kernelParams = lib.mkBefore [
     "nvidia_drm.modeset=1"
-    # "nvidia_drm.fbdev=1"
+    "nvidia_drm.fbdev=1"
   ];
 
   hardware.nvidia = {
     modesetting.enable = true;
-    open = true;
+    open = false;
     package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
   };
 }
