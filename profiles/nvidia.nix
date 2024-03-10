@@ -18,11 +18,6 @@
     ];
   };
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    WLR_RENDERER = "vulkan";
-  };
-
   services.xserver.videoDrivers = ["modesetting" "nvidia"];
 
   boot.initrd.kernelModules = [
@@ -34,7 +29,7 @@
 
   boot.kernelParams = lib.mkBefore [
     # "nvidia_drm.modeset=1"
-    "nvidia_drm.fbdev=1"
+    # "nvidia_drm.fbdev=1"
   ];
 
   hardware.nvidia = {

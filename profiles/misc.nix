@@ -1,17 +1,10 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: {
   programs.vim.defaultEditor = true;
   programs.nano.enable = false;
-
-  # Home-manager requires it so it can manage GTK.
-  programs.dconf.enable = config.programs.sway.enable;
-
-  # For mounting USB drives from GUI.
-  # services.gvfs.enable = config.services.xserver.enable;
 
   # Packages that shoulds always be available.
   environment.systemPackages = with pkgs; [

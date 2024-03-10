@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   #fonts.fontconfig.enable = true;
   #home.packages = [
   #  (pkgs.nerdfonts.override {fonts = ["FiraMono" "Cousine"];})
@@ -47,15 +47,6 @@
 
   programs.sway = {
     enable = true;
-    extraPackages = with pkgs; [
-      mako
-      wl-clipboard
-      wofi
-      shotman
-    ];
-    extraOptions = [
-      "--unsupported-gpu"
-    ];
     wrapperFeatures.gtk = true;
   };
 }

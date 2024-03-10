@@ -23,6 +23,28 @@
     }
   ];
 
+  guiHome = with inputs.self.nixosModules;
+    [
+      profiles-audio
+      profiles-opengl
+    ]
+    ++ [
+      {
+        home-manager = {
+          users.mateidibu = import ../home/mateidibu/gui;
+        };
+      }
+      {
+        programs.dconf.enable = true;
+        security.polkit.enable = true;
+
+        #services.dbus = {
+        #  enable = true;
+        #  packages = [pkgs.dconf];
+        #};
+      }
+    ];
+
   nixosSystemWithDefaults = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args ["hostName"])
     // {
       specialArgs = {inherit inputs;} // args.specialArgs or {};
@@ -39,7 +61,7 @@ in {
     nix-ws = nixosSystemWithDefaults {
       system = "x86_64-linux";
       hostName = "nix-ws";
-      modules = commonHome;
+      modules = commonHome ++ guiHome;
     };
   };
 }

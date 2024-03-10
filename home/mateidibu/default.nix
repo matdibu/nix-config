@@ -2,13 +2,12 @@
   imports = [
     ./direnv.nix
     ./packages.nix
-    ./fonts.nix
     ./git.nix
     ./ssh.nix
     ./editors.nix
-    ./sway.nix
-    ./librewolf.nix
   ];
+
+  programs.bash.enable = true;
 
   home.stateVersion = "24.05";
 }
