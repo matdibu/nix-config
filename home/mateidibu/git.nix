@@ -1,4 +1,7 @@
 {
+  home.sessionVariables = {
+    GIT_SSH_COMMAND = "ssh -4";
+  };
   programs.git = {
     enable = true;
     userName = "Matei Dibu";
