@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports =
     [
       ./hardware-configuration
@@ -14,7 +18,7 @@
 
   services.dbus = {
     enable = true;
-    packages = [ pkgs.dconf ];
+    packages = [pkgs.dconf];
   };
 
   system.stateVersion = "24.05";

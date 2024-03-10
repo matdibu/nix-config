@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  font_name = "FiraMono";
+in {
   imports = [
     ./fonts.nix
   ];
@@ -20,7 +22,7 @@
     enable = true;
     settings = {
       main = {
-        font = "monospace:size=14";
+        font = "${font_name}:size=14";
       };
     };
   };
@@ -28,6 +30,11 @@
   wayland.windowManager.sway = {
     enable = true;
     config = {
+      fonts = {
+        names = ["${font_name}"];
+        style = "Normal";
+        size = 13.0;
+      };
       menu = "${pkgs.wofi}/bin/wofi --show run";
       modifier = "Mod4";
     };
@@ -49,21 +56,6 @@
         render_bit_depth 10
         subpixel rgb
       }
-    '';
-    extraOptions = [
-      "--unsupported-gpu"
-    ];
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
-      export WLR_NO_HARDWARE_CURSORS=1
-
-      export NVD_BACKEND=direct
-      export MOZ_DISABLE_RDD_SANDBOX=1
-      export LIBVA_DRIVER_NAME=nvidia
     '';
     wrapperFeatures.gtk = true;
   };
