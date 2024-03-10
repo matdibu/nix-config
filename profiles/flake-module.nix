@@ -11,8 +11,8 @@
     profiles-openssh = ./openssh.nix;
     profiles-qemu-guest = ./qemu-guest.nix;
     profiles-security = ./security.nix;
+    profiles-sway = ./sway.nix;
     profiles-users = ./users.nix;
-    profiles-wayland = ./wayland.nix;
     profiles-zfs = ./zfs.nix;
     # profiles-zfs-volumes = ./zfs-volumes.nix;
   };
