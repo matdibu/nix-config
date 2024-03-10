@@ -7,6 +7,7 @@
     ./ssh.nix
     ./editors.nix
     ./sway.nix
+    ./librewolf.nix
   ];
 
   home.stateVersion = "24.05";
