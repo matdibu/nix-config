@@ -9,5 +9,7 @@
       profiles-opengl
     ]);
 
+  programs.dconf.enable = true;
+
   system.stateVersion = "24.05";
 }
