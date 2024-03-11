@@ -37,11 +37,6 @@
       {
         programs.dconf.enable = true;
         security.polkit.enable = true;
-
-        #services.dbus = {
-        #  enable = true;
-        #  packages = [pkgs.dconf];
-        #};
       }
     ];
 
