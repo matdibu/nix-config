@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
+{lib, ...}: let
   pool_name = "tank";
   root_snapshot_name = "${pool_name}/system/tmp@blank";
   persist_path = "/mnt/persist";
@@ -10,21 +6,6 @@ in {
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     zfs rollback -r ${root_snapshot_name}
   '';
-  fileSystems.${persist_path}.neededForBoot = true;
-
-  services.openssh = lib.mkIf config.services.openssh.enable {
-    hostKeys = [
-      {
-        path = "${persist_path}/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-      }
-      {
-        path = "${persist_path}/ssh/ssh_host_rsa_key";
-        type = "rsa";
-        # bits=4096; # not impermanence-relevant
-      }
-    ];
-  };
 
   disko.devices = {
     zpool = {
