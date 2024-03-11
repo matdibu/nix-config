@@ -34,7 +34,7 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    open = false;
+    open = true;
     package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
   };
 }
