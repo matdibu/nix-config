@@ -16,5 +16,10 @@ in {
       # machine id for log continuity
       "/etc/machine-id"
     ];
+    users."mateidibu" = {
+      directories = [
+        "git"
+      ];
+    };
   };
 }
