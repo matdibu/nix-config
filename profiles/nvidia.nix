@@ -1,27 +1,13 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
 
-  hardware.opengl = {
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-    extraPackages32 = with pkgs.driversi686Linux; [
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
-
   services.xserver.videoDrivers = ["nvidia"];
 
-  # boot.initrd.kernelModules = [
-  boot.kernelModules = [
+  boot.initrd.kernelModules = [
     "nvidia"
     "nvidia_modeset"
     "nvidia_uvm"
@@ -29,6 +15,7 @@
   ];
 
   boot.kernelParams = lib.mkBefore [
+    "nvidia_drm.modeset=1"
     "nvidia_drm.fbdev=1"
   ];
 
@@ -42,7 +29,7 @@
     # of just the bare essentials.
     powerManagement.enable = false;
 
-    open = true;
+    open = false;
     nvidiaSettings = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
