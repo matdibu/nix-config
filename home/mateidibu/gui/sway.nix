@@ -1,6 +1,4 @@
-{pkgs, ...}: let
-  font_name = "FiraMono";
-in {
+{pkgs, ...}: {
   imports = [
     ./fonts.nix
   ];
@@ -19,7 +17,9 @@ in {
     # Hardware cursors not yet working on wlroots
     WLR_NO_HARDWARE_CURSORS = "1";
 
+    # Chromium/Electron
     NIXOS_OZONE_WL = "1";
+
     SDL_VIDEODRIVER = "wayland";
 
     QT_QPA_PLATFORM = "wayland";
@@ -27,20 +27,12 @@ in {
 
     _JAVA_AWT_WM_NONREPARENTING = "1";
 
-    # Firefox wayland environment variable
-    MOZ_ENABLE_WAYLAND = "1";
-    MOZ_USE_XINPUT2 = "1";
-    MOZ_DISABLE_RDD_SANDBOX = "1";
-
-    NVD_BACKEND = "direct";
-    LIBVA_DRIVER_NAME = "nvidia";
-
     # Xwayland compatibility
     XWAYLAND_NO_GLAMOR = "1";
 
     GBM_BACKEND = "nvidia-drm";
     __GL_GSYNC_ALLOWED = "0";
-    __GL_VRR_ALLOWED = "0";
+    # __GL_VRR_ALLOWED = "0";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
@@ -62,7 +54,7 @@ in {
     enable = true;
     config = {
       fonts = {
-        names = ["${font_name}"];
+        names = ["monospace"];
         style = "Normal";
         size = 13.0;
       };
@@ -86,8 +78,8 @@ in {
 
       output 'Dell Inc. DELL S2721DGF BS4J623' {
         mode 2560x1440@165Hz
-        adaptive_sync on
-        render_bit_depth 10
+        # adaptive_sync on
+        # render_bit_depth 10
         subpixel rgb
       }
     '';
