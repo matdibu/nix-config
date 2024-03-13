@@ -1,4 +1,4 @@
-_: let
+let
   persist_path = "/mnt/persist";
 in {
   imports = [
