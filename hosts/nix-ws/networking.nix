@@ -1,4 +1,4 @@
-_: {
+{
   networking = {
     hostId = "63364f39";
   };

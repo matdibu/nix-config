@@ -165,7 +165,28 @@
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "nixpkgs": "nixpkgs",
+        "srvos": "srvos",
         "treefmt-nix": "treefmt-nix"
+      }
+    },
+    "srvos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1710324536,
+        "narHash": "sha256-51Lyisz7k2zssV/H63MLdRAfpOpxvJynaYvhg+qoalo=",
+        "owner": "nix-community",
+        "repo": "srvos",
+        "rev": "640f83f6eb110cc51b75b93a9e36edb0713f64e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "srvos",
+        "type": "github"
       }
     },
     "systems": {

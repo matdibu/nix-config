@@ -1,12 +1,16 @@
 {inputs, ...}: let
-  commonProfiles = with inputs.self.nixosModules; [
-    profiles-docs
-    profiles-misc
-    profiles-nix-nixpkgs
-    profiles-security
-    profiles-openssh
-    profiles-users
-  ];
+  commonProfiles = with inputs.self.nixosModules;
+    [
+      profiles-docs
+      profiles-misc
+      profiles-nix-nixpkgs
+      profiles-security
+      profiles-openssh
+      profiles-users
+    ]
+    ++ (with inputs.srvos.nixosModules; [
+      common
+    ]);
 
   commonHome = [
     inputs.home-manager.nixosModule
@@ -28,6 +32,7 @@
       profiles-audio
       profiles-opengl
     ]
+    ++ (with inputs.srvos.nixosModules; [desktop])
     ++ [
       {
         home-manager = {
