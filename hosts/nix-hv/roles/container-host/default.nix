@@ -10,4 +10,3 @@
     Requires = ["network-online.target" "systemd-networkd.service"];
   };
 }
-
