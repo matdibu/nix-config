@@ -15,7 +15,7 @@
   time.timeZone = "Europe/Bucharest";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.dbus.implementation = "broker";
+  # services.dbus.implementation = "broker";
 
   security.sudo = {
     # Only allow members of the wheel group to execute sudo by setting the executable’s permissions accordingly.
