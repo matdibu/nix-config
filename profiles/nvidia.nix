@@ -7,7 +7,8 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
-  boot.initrd.kernelModules = [
+  # boot.initrd.kernelModules = [
+  boot.kernelModules = [
     "nvidia"
     "nvidia_modeset"
     "nvidia_uvm"
@@ -28,6 +29,10 @@
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
 
     open = false;
     nvidiaSettings = false;
