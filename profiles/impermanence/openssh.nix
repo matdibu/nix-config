@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  persist_path = "/mnt/persist";
+  persist_path = "/persist";
 in {
   environment.persistence.${persist_path} = lib.mkIf config.services.openssh.enable {
     files = [

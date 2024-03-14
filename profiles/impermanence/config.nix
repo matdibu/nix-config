@@ -1,5 +1,5 @@
 let
-  persist_path = "/mnt/persist";
+  persist_path = "/persist";
 in {
   imports = [
     ./openssh.nix
