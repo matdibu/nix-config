@@ -63,5 +63,9 @@ in {
       hostName = "nix-ws";
       modules = commonHome ++ guiHome;
     };
+    nix-hv = nixosSystemWithDefaults {
+      system = "x86_64-linux";
+      hostName = "nix-hv";
+    };
   };
 }
