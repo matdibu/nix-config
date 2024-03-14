@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./libvirt.nix
+    ./libvirt.nix
     # ./cloud-hypervisor.nix
     ./qemu.nix
     ./vfio.nix
