@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs.vim.defaultEditor = true;
   programs.nano.enable = false;
 
@@ -16,7 +12,7 @@
     htop
   ];
 
-  time.timeZone = lib.mkDefault "Europe/Bucharest";
+  time.timeZone = "Europe/Bucharest";
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.dbus.implementation = "broker";
