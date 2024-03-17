@@ -30,7 +30,6 @@
       git # gitsigns
 
       # lsp's
-      nixd
       nil
       nixpkgs-fmt
       nodePackages.bash-language-server
