@@ -39,9 +39,5 @@
     };
   };
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "nix-2.16.2"
-  ];
-
   nixpkgs.config.allowUnfree = true;
 }
