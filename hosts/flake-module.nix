@@ -58,6 +58,10 @@
     }));
 in {
   flake.nixosConfigurations = {
+    nix-iso = nixosSystemWithDefaults {
+      system = "x86_64-linux";
+      hostName = "nix-iso";
+    };
     nix-ws = nixosSystemWithDefaults {
       system = "x86_64-linux";
       hostName = "nix-ws";
