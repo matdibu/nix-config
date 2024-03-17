@@ -25,13 +25,13 @@ require("lspconfig").nil_ls.setup({
     on_attach = on_attach,
     settings = {
         ["nil"] = {
-            nix = {
-                maxMemoryMB = 8192,
-                flake = {
-                    autoArchive = true,
-                    autoEvalInputs = true,
-                },
-            },
+            -- nix = {
+            --     maxMemoryMB = 8192,
+            --     flake = {
+            --         autoArchive = true,
+            --         autoEvalInputs = true,
+            --     },
+            -- },
             formatting = {
                 command = { "alejandra" },
             },
