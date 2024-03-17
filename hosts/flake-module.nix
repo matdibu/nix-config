@@ -67,5 +67,10 @@ in {
       system = "x86_64-linux";
       hostName = "nix-hv";
     };
+    nix-vp4670 = nixosSystemWithDefaults {
+      system = "x86_64-linux";
+      hostName = "nix-vp4670";
+      modules = commonHome ++ guiHome;
+    };
   };
 }
