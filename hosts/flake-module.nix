@@ -54,7 +54,6 @@
           ./${args.hostName}
           {networking = {inherit (args) hostName;};}
         ]
-        ++ commonProfiles
         ++ (args.modules or []);
     }));
 in {
@@ -68,7 +67,6 @@ in {
         profiles-security
         profiles-openssh
       ];
-
     };
     nix-ws = nixosSystem {
       system = "x86_64-linux";
