@@ -7,8 +7,7 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
-  # boot.initrd.kernelModules = [
-  boot.kernelModules = [
+  boot.initrd.kernelModules = [
     "nvidia"
     "nvidia_modeset"
     "nvidia_uvm"
