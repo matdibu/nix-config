@@ -4,6 +4,7 @@
       profiles-docs
       profiles-misc
       profiles-nix-nixpkgs
+      profiles-networking
       profiles-security
       profiles-openssh
       profiles-users
