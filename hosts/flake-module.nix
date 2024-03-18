@@ -83,5 +83,10 @@ in {
       hostName = "nix-vp4670";
       modules = commonProfiles ++ commonHome ++ guiHome;
     };
+    nix-rockpro64 = nixosSystem {
+      system = "aarch64-linux";
+      hostName = "nix-rockpro64";
+      modules = commonProfiles;
+    };
   };
 }
