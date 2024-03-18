@@ -45,7 +45,7 @@
       }
     ];
 
-  nixosSystemWithDefaults = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args ["hostName"])
+  nixosSystem = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args ["hostName"])
     // {
       specialArgs = {inherit inputs;} // args.specialArgs or {};
       modules =
@@ -58,23 +58,31 @@
     }));
 in {
   flake.nixosConfigurations = {
-    nix-iso = nixosSystemWithDefaults {
+    nix-iso = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-iso";
+      modules = with inputs.self.nixosModules; [
+        profiles-misc
+        profiles-nix-nixpkgs
+        profiles-security
+        profiles-openssh
+      ];
+
     };
-    nix-ws = nixosSystemWithDefaults {
+    nix-ws = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-ws";
-      modules = commonHome ++ guiHome;
+      modules = commonProfiles ++ commonHome ++ guiHome;
     };
-    nix-hv = nixosSystemWithDefaults {
+    nix-hv = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-hv";
+      modules = commonProfiles;
     };
-    nix-vp4670 = nixosSystemWithDefaults {
+    nix-vp4670 = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-vp4670";
-      modules = commonHome ++ guiHome;
+      modules = commonProfiles ++ commonHome ++ guiHome;
     };
   };
 }
