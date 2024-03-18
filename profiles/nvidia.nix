@@ -33,7 +33,7 @@
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
 
-    open = false;
+    open = true;
     nvidiaSettings = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
