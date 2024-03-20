@@ -1,7 +1,7 @@
 let
   pool_name = "tank";
   root_snapshot_name = "${pool_name}/system/tmp@blank";
-  persist_path = "/persist";
+  persist_path = "/mnt/persist";
 in {
   imports = [
     ./rollback.nix
