@@ -1,11 +1,14 @@
-{inputs, ...}: let
-  persist_path = "/mnt/persist";
-in {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
+    # inputs.impermanence.nixosModules.impermanence
+    inputs.self.nixosModules.modules-impermanence
   ];
 
-  environment.persistence.${persist_path} = {
+  environment.persistence.${config.impermanence.mountpoint} = {
     hideMounts = true;
     directories = [
       "/var/log"

@@ -1,17 +1,17 @@
 {inputs, ...}: let
-  commonProfiles = with inputs.self.nixosModules;
-    [
-      profiles-docs
-      profiles-misc
-      profiles-nix-nixpkgs
-      profiles-networking
-      profiles-security
-      profiles-openssh
-      profiles-users
-    ]
+  commonModules =
+    (with inputs.self.nixosModules; [
+      profiles-common
+      modules-impermanence
+    ])
     ++ (with inputs.srvos.nixosModules; [
       common
-    ]);
+    ])
+    ++ [
+      {
+        impermanence.enable = true;
+      }
+    ];
 
   commonHome = [
     inputs.home-manager.nixosModule
@@ -61,32 +61,27 @@ in {
     nix-iso = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-iso";
-      modules = with inputs.self.nixosModules; [
-        profiles-misc
-        profiles-nix-nixpkgs
-        profiles-security
-        profiles-openssh
-      ];
+      modules = commonModules;
     };
     nix-ws = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-ws";
-      modules = commonProfiles ++ commonHome ++ guiHome;
+      modules = commonModules ++ commonHome ++ guiHome;
     };
     nix-hv = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-hv";
-      modules = commonProfiles;
+      modules = commonModules;
     };
     nix-vp4670 = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-vp4670";
-      modules = commonProfiles ++ commonHome ++ guiHome;
+      modules = commonModules ++ commonHome ++ guiHome;
     };
     nix-rockpro64 = nixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
-      modules = commonProfiles;
+      modules = commonModules;
     };
   };
 }

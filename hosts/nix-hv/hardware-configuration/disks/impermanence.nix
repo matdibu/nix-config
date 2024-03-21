@@ -1,8 +1,7 @@
-{inputs, ...}: let
+_: let
   persist_path = "/mnt/persist";
 in {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
   ];
 
   environment.persistence.${persist_path} = {

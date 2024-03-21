@@ -1,6 +1,6 @@
 {inputs, ...}: {
   imports = [
-    inputs.self.nixosModules.profiles-impermanence
+    inputs.self.nixosModules.modules-impermanence
     ./impermanence.nix
   ];
 

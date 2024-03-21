@@ -39,6 +39,7 @@
       imports = [
         ./dev/flake-module.nix
         ./hosts/flake-module.nix
+        ./modules/flake-module.nix
         ./profiles/flake-module.nix
       ];
     };

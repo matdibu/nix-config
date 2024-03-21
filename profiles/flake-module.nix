@@ -1,17 +1,10 @@
 {inputs, ...}: {
   flake.nixosModules = {
     profiles-audio = ./audio.nix;
-    profiles-docs = ./docs.nix;
-    profiles-impermanence = import ./impermanence {inherit inputs;};
-    profiles-misc = ./misc.nix;
-    profiles-networking = ./networking.nix;
-    profiles-nix-nixpkgs = import ./nix-nixpkgs.nix {inherit inputs;};
+    profiles-common = import ./common {inherit inputs;};
     profiles-nvidia = ./nvidia.nix;
     profiles-opengl = ./opengl.nix;
-    profiles-openssh = ./openssh.nix;
     profiles-qemu-guest = ./qemu-guest.nix;
-    profiles-security = ./security.nix;
-    profiles-users = ./users.nix;
     profiles-zfs = ./zfs.nix;
   };
 }
