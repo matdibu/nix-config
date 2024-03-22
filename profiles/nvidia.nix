@@ -5,7 +5,7 @@
 }: {
 
   imports = with inputs.nixos-hardware.nixosModules; [
-    common-gpu-nvidia
+    common-gpu-nvidia-nonprime
   ];
 
   hardware.opengl = {
