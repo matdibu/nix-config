@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   imports = with inputs.nixos-hardware.nixosModules;
     [
       common-pc
@@ -18,7 +18,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  boot.initrd.kernelModules = ["sdhci_pci" "i915"];
+  boot.initrd.kernelModules = [ "sdhci_pci" "i915" ];
   boot.kernelParams = [
     "i915.enable_guc=3"
     "i915.modeset=1"

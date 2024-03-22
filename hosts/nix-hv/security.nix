@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  modulesPath,
-  ...
+{ config
+, pkgs
+, lib
+, modulesPath
+, ...
 }: {
   imports = [
     "${modulesPath}/profiles/hardened.nix"
@@ -27,6 +26,6 @@
       compatiblePackages = filter (packages: compareVersions packages.kernel.version latestZfsKernel <= 0) (attrValues hardenedPackages);
       orderedCompatiblePackages = sort (x: y: compareVersions x.kernel.version y.kernel.version > 0) compatiblePackages;
     in
-      head orderedCompatiblePackages
+    head orderedCompatiblePackages
   );
 }

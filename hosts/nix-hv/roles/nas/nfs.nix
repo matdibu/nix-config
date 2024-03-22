@@ -14,5 +14,5 @@
       vers4.2=yes
     '';
   };
-  networking.firewall.allowedTCPPorts = [2049];
+  networking.firewall.allowedTCPPorts = [ 2049 ];
 }

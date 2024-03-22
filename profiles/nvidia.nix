@@ -1,7 +1,6 @@
-{
-  lib,
-  config,
-  ...
+{ lib
+, config
+, ...
 }: {
   hardware.opengl = {
     enable = true;
@@ -11,7 +10,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   boot.kernelParams = lib.mkBefore [
     "nvidia_drm.fbdev=1"

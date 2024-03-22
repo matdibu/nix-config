@@ -1,4 +1,5 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   commonModules =
     (with inputs.self.nixosModules; [
       profiles-common
@@ -19,7 +20,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = {inherit inputs;};
+        extraSpecialArgs = { inherit inputs; };
         users.mateidibu = import ../home/mateidibu;
       };
     }
@@ -32,7 +33,7 @@
     [
       profiles-audio
     ]
-    ++ (with inputs.srvos.nixosModules; [desktop])
+    ++ (with inputs.srvos.nixosModules; [ desktop ])
     ++ [
       {
         home-manager = {
@@ -45,18 +46,19 @@
       }
     ];
 
-  nixosSystem = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args ["hostName"])
+  nixosSystem = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ])
     // {
-      specialArgs = {inherit inputs;} // args.specialArgs or {};
-      modules =
-        [
-          ./${args.hostName}
-          {networking = {inherit (args) hostName;};}
-          {nixpkgs.hostPlatform = {inherit (args) system;};}
-        ]
-        ++ (args.modules or []);
-    }));
-in {
+    specialArgs = { inherit inputs; } // args.specialArgs or { };
+    modules =
+      [
+        ./${args.hostName}
+        { networking = { inherit (args) hostName; }; }
+        { nixpkgs.hostPlatform = { inherit (args) system; }; }
+      ]
+      ++ (args.modules or [ ]);
+  }));
+in
+{
   flake.nixosConfigurations = {
     nix-iso = nixosSystem {
       system = "x86_64-linux";

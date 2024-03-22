@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./fonts.nix
   ];
@@ -54,7 +54,7 @@
     enable = true;
     config = {
       fonts = {
-        names = ["monospace"];
+        names = [ "monospace" ];
         style = "Normal";
         size = 13.0;
       };

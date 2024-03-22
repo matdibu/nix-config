@@ -5,7 +5,7 @@
   programs.git = {
     enable = true;
     userName = "Matei Dibu";
-    ignores = ["result"];
+    ignores = [ "result" ];
     extraConfig = {
       push.autoSetupRemote = true;
     };

@@ -21,18 +21,18 @@ let
     "1022:1485" # Starship/Matisse Reserved SPP
   ];
 in
-  {lib, ...}: {
-    boot = {
-      initrd.kernelModules = [
-        "vfio"
-        "vfio_pci"
-      ];
+{ lib, ... }: {
+  boot = {
+    initrd.kernelModules = [
+      "vfio"
+      "vfio_pci"
+    ];
 
-      kernelParams =
-        [
-          "amd_iommu=pgtbl_v2"
-          "amd_iommu_intr=vapic"
-        ]
-        ++ lib.optional (pciIDs != null) ("vfio-pci.ids=" + lib.concatStringsSep "," pciIDs);
-    };
-  }
+    kernelParams =
+      [
+        "amd_iommu=pgtbl_v2"
+        "amd_iommu_intr=vapic"
+      ]
+      ++ lib.optional (pciIDs != null) ("vfio-pci.ids=" + lib.concatStringsSep "," pciIDs);
+  };
+}

@@ -16,12 +16,12 @@
   };
 
   systemd.targets."podman-jellyfin".unitConfig = {
-    After = ["network-online.target" "systemd-networkd.service"];
-    Requires = ["network-online.target" "systemd-networkd.service"];
+    After = [ "network-online.target" "systemd-networkd.service" ];
+    Requires = [ "network-online.target" "systemd-networkd.service" ];
   };
 
   fileSystems."/container-storage/jellyfin/media" = {
     device = "/torrents";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 }

@@ -7,7 +7,7 @@
     ./zvolumes.nix
   ];
 
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = [ "kvm-amd" ];
 
   boot.kernelParams = [
     "default_hugepagesz=1G"

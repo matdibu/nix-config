@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = [pkgs.microcodeAmd];
+  environment.systemPackages = [ pkgs.microcodeAmd ];
 
   hardware = {
     enableAllFirmware = true;

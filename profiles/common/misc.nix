@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.vim.defaultEditor = true;
   programs.nano.enable = false;
 
