@@ -1,11 +1,9 @@
-{inputs, ...}: {
+{
   imports = [
     ./docs.nix
     ./misc.nix
     ./networking.nix
-    (import
-      ./nix-nixpkgs.nix
-      {inherit inputs;})
+    ./nix-nixpkgs.nix
     ./openssh.nix
     ./security.nix
     ./users.nix

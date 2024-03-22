@@ -1,7 +1,7 @@
-{inputs, ...}: {
+{
   flake.nixosModules = {
     profiles-audio = ./audio.nix;
-    profiles-common = import ./common {inherit inputs;};
+    profiles-common = ./common;
     profiles-nvidia = ./nvidia.nix;
     profiles-opengl = ./opengl.nix;
     profiles-qemu-guest = ./qemu-guest.nix;
