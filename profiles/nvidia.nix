@@ -1,7 +1,13 @@
-{ lib
+{ inputs
+, lib
 , config
 , ...
 }: {
+
+  imports = with inputs.nixos-hardware.nixosModules; [
+    common-gpu-nvidia
+  ];
+
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -9,8 +15,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   boot.kernelParams = lib.mkBefore [
     "nvidia_drm.fbdev=1"
