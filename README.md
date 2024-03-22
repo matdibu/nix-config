@@ -8,9 +8,9 @@ NixOS configurations for multiple hosts:
 - `nix-iso`: personalised installer ISO
 
 Project structure:
-`dev`: project helpers and tools
-`home`: `home-config` user settings
-`hosts`: NixOS machines
-`modules`: normal modules, defined with `options` and `config`
-`profiles`: configuration-only modules
+- `dev`: project helpers and tools
+- `home`: `home-config` user settings
+- `hosts`: NixOS machines
+- `modules`: normal modules, defined with `options` and `config`
+- `profiles`: configuration-only modules
 
