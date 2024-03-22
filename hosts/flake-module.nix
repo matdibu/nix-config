@@ -29,22 +29,22 @@ let
     }
   ];
 
-  guiHome = with inputs.self.nixosModules;
+  guiHome = commonHome ++ (with inputs.self.nixosModules;
     [
       profiles-audio
-    ]
+    ])
     ++ (with inputs.srvos.nixosModules; [ desktop ])
     ++ [
-      {
-        home-manager = {
-          users.mateidibu = import ../home/mateidibu/gui;
-        };
-      }
-      {
-        programs.dconf.enable = true;
-        security.polkit.enable = true;
-      }
-    ];
+    {
+      home-manager = {
+        users.mateidibu = import ../home/mateidibu/gui;
+      };
+    }
+    {
+      programs.dconf.enable = true;
+      security.polkit.enable = true;
+    }
+  ];
 
   nixosSystem = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ])
     // {
@@ -55,6 +55,7 @@ let
         { networking = { inherit (args) hostName; }; }
         { nixpkgs.hostPlatform = { inherit (args) system; }; }
       ]
+      ++ commonModules
       ++ (args.modules or [ ]);
   }));
 in
@@ -67,22 +68,21 @@ in
     nix-ws = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-ws";
-      modules = commonModules ++ commonHome ++ guiHome;
+      modules = guiHome;
     };
     nix-hv = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-hv";
-      modules = commonModules;
     };
     nix-vp4670 = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-vp4670";
-      modules = commonModules ++ commonHome ++ guiHome;
+      modules = guiHome;
     };
     nix-rockpro64 = nixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
-      modules = commonModules ++ commonHome;
+      modules = commonHome;
     };
   };
 }
