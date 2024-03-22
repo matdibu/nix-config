@@ -61,7 +61,6 @@ in {
     nix-iso = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-iso";
-      modules = commonModules;
     };
     nix-ws = nixosSystem {
       system = "x86_64-linux";
@@ -81,7 +80,7 @@ in {
     nix-rockpro64 = nixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
-      modules = commonModules;
+      modules = commonModules ++ commonHome;
     };
   };
 }
