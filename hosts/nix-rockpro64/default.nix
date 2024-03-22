@@ -6,8 +6,7 @@
   imports = [
     "${modulesPath}/profiles/minimal.nix"
     inputs.srvos.modules.nixos.server
-    ./hardware-configuration
-    ./networking.nix
+    ./hardware
   ];
 
   system.stateVersion = "24.05";

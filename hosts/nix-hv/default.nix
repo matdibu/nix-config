@@ -7,9 +7,8 @@
     "${modulesPath}/profiles/headless.nix"
     "${modulesPath}/profiles/minimal.nix"
     inputs.srvos.modules.nixos.server
-    ./hardware-configuration
+    ./hardware
     ./security.nix
-    ./networking.nix
     ./roles/hypervisor
     ./roles/nas
     ./roles/container-host

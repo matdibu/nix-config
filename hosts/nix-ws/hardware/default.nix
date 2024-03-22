@@ -1,7 +1,8 @@
 {inputs, ...}: {
   imports =
     [
-      ./disks
+      ./networking.nix
+      ./impermanence.nix
     ]
     ++ (with inputs.self.nixosModules; [
       profiles-nvidia
@@ -11,7 +12,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  hardware.enableAllFirmware = true;
+  impermanence.device = "/dev/disk/by-path/virtio-pci-0000:00:07.0";
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  hardware.enableAllFirmware = true;
 }

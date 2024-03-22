@@ -3,7 +3,7 @@
 in {
   imports = [
     hw-modules."pine64-pinebook-pro"
-    ./disks
+    ./networking.nix
   ];
 
   boot.loader = {
@@ -32,5 +32,5 @@ in {
     "v4l2_vp9"
   ];
 
-  nixpkgs.hostPlatform = "aarch64-linux";
+  impermanence.device = "/dev/disk/by-path/platform-fe330000.mmc";
 }

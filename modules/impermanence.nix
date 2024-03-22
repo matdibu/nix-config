@@ -44,10 +44,20 @@ in {
 
     fileSystems.${cfg.mountpoint}.neededForBoot = true;
 
-    environment.persistence.${cfg.mountpoint} = lib.mkIf config.services.openssh.enable {
-      files = [
-        "/etc/ssh/ssh_host_ed25519_key"
-        "/etc/ssh/ssh_host_rsa_key"
+    environment.persistence.${cfg.mountpoint} = {
+      hideMounts = true;
+      files = lib.mkMerge [
+        (lib.mkIf config.services.openssh.enable [
+          "/etc/ssh/ssh_host_ed25519_key"
+          "/etc/ssh/ssh_host_rsa_key"
+        ])
+        [
+          "/etc/machine-id"
+        ]
+      ];
+      directories = [
+        "/var/log"
+        # "/var/lib/systemd/coredump"
       ];
     };
 

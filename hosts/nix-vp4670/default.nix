@@ -1,7 +1,6 @@
 {
   imports = [
-    ./hardware-configuration
-    ./networking.nix
+    ./hardware
   ];
 
   system.stateVersion = "24.05";

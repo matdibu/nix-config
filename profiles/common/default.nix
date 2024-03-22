@@ -6,6 +6,7 @@
     ./nix-nixpkgs.nix
     ./openssh.nix
     ./security.nix
+    ./smartd.nix
     ./users.nix
   ];
 }

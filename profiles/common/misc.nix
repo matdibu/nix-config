@@ -17,6 +17,8 @@
 
   services.dbus.implementation = "broker";
 
+  hardware.enableAllFirmware = true;
+
   security.sudo = {
     # Only allow members of the wheel group to execute sudo by setting the executable’s permissions accordingly.
     # This prevents users that are not members of wheel from exploiting vulnerabilities in sudo such as CVE-2021-3156.

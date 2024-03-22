@@ -1,10 +1,10 @@
-{
+_: {
   services.smartd = {
     enable = true;
     notifications = {
       mail = {
         enable = true;
-        sender = "root@nix-vp4670.net";
+        sender = "root@nix-hv.net";
         recipient = "contact+nix-hv@mateidibu.dev";
       };
     };

@@ -1,10 +1,7 @@
 {...}: {
   imports = [
-    ./hardware-configuration
-    ./networking.nix
+    ./hardware
   ];
-
-  virtualisation.podman.enable = true;
 
   system.stateVersion = "24.05";
 }

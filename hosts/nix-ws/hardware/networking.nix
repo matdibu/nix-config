@@ -1,11 +1,8 @@
 {
-  networking = {
-    hostId = "6c2854ca";
-    hostName = "nix-hv";
-  };
+  networking.hostId = "63364f39";
 
   systemd.network.networks."10-wan" = {
-    matchConfig.Name = "enp5s0";
+    matchConfig.Name = "enp0s1";
     networkConfig = {
       DHCP = "ipv4";
       IPv6AcceptRA = true;

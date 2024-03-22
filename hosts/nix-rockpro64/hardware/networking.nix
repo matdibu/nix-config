@@ -1,13 +1,11 @@
 {
-  networking = {
-    hostId = "63364f39";
-  };
+  networking.hostId = "65dd03a2";
 
   systemd.network.networks."10-wan" = {
-    matchConfig.Name = "enp0s1";
+    matchConfig.Name = "end0";
     networkConfig = {
       DHCP = "ipv4";
-      # IPv6AcceptRA = true;
+      IPv6AcceptRA = true;
     };
     linkConfig.RequiredForOnline = "routable";
   };

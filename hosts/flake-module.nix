@@ -31,7 +31,6 @@
   guiHome = with inputs.self.nixosModules;
     [
       profiles-audio
-      profiles-opengl
     ]
     ++ (with inputs.srvos.nixosModules; [desktop])
     ++ [
@@ -53,6 +52,7 @@
         [
           ./${args.hostName}
           {networking = {inherit (args) hostName;};}
+          {nixpkgs.hostPlatform = {inherit (args) system;};}
         ]
         ++ (args.modules or []);
     }));
