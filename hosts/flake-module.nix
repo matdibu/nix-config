@@ -14,6 +14,17 @@ let
       }
     ];
 
+  commonServer = (with inputs.srvos.nixosModules; [
+    server
+  ]) ++ (with inputs.self.nixosModules; [
+    profiles-server
+    profiles-hardened-zfs
+  ]);
+
+  commonHeadless = with inputs.self.nixosModules; [
+    profiles-headless
+  ];
+
   commonHome = [
     inputs.home-manager.nixosModule
     {
@@ -73,6 +84,7 @@ in
     nix-hv = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-hv";
+      modules = commonServer ++ commonHeadless;
     };
     nix-vp4670 = nixosSystem {
       system = "x86_64-linux";
@@ -82,7 +94,7 @@ in
     nix-rockpro64 = nixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
-      modules = commonHome;
+      modules = commonServer ++ commonHome;
     };
   };
 }
