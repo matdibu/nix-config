@@ -1,18 +1,17 @@
 { inputs, ... }: {
-  imports = with inputs.nixos-hardware.nixosModules;
-    [
-      common-pc
-      common-pc-ssd
-    ]
-    ++ (with inputs.self.nixosModules; [
-      profiles-zfs
-      profiles-intel-gpu
-      profiles-intel-ucode
-    ])
-    ++ [
-      ./impermanence.nix
-      ./networking.nix
-    ];
+  imports = (with inputs.nixos-hardware.nixosModules; [
+    common-pc
+    common-pc-ssd
+  ])
+  ++ (with inputs.self.nixosModules; [
+    profiles-zfs
+    profiles-intel-gpu
+    profiles-intel-ucode
+  ])
+  ++ [
+    ./impermanence.nix
+    ./networking.nix
+  ];
 
   boot.loader = {
     systemd-boot.enable = true;
