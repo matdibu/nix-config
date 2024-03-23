@@ -3,10 +3,10 @@
     [
       common-pc
       common-pc-ssd
-      common-cpu-intel
     ]
     ++ (with inputs.self.nixosModules; [
       profiles-zfs
+      profiles-intel-gpu
       profiles-intel-ucode
     ])
     ++ [
@@ -19,11 +19,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  boot.initrd.kernelModules = [ "sdhci_pci" "i915" "nvme" ];
-  boot.kernelParams = [
-    "i915.enable_guc=3"
-    "i915.modeset=1"
-  ];
+  boot.initrd.kernelModules = [ "sdhci_pci" "nvme" ];
 
   hardware.enableAllFirmware = true;
 

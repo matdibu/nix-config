@@ -5,6 +5,7 @@
     profiles-common = ./common;
     profiles-hardened-zfs = ./hardened-zfs.nix;
     profiles-headless = ./headless.nix;
+    profiles-intel-gpu = ./intel-gpu.nix;
     profiles-intel-ucode = ./intel-ucode.nix;
     profiles-nvidia = ./nvidia.nix;
     profiles-qemu-guest = ./qemu-guest.nix;
