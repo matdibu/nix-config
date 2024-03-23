@@ -1,13 +1,8 @@
-{ config, ... }: {
+{ config, lib, ... }: {
   boot = {
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = lib.mkDefault config.boot.zfs.package.latestCompatibleLinuxPackages;
     initrd.supportedFilesystems = [ "zfs" ];
-    supportedFilesystems = [ "zfs" ];
-    zfs = {
-      devNodes = "/dev/disk/by-partuuid";
-      forceImportRoot = true;
-      forceImportAll = true;
-    };
+    zfs.devNodes = "/dev/disk/by-partuuid";
   };
   systemd.services.zfs-mount.enable = false;
 }
