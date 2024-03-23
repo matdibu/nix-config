@@ -14,7 +14,7 @@
     driSupport32Bit = true;
   };
 
-  services.xserver.videoDrivers = [ "i915" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   boot.initrd.kernelModules = [ "i915" ];
   boot.kernelParams = [
