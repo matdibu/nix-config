@@ -6,6 +6,7 @@
       common-cpu-intel
     ]
     ++ (with inputs.self.nixosModules; [
+      profiles-zfs
       profiles-intel-ucode
     ])
     ++ [
