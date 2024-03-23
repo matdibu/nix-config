@@ -1,4 +1,5 @@
 { inputs
+, pkgs
 , ...
 }: {
 
@@ -12,6 +13,10 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = [
+      # VA-API
+      pkgs.intel-media-driver
+    ];
   };
 
   services.xserver.videoDrivers = [ "modesetting" ];
