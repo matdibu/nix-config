@@ -1,14 +1,6 @@
-{ inputs
-, pkgs
+{ pkgs
 , ...
 }: {
-
-  imports = with inputs.nixos-hardware.nixosModules;
-    [
-      common-cpu-intel
-      common-gpu-intel
-    ];
-
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -16,6 +8,11 @@
     extraPackages = [
       # VA-API
       pkgs.intel-media-driver
+      # OpenCL
+      # pkgs.intel-compute-runtime
+      # VDPAU
+      # pkgs.vaapiVdpau
+      # pkgs.libvdpau-va-gl
     ];
   };
 
