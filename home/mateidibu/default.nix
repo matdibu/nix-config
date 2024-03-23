@@ -1,13 +1,14 @@
-{
+{ osConfig, ... }: {
   imports = [
     ./direnv.nix
     ./packages.nix
     ./git.nix
     ./ssh.nix
     ./editors.nix
+    ./impermanence.nix
   ];
 
   programs.bash.enable = true;
 
-  home.stateVersion = "24.05";
+  home.stateVersion = osConfig.system.stateVersion;
 }

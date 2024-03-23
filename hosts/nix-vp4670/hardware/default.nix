@@ -22,5 +22,5 @@
 
   hardware.enableAllFirmware = true;
 
-  impermanence.device = "/dev/disk/by-path/pci-0000:08:00.0-nvme-1";
+  impermanence.device = "/dev/disk/by-id/nvme-WDS200T1X0E-00AFY0_21469J442501";
 }

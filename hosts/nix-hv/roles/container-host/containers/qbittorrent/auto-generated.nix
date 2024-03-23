@@ -1,5 +1,7 @@
-# Auto-generated using compose2nix v0.1.7.
-{ lib, ... }: {
+# Auto-generated using compose2nix v0.1.8.
+{ lib, ... }:
+
+{
   # Runtime
   virtualisation.podman = {
     enable = true;
@@ -39,7 +41,6 @@
     serviceConfig = {
       Restart = lib.mkOverride 500 "always";
     };
-    startLimitIntervalSec = 0;
     partOf = [
       "podman-compose-nix-containers-root.target"
     ];

@@ -44,7 +44,9 @@ let
     [
       profiles-audio
     ])
-    ++ (with inputs.srvos.nixosModules; [ desktop ])
+    ++ (with inputs.srvos.nixosModules; [
+    desktop
+  ])
     ++ [
     {
       home-manager = {

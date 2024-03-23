@@ -1,9 +1,14 @@
+let
+  device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNX0NA05054K";
+  poolName = "nas";
+  diskName = "nas";
+in
 {
   disko.devices = {
     disk = {
-      "nas" = {
+      ${diskName} = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNX0NA05054K";
+        inherit device;
         content = {
           type = "gpt";
           partitions = {
@@ -11,7 +16,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "nas";
+                pool = poolName;
               };
             };
           };
@@ -19,7 +24,7 @@
       };
     };
     zpool = {
-      "nas" = {
+      ${poolName} = {
         type = "zpool";
         options = {
           ashift = "12";

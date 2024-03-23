@@ -1,7 +1,5 @@
 {
-  networking = {
-    hostId = "47b6b445";
-  };
+  networking.hostId = "47b6b445";
 
   systemd.network.networks."10-wan" = {
     matchConfig.Name = "enp1s0";
