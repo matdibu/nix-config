@@ -30,10 +30,10 @@
     # Xwayland compatibility
     XWAYLAND_NO_GLAMOR = "1";
 
-    GBM_BACKEND = "nvidia-drm";
-    __GL_GSYNC_ALLOWED = "0";
+    # GBM_BACKEND = "nvidia-drm";
+    # __GL_GSYNC_ALLOWED = "0";
     # __GL_VRR_ALLOWED = "0";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
   home.packages = with pkgs; [
