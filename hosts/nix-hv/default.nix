@@ -1,9 +1,9 @@
 {
   imports = [
     ./hardware
-    ./roles/hypervisor
-    ./roles/nas
-    ./roles/container-host
+    # ./roles/hypervisor
+    # ./roles/nas
+    # ./roles/container-host
   ];
 
   security.sudo.enable = false;
