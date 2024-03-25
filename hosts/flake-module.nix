@@ -22,10 +22,6 @@ let
     profiles-hardened-zfs
   ]);
 
-  commonHeadless = with inputs.self.nixosModules; [
-    profiles-headless
-  ];
-
   commonHome = [
     inputs.home-manager.nixosModule
     {
@@ -88,9 +84,9 @@ in
       hostName = "nix-ws";
       modules = guiHome;
     };
-    nix-hv = nixosSystem {
+    nix-x570 = nixosSystem {
       system = "x86_64-linux";
-      hostName = "nix-hv";
+      hostName = "nix-x570";
       modules = guiHome;
     };
     nix-vp4670 = nixosSystem {
