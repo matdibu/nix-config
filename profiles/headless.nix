@@ -2,6 +2,5 @@
 {
   imports = [
     "${modulesPath}/profiles/headless.nix"
-
   ];
 }
