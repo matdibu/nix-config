@@ -4,6 +4,7 @@
   ])
   ++ (with inputs.self.nixosModules; [
     profiles-amd-ucode
+    profiles-nvidia
   ])
   ++ [
     ./networking.nix
