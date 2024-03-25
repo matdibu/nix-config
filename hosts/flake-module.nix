@@ -74,9 +74,13 @@ let
 in
 {
   flake.nixosConfigurations = {
-    nix-iso = nixosSystem {
+    nix-iso = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      hostName = "nix-iso";
+      specialArgs = { inherit inputs; };
+      modules = [
+        inputs.self.nixosModules.profiles-common
+        ./nix-iso
+      ];
     };
     nix-ws = nixosSystem {
       system = "x86_64-linux";

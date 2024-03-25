@@ -1,5 +1,4 @@
 { modulesPath
-, pkgs
 , lib
 , config
 , ...
@@ -10,9 +9,8 @@
 
   services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
 
-  environment.systemPackages = with pkgs; [
-    gitMinimal
-  ];
+  networking.hostName = "nix-iso";
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
