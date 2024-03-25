@@ -1,7 +1,7 @@
 {
   imports = [
     ./hardware
-    # ./roles/hypervisor
+    ./roles/hypervisor
     # ./roles/nas
     # ./roles/container-host
   ];
