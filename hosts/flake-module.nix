@@ -90,7 +90,7 @@ in
     nix-hv = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-hv";
-      modules = commonServer;
+      modules = guiHome;
     };
     nix-vp4670 = nixosSystem {
       system = "x86_64-linux";
