@@ -10,6 +10,9 @@
     curl
     jq
     htop
+    pciutils
+    usbutils
+    lm_sensors
   ];
 
   time.timeZone = "Europe/Bucharest";
