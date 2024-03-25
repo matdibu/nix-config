@@ -3,6 +3,7 @@ let
   commonModules =
     (with inputs.self.nixosModules; [
       profiles-common
+      profiles-zfs
       modules-impermanence
     ])
     ++ (with inputs.srvos.nixosModules; [
