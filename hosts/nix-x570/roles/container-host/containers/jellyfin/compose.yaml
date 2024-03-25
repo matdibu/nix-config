@@ -6,7 +6,7 @@ services:
     user: 0:0
     network_mode: host
     volumes:
-      - /container-storage/jellyfin/config:/config
-      - /container-storage/jellyfin/cache:/cache
-      - /container-storage/jellyfin/media:/media:ro
+      - /containers/jellyfin/config:/config
+      - /containers/jellyfin/cache:/cache
+      - /containers/jellyfin/media:/media:ro
     restart: unless-stopped

@@ -3,9 +3,9 @@
     zpool = {
       "${config.impermanence.poolName}" = {
         datasets = {
-          "system/container-storage" = {
+          "system/containers" = {
             type = "zfs_fs";
-            mountpoint = "/container-storage";
+            mountpoint = "/mnt/containers";
           };
         };
       };

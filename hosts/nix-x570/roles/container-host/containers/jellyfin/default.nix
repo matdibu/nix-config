@@ -20,8 +20,8 @@
     Requires = [ "network-online.target" "systemd-networkd.service" ];
   };
 
-  fileSystems."/container-storage/jellyfin/media" = {
-    device = "/torrents";
+  fileSystems."/mnt/containers/jellyfin/media" = {
+    device = "/mnt/torrents";
     options = [ "bind" ];
   };
 }

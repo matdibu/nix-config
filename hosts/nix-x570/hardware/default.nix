@@ -12,6 +12,7 @@
   ++ [
     ./impermanence.nix
     ./networking.nix
+    ./nas.nix
   ];
 
   boot.loader = {

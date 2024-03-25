@@ -20,12 +20,13 @@
     environment = {
       PGID = "0";
       PUID = "0";
+      TORRENTING_PORT = "6881";
       TZ = "Europe/Bucharest";
       WEBUI_PORT = "8080";
     };
     volumes = [
-      "/container-storage/qbittorrent/config:/config:rw"
-      "/container-storage/qbittorrent/downloads:/downloads:rw"
+      "/containers/qbittorrent/config:/config:rw"
+      "/containers/qbittorrent/downloads:/downloads:rw"
     ];
     ports = [
       "8080:8080/tcp"

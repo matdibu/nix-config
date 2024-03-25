@@ -8,9 +8,10 @@ services:
       - PGID=0
       - TZ=Europe/Bucharest
       - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
     volumes:
-      - /container-storage/qbittorrent/config:/config
-      - /container-storage/qbittorrent/downloads:/downloads
+      - /containers/qbittorrent/config:/config
+      - /containers/qbittorrent/downloads:/downloads
     network_mode: host
     ports:
       - 8080:8080

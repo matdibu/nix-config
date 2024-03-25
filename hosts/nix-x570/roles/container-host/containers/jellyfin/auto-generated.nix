@@ -18,9 +18,9 @@
   virtualisation.oci-containers.containers."jellyfin" = {
     image = "jellyfin/jellyfin";
     volumes = [
-      "/container-storage/jellyfin/cache:/cache:rw"
-      "/container-storage/jellyfin/config:/config:rw"
-      "/container-storage/jellyfin/media:/media:ro"
+      "/containers/jellyfin/cache:/cache:rw"
+      "/containers/jellyfin/config:/config:rw"
+      "/containers/jellyfin/media:/media:ro"
     ];
     user = "0:0";
     log-driver = "journald";

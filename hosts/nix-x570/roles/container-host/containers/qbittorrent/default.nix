@@ -4,17 +4,22 @@
   ];
 
   networking.firewall = {
-    allowedTCPPorts = [ 8080 6881 ];
-    allowedUDPPorts = [ 6881 ];
+    allowedTCPPorts = [
+      8080 # Web UI
+      6881 # connection
+    ];
+    allowedUDPPorts = [
+      6881 # connection
+    ];
   };
 
-  systemd.targets."podman-qbittorrent".unitConfig = {
-    After = [ "network-online.target" "systemd-networkd.service" ];
-    Requires = [ "network-online.target" "systemd-networkd.service" ];
-  };
+  # systemd.targets."podman-qbittorrent".unitConfig = {
+  #   After = [ "network-online.target" "systemd-networkd.service" ];
+  #   Requires = [ "network-online.target" "systemd-networkd.service" ];
+  # };
 
-  fileSystems."/container-storage/qbittorrent/downloads" = {
-    device = "/torrents";
+  fileSystems."/containers/qbittorrent/downloads" = {
+    device = "/mnt/torrents";
     options = [ "bind" ];
   };
 }
