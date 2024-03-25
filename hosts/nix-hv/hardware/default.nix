@@ -10,6 +10,7 @@
     profiles-nvidia
   ])
   ++ [
+    ./impermanence.nix
     ./networking.nix
   ];
 
