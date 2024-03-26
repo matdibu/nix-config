@@ -181,28 +181,7 @@
         "impermanence": "impermanence",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "srvos": "srvos",
         "treefmt-nix": "treefmt-nix"
-      }
-    },
-    "srvos": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1711327968,
-        "narHash": "sha256-L8UatcwpSi7KSn6+f2ULPdt/1XTPdZirX+K+cwo4mv0=",
-        "owner": "nix-community",
-        "repo": "srvos",
-        "rev": "c490c19a959d406c87ae1c1481a4608d41a83597",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "srvos",
-        "type": "github"
       }
     },
     "systems": {

@@ -6,21 +6,16 @@ let
       profiles-zfs
       modules-impermanence
     ])
-    ++ (with inputs.srvos.nixosModules; [
-      common
-    ])
     ++ [
       {
         impermanence.enable = true;
       }
     ];
 
-  commonServer = (with inputs.srvos.nixosModules; [
-    server
-  ]) ++ (with inputs.self.nixosModules; [
+  commonServer = with inputs.self.nixosModules; [
     profiles-server
     profiles-hardened-zfs
-  ]);
+  ];
 
   commonHome = [
     inputs.home-manager.nixosModule
@@ -37,12 +32,8 @@ let
     }
   ];
 
-  guiHome = commonHome ++ (with inputs.self.nixosModules;
-    [
-      profiles-audio
-    ])
-    ++ (with inputs.srvos.nixosModules; [
-    desktop
+  guiHome = commonHome ++ (with inputs.self.nixosModules;[
+    profiles-audio
   ])
     ++ [
     {
