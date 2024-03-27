@@ -85,6 +85,22 @@
         "type": "github"
       }
     },
+    "flashrom-meson": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709234749,
+        "narHash": "sha256-VG85bfJkS5sJW8pbX1MqdixkJIhp7oHhkKjSl9JQkNs=",
+        "owner": "roger",
+        "repo": "flashrom-meson-nix",
+        "rev": "77936c8cf6ea97ae39c9dcc6ef3a02232143195c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roger",
+        "repo": "flashrom-meson-nix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -177,6 +193,7 @@
         "agenix": "agenix",
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "flashrom-meson": "flashrom-meson",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "nixos-hardware": "nixos-hardware",
