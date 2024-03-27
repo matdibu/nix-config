@@ -4,7 +4,6 @@
     common-pc-ssd
   ])
   ++ (with inputs.self.nixosModules; [
-    profiles-zfs
     profiles-intel-gpu
     profiles-intel-ucode
   ])
