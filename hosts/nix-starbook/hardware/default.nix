@@ -26,5 +26,8 @@
 
   hardware.enableAllFirmware = true;
 
-  services.fwupd.enable = true;
+  services.fwupd = {
+    enable = true;
+    extraRemotes = [ "lvfs-testing" ];
+  };
 }
