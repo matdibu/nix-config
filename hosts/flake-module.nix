@@ -90,5 +90,10 @@ in
       hostName = "nix-rockpro64";
       modules = commonServer ++ commonHome;
     };
+    nix-starbook = nixosSystem {
+      system = "x86_64-linux";
+      hostName = "nix-starbook";
+      modules = guiHome;
+    };
   };
 }
