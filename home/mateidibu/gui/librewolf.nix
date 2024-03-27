@@ -6,7 +6,7 @@
 
     MOZ_DISABLE_RDD_SANDBOX = "1";
     NVD_BACKEND = "direct";
-    LIBVA_DRIVER_NAME = "nvidia";
+    # LIBVA_DRIVER_NAME = "nvidia";
   };
   programs.librewolf = {
     enable = true;
