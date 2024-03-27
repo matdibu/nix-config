@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, pkgs, ... }: {
   imports = (with inputs.nixos-hardware.nixosModules; [
     common-pc
     common-pc-ssd
@@ -9,18 +9,24 @@
     profiles-intel-ucode
   ])
   ++ [
-    ./impermanence.nix
+    ./disk.nix
     ./networking.nix
   ];
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    initrd.systemd.enable = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
-  boot.initrd.kernelModules = [ "nvme" ];
+  # Don't allow mutation of users outside of the config.
+  users.mutableUsers = false;
 
   hardware.enableAllFirmware = true;
 
-  impermanence.device = "/dev/disk/by-id/nvme-Star_Drive_PCIe_SSD_7FBC074104D900480831";
+  environment.systemPackages = with pkgs; [
+    fwupd
+  ];
 }
