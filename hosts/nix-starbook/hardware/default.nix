@@ -26,7 +26,5 @@
 
   hardware.enableAllFirmware = true;
 
-  environment.systemPackages = with pkgs; [
-    fwupd
-  ];
+  services.fwupd.enable = true;
 }
