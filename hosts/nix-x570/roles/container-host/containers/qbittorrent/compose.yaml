@@ -10,8 +10,8 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      - /containers/qbittorrent/config:/config
-      - /containers/qbittorrent/downloads:/downloads
+      - /mnt/containers/qbittorrent/config:/config
+      - /mnt/containers/qbittorrent/downloads:/downloads
     network_mode: host
     ports:
       - 8080:8080

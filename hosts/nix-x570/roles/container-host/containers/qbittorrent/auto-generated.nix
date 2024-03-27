@@ -25,8 +25,8 @@
       WEBUI_PORT = "8080";
     };
     volumes = [
-      "/containers/qbittorrent/config:/config:rw"
-      "/containers/qbittorrent/downloads:/downloads:rw"
+      "/mnt/containers/qbittorrent/config:/config:rw"
+      "/mnt/containers/qbittorrent/downloads:/downloads:rw"
     ];
     ports = [
       "8080:8080/tcp"

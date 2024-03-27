@@ -18,7 +18,7 @@
   #   Requires = [ "network-online.target" "systemd-networkd.service" ];
   # };
 
-  fileSystems."/containers/qbittorrent/downloads" = {
+  fileSystems."/mnt/containers/qbittorrent/downloads" = {
     device = "/mnt/torrents";
     options = [ "bind" ];
   };

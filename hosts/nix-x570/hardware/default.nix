@@ -30,7 +30,7 @@
     # Bus `SMBus PIIX4 adapter port 1 at 0b20'
     # Busdriver `i2c_piix4', I2C address 0x4f
     # Chip `Dallas Semiconductor DS75' (confidence: 3)
-    "lm75"
+    # "lm75"
   ];
 
   hardware.enableAllFirmware = true;
