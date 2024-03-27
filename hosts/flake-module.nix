@@ -5,12 +5,7 @@ let
       profiles-common
       profiles-zfs
       modules-impermanence
-    ])
-    ++ [
-      {
-        impermanence.enable = true;
-      }
-    ];
+    ]);
 
   commonServer = with inputs.self.nixosModules; [
     profiles-server
