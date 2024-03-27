@@ -32,7 +32,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable (
+  config = lib.mkIf (cfg.enable) (
     let
       snapshotName = "${cfg.poolName}/system/root@blank";
     in
