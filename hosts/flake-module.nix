@@ -1,13 +1,13 @@
 { inputs, ... }:
 let
   commonModules =
-    (with inputs.self.nixosModules; [
+    with inputs.self.nixosModules; [
       profiles-common
-    ]);
+      modules-impermanence
+    ];
 
   impermanenceModules = (with inputs.self.nixosModules; [
     profiles-zfs
-    modules-impermanence
   ]) ++ [
     { impermanence.enable = true; }
   ];
