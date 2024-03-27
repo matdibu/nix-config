@@ -1,4 +1,5 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
   imports = (with inputs.nixos-hardware.nixosModules; [
     common-pc
     common-pc-ssd
@@ -26,9 +27,4 @@
   users.mutableUsers = false;
 
   hardware.enableAllFirmware = true;
-
-  services.fwupd = {
-    enable = true;
-    extraRemotes = [ "lvfs-testing" ];
-  };
 }

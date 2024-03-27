@@ -1,8 +1,4 @@
-{ inputs, ... }: {
-  imports = [
-    # inputs.disko.nixosModules.default
-  ];
-
+{ ... }: {
   boot.initrd.kernelModules = [ "nvme" ];
 
   disko.devices = {
