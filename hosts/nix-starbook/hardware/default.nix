@@ -22,5 +22,5 @@
 
   hardware.enableAllFirmware = true;
 
-  impermanence.device = "/dev/disk/by-id/";
+  impermanence.device = "/dev/disk/by-id/nvme-Star_Drive_PCIe_SSD_7FBC074104D900480831";
 }
