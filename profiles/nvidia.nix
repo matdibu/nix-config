@@ -13,7 +13,7 @@
     ];
   };
 
-    environment.variables = {
+  environment.variables = {
     # Necessary to correctly enable va-api (video codec hardware
     # acceleration). If this isn't set, the libvdpau backend will be
     # picked, and that one doesn't work with most things, including
