@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, pkgs, ... }: {
   imports = (with inputs.nixos-hardware.nixosModules; [
     common-pc
     common-pc-ssd
@@ -20,6 +20,8 @@
       efi.canTouchEfiVariables = true;
     };
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Don't allow mutation of users outside of the config.
   users.mutableUsers = false;
