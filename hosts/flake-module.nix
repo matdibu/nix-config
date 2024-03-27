@@ -3,9 +3,14 @@ let
   commonModules =
     (with inputs.self.nixosModules; [
       profiles-common
-      profiles-zfs
-      modules-impermanence
     ]);
+
+  impermanenceModules = (with inputs.self.nixosModules; [
+    profiles-zfs
+    modules-impermanence
+  ]) ++ [
+    { impermanence.enable = true; }
+  ];
 
   commonServer = with inputs.self.nixosModules; [
     profiles-server
@@ -68,22 +73,22 @@ in
     nix-ws = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-ws";
-      modules = guiHome;
+      modules = impermanenceModules ++ guiHome;
     };
     nix-x570 = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-x570";
-      modules = guiHome;
+      modules = impermanenceModules ++ guiHome;
     };
     nix-vp4670 = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-vp4670";
-      modules = guiHome;
+      modules = impermanenceModules ++ guiHome;
     };
     nix-rockpro64 = nixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
-      modules = commonServer ++ commonHome;
+      modules = impermanenceModules ++ commonServer ++ commonHome;
     };
     nix-starbook = nixosSystem {
       system = "x86_64-linux";
