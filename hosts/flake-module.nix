@@ -93,7 +93,6 @@ in
     nix-starbook = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-starbook";
-      modules = guiHome;
     };
   };
 }
