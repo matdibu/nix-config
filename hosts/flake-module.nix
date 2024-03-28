@@ -15,6 +15,7 @@ let
 
   guiHome = cliHome ++ [
     { home-manager = { users.mateidibu = import ../home/mateidibu/gui; }; }
+    { modules.audio.enable = true; }
     {
       programs.dconf.enable = true;
       security = {
