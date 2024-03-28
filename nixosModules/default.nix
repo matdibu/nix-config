@@ -8,12 +8,14 @@
     ./gpu-nvidia.nix
     ./impermanence.nix
     ./networking.nix
+    ./opengl.nix
     ./openssh.nix
     ./security.nix
     ./smartd.nix
     ./ucode-amd.nix
     ./ucode-intel.nix
     ./users.nix
+    ./wayland.nix
     ./zfs.nix
   ];
 }
