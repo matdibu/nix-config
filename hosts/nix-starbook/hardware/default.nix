@@ -4,14 +4,15 @@
     common-pc
     common-pc-ssd
   ])
-  ++ (with inputs.self.nixosModules; [
-    profiles-intel-gpu
-    profiles-intel-ucode
-  ])
   ++ [
     ./disk.nix
     ./networking.nix
   ];
+
+  modules = {
+    gpu-intel.enable = true;
+    ucode-intel.enable = true;
+  };
 
   boot = {
     initrd.systemd.enable = true;

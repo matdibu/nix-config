@@ -5,30 +5,26 @@
 , ...
 }:
 let
-  cfg = config.impermanence;
+  cfg = config.modules.impermanence;
 in
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.default
   ];
-  options = {
-    impermanence = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-      };
-      device = lib.mkOption {
-        type = lib.types.str;
-      };
-      mountpoint = lib.mkOption {
-        type = lib.types.str;
-        default = "/mnt/persist";
-      };
-      poolName = lib.mkOption {
-        type = lib.types.str;
-        default = "tank";
-      };
+  options.modules.impermanence = {
+    enable = lib.mkEnableOption "impermanence";
+    device = lib.mkOption {
+      type = lib.types.str;
+      default = null;
+    };
+    mountpoint = lib.mkOption {
+      type = lib.types.str;
+      default = "/mnt/persist";
+    };
+    poolName = lib.mkOption {
+      type = lib.types.str;
+      default = "tank";
     };
   };
 

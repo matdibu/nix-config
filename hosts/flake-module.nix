@@ -1,23 +1,6 @@
 { inputs, ... }:
 let
-  commonModules =
-    with inputs.self.nixosModules; [
-      profiles-common
-      modules-impermanence
-    ];
-
-  impermanenceModules = (with inputs.self.nixosModules; [
-    profiles-zfs
-  ]) ++ [
-    { impermanence.enable = true; }
-  ];
-
-  commonServer = with inputs.self.nixosModules; [
-    profiles-server
-    profiles-hardened-zfs
-  ];
-
-  commonHome = [
+  cliHome = [
     inputs.home-manager.nixosModule
     {
       home-manager = {
@@ -32,10 +15,7 @@ let
     }
   ];
 
-  guiHome = commonHome ++ (with inputs.self.nixosModules;[
-    profiles-audio
-  ])
-    ++ [
+  guiHome = cliHome ++ [
     {
       home-manager = {
         users.mateidibu = import ../home/mateidibu/gui;
@@ -43,7 +23,10 @@ let
     }
     {
       programs.dconf.enable = true;
-      security.polkit.enable = true;
+      security = {
+        polkit.enable = true;
+        rtkit.enable = true;
+      };
     }
   ];
 
@@ -56,39 +39,35 @@ let
         { networking = { inherit (args) hostName; }; }
         { nixpkgs.hostPlatform = { inherit (args) system; }; }
       ]
-      ++ commonModules
+      ++ [ ../nixosModules ]
       ++ (args.modules or [ ]);
   }));
 in
 {
   flake.nixosConfigurations = {
-    nix-iso = inputs.nixpkgs.lib.nixosSystem {
+    nix-iso = nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        inputs.self.nixosModules.profiles-common
-        ./nix-iso
-      ];
+      hostName = "nix-iso";
     };
     nix-ws = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-ws";
-      modules = impermanenceModules ++ guiHome;
+      modules = guiHome;
     };
     nix-x570 = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-x570";
-      modules = impermanenceModules ++ guiHome;
+      modules = guiHome;
     };
     nix-vp4670 = nixosSystem {
       system = "x86_64-linux";
       hostName = "nix-vp4670";
-      modules = impermanenceModules ++ guiHome;
+      modules = guiHome;
     };
     nix-rockpro64 = nixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
-      modules = impermanenceModules ++ commonServer ++ commonHome;
+      modules = cliHome;
     };
     nix-starbook = nixosSystem {
       system = "x86_64-linux";

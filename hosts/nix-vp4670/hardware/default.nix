@@ -3,15 +3,20 @@
     common-pc
     common-pc-ssd
   ])
-  ++ (with inputs.self.nixosModules; [
-    profiles-zfs
-    profiles-intel-gpu
-    profiles-intel-ucode
-  ])
   ++ [
     ./impermanence.nix
     ./networking.nix
   ];
+
+  modules = {
+    zfs.enable = true;
+    gpu-intel.enable = true;
+    ucode-intel.enable = true;
+    impermanence = {
+      enable = true;
+      device = "/dev/disk/by-id/nvme-WDS200T1X0E-00AFY0_21469J442501";
+    };
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -22,5 +27,4 @@
 
   hardware.enableAllFirmware = true;
 
-  impermanence.device = "/dev/disk/by-id/nvme-WDS200T1X0E-00AFY0_21469J442501";
 }

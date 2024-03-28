@@ -4,16 +4,21 @@
     common-pc-ssd
     common-cpu-amd-pstate
   ])
-  ++ (with inputs.self.nixosModules; [
-    profiles-zfs
-    profiles-amd-ucode
-    profiles-nvidia
-  ])
   ++ [
     ./impermanence.nix
     ./networking.nix
     ./nas.nix
   ];
+
+  modules = {
+    zfs.enable = true;
+    gpu-nvidia.enable = true;
+    ucode-amd.enable = true;
+    impermanence = {
+      enable = true;
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
+    };
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -32,10 +37,4 @@
     # Chip `Dallas Semiconductor DS75' (confidence: 3)
     # "lm75"
   ];
-
-  hardware.enableAllFirmware = true;
-
-  services.fwupd.enable = true;
-
-  impermanence.device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
 }

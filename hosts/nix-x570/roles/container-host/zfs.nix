@@ -1,7 +1,7 @@
 { config, ... }: {
   disko.devices = {
     zpool = {
-      ${config.impermanence.poolName} = {
+      ${config.modules.impermanence.poolName} = {
         datasets = {
           "system/containers" = {
             type = "zfs_fs";

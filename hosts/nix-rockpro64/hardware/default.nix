@@ -8,6 +8,13 @@ in
     ./networking.nix
   ];
 
+  modules = {
+    impermanence = {
+      enable = true;
+      device = "/dev/disk/by-path/platform-fe330000.mmc";
+    };
+  };
+
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = false;
@@ -33,6 +40,4 @@ in
     "v4l2_mem2mem"
     "v4l2_vp9"
   ];
-
-  impermanence.device = "/dev/disk/by-path/platform-fe330000.mmc";
 }
