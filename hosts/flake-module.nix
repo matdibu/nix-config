@@ -10,17 +10,11 @@ let
         users.mateidibu = import ../home/mateidibu;
       };
     }
-    {
-      programs.fuse.userAllowOther = true;
-    }
+    { programs.fuse.userAllowOther = true; }
   ];
 
   guiHome = cliHome ++ [
-    {
-      home-manager = {
-        users.mateidibu = import ../home/mateidibu/gui;
-      };
-    }
+    { home-manager = { users.mateidibu = import ../home/mateidibu/gui; }; }
     {
       programs.dconf.enable = true;
       security = {
@@ -30,20 +24,17 @@ let
     }
   ];
 
-  nixosSystem = args: (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ])
-    // {
-    specialArgs = { inherit inputs; } // args.specialArgs or { };
-    modules =
-      [
-        ./${args.hostName}
-        { networking = { inherit (args) hostName; }; }
-        { nixpkgs.hostPlatform = { inherit (args) system; }; }
-      ]
-      ++ [ ../nixosModules ]
-      ++ (args.modules or [ ]);
-  }));
-in
-{
+  nixosSystem = args:
+    (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ])
+      // {
+        specialArgs = { inherit inputs; } // args.specialArgs or { };
+        modules = [
+          ./${args.hostName}
+          { networking = { inherit (args) hostName; }; }
+          { nixpkgs.hostPlatform = { inherit (args) system; }; }
+        ] ++ [ ../nixosModules ] ++ (args.modules or [ ]);
+      }));
+in {
   flake.nixosConfigurations = {
     nix-iso = nixosSystem {
       system = "x86_64-linux";

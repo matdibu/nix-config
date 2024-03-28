@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   fonts.fontconfig.enable = true;
-  home.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "FiraMono" "Cousine" ]; })
-  ];
+  home.packages =
+    [ (pkgs.nerdfonts.override { fonts = [ "FiraMono" "Cousine" ]; }) ];
 }

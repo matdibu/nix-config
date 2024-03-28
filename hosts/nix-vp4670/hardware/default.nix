@@ -1,12 +1,7 @@
 { inputs, ... }: {
-  imports = (with inputs.nixos-hardware.nixosModules; [
-    common-pc
-    common-pc-ssd
-  ])
-  ++ [
-    ./impermanence.nix
-    ./networking.nix
-  ];
+  imports =
+    (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ])
+    ++ [ ./impermanence.nix ./networking.nix ];
 
   modules = {
     zfs.enable = true;

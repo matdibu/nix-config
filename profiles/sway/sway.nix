@@ -5,12 +5,7 @@
       base = true;
       gtk = true;
     };
-    extraPackages = with pkgs; [
-      wofi
-      shotman
-      i3status
-      foot
-    ];
+    extraPackages = with pkgs; [ wofi shotman i3status foot ];
     extraOptions = [
       "--unsupported-gpu" # nvidia
     ];

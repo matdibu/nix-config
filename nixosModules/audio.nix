@@ -1,6 +1,7 @@
 { config, lib, ... }: {
   options = {
-    modules.audio.enable = lib.mkEnableOption "pipewire, emulating pulseaudio and alsa";
+    modules.audio.enable =
+      lib.mkEnableOption "pipewire, emulating pulseaudio and alsa";
   };
   config = lib.mkIf config.modules.audio.enable {
     services.pipewire = {

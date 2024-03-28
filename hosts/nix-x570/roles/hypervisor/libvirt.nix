@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./qemu.nix
-  ];
+  imports = [ ./qemu.nix ];
   virtualisation.libvirtd = {
     enable = true;
     qemu = {

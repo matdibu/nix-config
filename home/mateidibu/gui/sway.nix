@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./fonts.nix
-  ];
+  imports = [ ./fonts.nix ];
 
   gtk = {
     enable = true;
@@ -28,18 +26,11 @@
   #   ];
   # };
 
-  home.packages = with pkgs; [
-    mako
-    wl-clipboard
-  ];
+  home.packages = with pkgs; [ mako wl-clipboard ];
 
   programs.foot = {
     enable = true;
-    settings = {
-      main = {
-        font = "monospace:size=14";
-      };
-    };
+    settings = { main = { font = "monospace:size=14"; }; };
   };
 
   wayland.windowManager.sway = {

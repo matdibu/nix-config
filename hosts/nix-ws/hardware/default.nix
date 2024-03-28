@@ -1,12 +1,6 @@
 { inputs, ... }: {
-  imports =
-    (with inputs.self.nixosModules; [
-      profiles-qemu-guest
-    ]) ++
-    [
-      ./networking.nix
-      ./impermanence.nix
-    ];
+  imports = (with inputs.self.nixosModules; [ profiles-qemu-guest ])
+    ++ [ ./networking.nix ./impermanence.nix ];
 
   modules.gpu-nvidia.enable = true;
 

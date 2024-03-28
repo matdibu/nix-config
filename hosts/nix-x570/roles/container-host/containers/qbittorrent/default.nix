@@ -1,7 +1,5 @@
 {
-  imports = [
-    ./auto-generated.nix
-  ];
+  imports = [ ./auto-generated.nix ];
 
   networking.firewall = {
     allowedTCPPorts = [

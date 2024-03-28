@@ -1,6 +1,8 @@
 { pkgs, lib, config, ... }: {
   options = {
-    modules.better-defaults.enable = lib.mkEnableOption "better defaults" // { default = true; };
+    modules.better-defaults.enable = lib.mkEnableOption "better defaults" // {
+      default = true;
+    };
   };
   config = lib.mkIf config.modules.better-defaults.enable {
     programs.vim.defaultEditor = true;

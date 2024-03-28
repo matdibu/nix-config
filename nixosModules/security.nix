@@ -1,6 +1,8 @@
 { lib, config, ... }: {
   options = {
-    modules.security.enable = lib.mkEnableOption "Security Hardening" // { default = true; };
+    modules.security.enable = lib.mkEnableOption "Security Hardening" // {
+      default = true;
+    };
   };
   config = lib.mkIf config.modules.security.enable {
     security.sudo = {

@@ -1,6 +1,1 @@
-{
-  imports = [
-    ./sway.nix
-    ./librewolf.nix
-  ];
-}
+{ imports = [ ./sway.nix ./librewolf.nix ]; }

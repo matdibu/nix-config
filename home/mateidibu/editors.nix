@@ -42,8 +42,7 @@
       lua-language-server
     ];
 
-    extraLuaConfig =
-      builtins.readFile neovim/basic.lua
+    extraLuaConfig = builtins.readFile neovim/basic.lua
       + builtins.readFile neovim/jump-to-last-position.lua
       + builtins.readFile neovim/lsp-conf.lua
       + builtins.readFile neovim/lsp-list.lua;

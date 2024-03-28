@@ -22,7 +22,5 @@
   #     }
   #   )
   # ];
-  environment.systemPackages = with pkgs; [
-    qemu_kvm
-  ];
+  environment.systemPackages = with pkgs; [ qemu_kvm ];
 }

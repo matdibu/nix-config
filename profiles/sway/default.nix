@@ -1,6 +1,1 @@
-{
-  imports = [
-    ./sway.nix
-    ./xdg-portal.nix
-  ];
-}
+{ imports = [ ./sway.nix ./xdg-portal.nix ]; }

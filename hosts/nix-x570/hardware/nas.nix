@@ -2,8 +2,7 @@ let
   device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNX0NA05054K";
   diskName = "nas";
   poolName = "nas";
-in
-{
+in {
   disko.devices = {
     disk = {
       ${diskName} = {

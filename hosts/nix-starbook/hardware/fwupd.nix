@@ -4,8 +4,7 @@ let
   overlay-replace-flashrom = final: _prev: {
     flashrom = final.callPackage inputs.flashrom-meson { };
   };
-in
-{
+in {
   # for bios updates
   boot.kernelParams = [ "iomem=relaxed" ];
 
@@ -13,9 +12,7 @@ in
 
   services.fwupd = {
     enable = true;
-    package = pkgs.fwupd.override {
-      enableFlashrom = true;
-    };
+    package = pkgs.fwupd.override { enableFlashrom = true; };
     extraRemotes = [ "lvfs-testing" ];
   };
 }

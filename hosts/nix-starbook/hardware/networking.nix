@@ -1,10 +1,7 @@
 { pkgs, ... }: {
   networking.hostId = "c8041639";
 
-  environment.systemPackages = with pkgs; [
-    iwd
-    wpa_supplicant
-  ];
+  environment.systemPackages = with pkgs; [ iwd wpa_supplicant ];
 
   systemd.network.networks."10-wan" = {
     matchConfig.Name = "wlp45s0";

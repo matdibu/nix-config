@@ -1,7 +1,1 @@
-{
-  imports = [
-    ./disk.nix
-    ./samba.nix
-    ./nfs.nix
-  ];
-}
+{ imports = [ ./disk.nix ./samba.nix ./nfs.nix ]; }

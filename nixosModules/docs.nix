@@ -1,6 +1,9 @@
 { lib, config, ... }: {
   options = {
-    modules.remove-docs.enable = lib.mkEnableOption "remove docs and man pages" // { default = true; };
+    modules.remove-docs.enable = lib.mkEnableOption "remove docs and man pages"
+      // {
+        default = true;
+      };
   };
   config = lib.mkIf config.modules.remove-docs.enable {
     # For `info` command.

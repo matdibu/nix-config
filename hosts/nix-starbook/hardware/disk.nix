@@ -4,7 +4,8 @@ _: {
   disko.devices = {
     disk = {
       "root-disk" = {
-        device = "/dev/disk/by-id/nvme-Star_Drive_PCIe_SSD_7FBC074104D900480831";
+        device =
+          "/dev/disk/by-id/nvme-Star_Drive_PCIe_SSD_7FBC074104D900480831";
         type = "disk";
         content = {
           type = "gpt";
@@ -16,11 +17,7 @@ _: {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "fmask=0137"
-                  "dmask=0027"
-                  "noatime"
-                ];
+                mountOptions = [ "fmask=0137" "dmask=0027" "noatime" ];
               };
             };
             root = {
@@ -29,9 +26,7 @@ _: {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-                mountOptions = [
-                  "noatime"
-                ];
+                mountOptions = [ "noatime" ];
               };
             };
           };

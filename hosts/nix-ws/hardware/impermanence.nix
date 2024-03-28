@@ -1,9 +1,5 @@
 { config, ... }: {
   environment.persistence.${config.modules.impermanence.mountpoint} = {
-    users."mateidibu" = {
-      directories = [
-        "git"
-      ];
-    };
+    users."mateidibu" = { directories = [ "git" ]; };
   };
 }

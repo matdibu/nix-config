@@ -1,6 +1,1 @@
-{ modulesPath, ... }:
-{
-  imports = [
-    "${modulesPath}/profiles/headless.nix"
-  ];
-}
+{ modulesPath, ... }: { imports = [ "${modulesPath}/profiles/headless.nix" ]; }

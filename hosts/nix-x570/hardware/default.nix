@@ -3,12 +3,7 @@
     common-pc
     common-pc-ssd
     common-cpu-amd-pstate
-  ])
-  ++ [
-    ./impermanence.nix
-    ./networking.nix
-    ./nas.nix
-  ];
+  ]) ++ [ ./impermanence.nix ./networking.nix ./nas.nix ];
 
   modules = {
     zfs.enable = true;
@@ -16,7 +11,8 @@
     ucode-amd.enable = true;
     impermanence = {
       enable = true;
-      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
+      device =
+        "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
     };
   };
 

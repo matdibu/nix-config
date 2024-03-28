@@ -1,13 +1,6 @@
-{ inputs
-, lib
-, config
-, pkgs
-, ...
-}:
-let
-  cfg = config.modules.impermanence;
-in
-{
+{ inputs, lib, config, pkgs, ... }:
+let cfg = config.modules.impermanence;
+in {
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.default
@@ -28,11 +21,9 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable (
-    let
-      snapshotName = "${cfg.poolName}/system/root@blank";
-    in
-    {
+  config = lib.mkIf cfg.enable
+    (let snapshotName = "${cfg.poolName}/system/root@blank";
+    in {
       # Don't allow mutation of users outside of the config.
       users.mutableUsers = false;
 
@@ -50,9 +41,7 @@ in
             "/etc/ssh/ssh_host_ed25519_key"
             "/etc/ssh/ssh_host_rsa_key"
           ])
-          [
-            "/etc/machine-id"
-          ]
+          [ "/etc/machine-id" ]
         ];
         directories = [
           "/var/log"
@@ -75,11 +64,7 @@ in
                     type = "filesystem";
                     format = "vfat";
                     mountpoint = "/boot";
-                    mountOptions = [
-                      "fmask=0137"
-                      "dmask=0027"
-                      "noatime"
-                    ];
+                    mountOptions = [ "fmask=0137" "dmask=0027" "noatime" ];
                   };
                 };
                 zfs = {
@@ -109,9 +94,7 @@ in
             };
             postCreateHook = "zfs snapshot ${snapshotName}";
             datasets = {
-              "system" = {
-                type = "zfs_fs";
-              };
+              "system" = { type = "zfs_fs"; };
               "system/nix" = {
                 type = "zfs_fs";
                 mountpoint = "/nix";
@@ -135,19 +118,10 @@ in
           services = {
             rollback = {
               description = "Rollback filesystem to a pristine state on boot";
-              wantedBy = [
-                "zfs.target"
-                "initrd.target"
-              ];
-              after = [
-                "zfs-import-${cfg.poolName}.service"
-              ];
-              before = [
-                "sysroot.mount"
-              ];
-              path = [
-                pkgs.zfs
-              ];
+              wantedBy = [ "zfs.target" "initrd.target" ];
+              after = [ "zfs-import-${cfg.poolName}.service" ];
+              before = [ "sysroot.mount" ];
+              path = [ pkgs.zfs ];
               unitConfig.DefaultDependencies = "no";
               serviceConfig.Type = "oneshot";
               script = ''
@@ -157,6 +131,5 @@ in
           };
         };
       };
-    }
-  );
+    });
 }

@@ -1,13 +1,7 @@
-{ inputs, pkgs, ... }:
-{
-  imports = (with inputs.nixos-hardware.nixosModules; [
-    common-pc
-    common-pc-ssd
-  ])
-  ++ [
-    ./disk.nix
-    ./networking.nix
-  ];
+{ inputs, pkgs, ... }: {
+  imports =
+    (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ])
+    ++ [ ./disk.nix ./networking.nix ];
 
   modules = {
     gpu-intel.enable = true;

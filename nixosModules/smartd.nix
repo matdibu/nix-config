@@ -1,6 +1,9 @@
 { lib, config, ... }: {
   options = {
-    modules.smartd.enable = lib.mkEnableOption "smartd monitoring and alerts" // { default = true; };
+    modules.smartd.enable = lib.mkEnableOption "smartd monitoring and alerts"
+      // {
+        default = true;
+      };
   };
   config = lib.mkIf config.modules.smartd.enable {
     services.smartd = {
