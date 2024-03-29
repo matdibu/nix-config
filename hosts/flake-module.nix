@@ -28,14 +28,14 @@ let
   # wrapper over 'nixosSystem', with default configs and imports
   mkNixosSystem = args:
     inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        inherit (args) system;
-        modules = [
-          ./${args.hostName}
-          { networking = { inherit (args) hostName; }; }
-          { nixpkgs.hostPlatform = { inherit (args) system; }; }
-        ] ++ [ ../nixosModules ] ++ (args.modules or [ ]);
-      };
+      specialArgs = { inherit inputs; };
+      inherit (args) system;
+      modules = [
+        ./${args.hostName}
+        { networking = { inherit (args) hostName; }; }
+        { nixpkgs.hostPlatform = { inherit (args) system; }; }
+      ] ++ [ ../nixosModules ] ++ (args.modules or [ ]);
+    };
 in {
   flake.nixosConfigurations = {
     nix-iso = mkNixosSystem {
