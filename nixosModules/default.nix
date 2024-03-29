@@ -12,7 +12,6 @@
     ./openssh.nix
     ./security.nix
     ./smartd.nix
-    ./ucode-amd.nix
     ./users.nix
     ./wayland.nix
     ./zfs.nix
