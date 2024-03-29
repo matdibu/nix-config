@@ -22,4 +22,6 @@
   users.mutableUsers = false;
 
   hardware.enableAllFirmware = true;
+
+  hardware.mcelog.enable = true;
 }
