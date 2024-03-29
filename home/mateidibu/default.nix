@@ -4,7 +4,7 @@
     ./packages.nix
     ./git.nix
     ./ssh.nix
-    ./editors.nix
+    ./neovim
     ./impermanence.nix
   ];
 
