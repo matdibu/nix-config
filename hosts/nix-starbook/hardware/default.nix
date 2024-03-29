@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }: {
   imports =
     (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ])
-    ++ [ ./disk.nix ./networking.nix ];
+    ++ [ ./disk.nix ./networking.nix ./fwupd.nix ];
 
   modules = { gpu-intel.enable = true; };
 
@@ -22,5 +22,5 @@
 
   hardware.enableAllFirmware = true;
 
-  hardware.mcelog.enable = true;
+  hardware.rasdaemon.enable = true;
 }
