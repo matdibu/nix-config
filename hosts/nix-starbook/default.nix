@@ -1,5 +1,7 @@
-{ inputs, ... }: {
-  imports = [ inputs.self.nixosModules.profiles-sway ./hardware ];
+{
+  imports = [ ./hardware ];
+
+  modules.sway.enable = true;
 
   #programs.sway = {
   #  enable = true;
