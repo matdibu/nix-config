@@ -3,10 +3,7 @@
     (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ])
     ++ [ ./disk.nix ./networking.nix ];
 
-  modules = {
-    gpu-intel.enable = true;
-    ucode-intel.enable = true;
-  };
+  modules = { gpu-intel.enable = true; };
 
   boot = {
     initrd.systemd.enable = true;
@@ -15,6 +12,8 @@
       efi.canTouchEfiVariables = true;
     };
   };
+
+  hardware.cpu.intel.updateMicrocode = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

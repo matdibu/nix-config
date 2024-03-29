@@ -6,12 +6,13 @@
   modules = {
     zfs.enable = true;
     gpu-intel.enable = true;
-    ucode-intel.enable = true;
     impermanence = {
       enable = true;
       device = "/dev/disk/by-id/nvme-WDS200T1X0E-00AFY0_21469J442501";
     };
   };
+
+  hardware.cpu.intel.updateMicrocode = true;
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -21,5 +22,4 @@
   boot.initrd.kernelModules = [ "sdhci_pci" "nvme" ];
 
   hardware.enableAllFirmware = true;
-
 }
