@@ -1,4 +1,4 @@
-{
+{ lib, osConfig, ... }: {
   home.sessionVariables = {
     # Firefox wayland environment variable
     MOZ_ENABLE_WAYLAND = "1";
@@ -6,7 +6,8 @@
 
     MOZ_DISABLE_RDD_SANDBOX = "1";
     NVD_BACKEND = "direct";
-    # LIBVA_DRIVER_NAME = "nvidia";
+    LIBVA_DRIVER_NAME =
+      lib.strings.optionalString osConfig.modules.gpu-nvidia.enable "nvidia";
   };
   programs.librewolf = {
     enable = true;
