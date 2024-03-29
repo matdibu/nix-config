@@ -1,7 +1,10 @@
 { inputs, pkgs, ... }: {
   imports =
-    (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ])
-    ++ [ ./disk.nix ./networking.nix ./fwupd.nix ];
+    (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ]) ++ [
+      ./disk.nix
+      ./networking.nix
+      # ./fwupd.nix # disabled because it affects security
+    ];
 
   modules = { gpu-intel.enable = true; };
 

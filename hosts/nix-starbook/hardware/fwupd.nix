@@ -1,5 +1,4 @@
 { inputs, pkgs, ... }:
-
 let
   overlay-replace-flashrom = final: _prev: {
     flashrom = final.callPackage inputs.flashrom-meson { };
