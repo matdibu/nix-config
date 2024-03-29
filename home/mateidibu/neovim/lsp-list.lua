@@ -23,20 +23,20 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").nil_ls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    settings = {
-        ["nil"] = {
-            -- nix = {
-            --     maxMemoryMB = 8192,
-            --     flake = {
-            --         autoArchive = true,
-            --         autoEvalInputs = true,
-            --     },
-            -- },
-            formatting = {
-                command = { "alejandra" },
-            },
-        },
-    },
+    -- settings = {
+    --     ["nil"] = {
+    --         -- nix = {
+    --         --     maxMemoryMB = 8192,
+    --         --     flake = {
+    --         --         autoArchive = true,
+    --         --         autoEvalInputs = true,
+    --         --     },
+    --         -- },
+    --         formatting = {
+    --             command = { "nixfmt" },
+    --         },
+    --     },
+    -- },
 })
 
 require("lspconfig").ruff_lsp.setup({
