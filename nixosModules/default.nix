@@ -1,19 +1,15 @@
 {
   imports = [
-    ./audio.nix
     ./better-defaults.nix
     ./better-nix.nix
     ./docs.nix
-    ./gpu-intel.nix
-    ./gpu-nvidia.nix
+    ./graphics
     ./impermanence.nix
     ./networking.nix
-    ./opengl.nix
     ./openssh.nix
     ./security.nix
     ./smartd.nix
     ./users.nix
-    ./wayland.nix
     ./zfs.nix
   ];
 }
