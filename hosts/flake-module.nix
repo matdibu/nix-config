@@ -25,43 +25,44 @@ let
     }
   ];
 
-  nixosSystem = args:
-    (inputs.nixpkgs.lib.nixosSystem ((builtins.removeAttrs args [ "hostName" ])
-      // {
-        specialArgs = { inherit inputs; } // args.specialArgs or { };
+  # wrapper over 'nixosSystem', with default configs and imports
+  mkNixosSystem = args:
+    inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        inherit (args) system;
         modules = [
           ./${args.hostName}
           { networking = { inherit (args) hostName; }; }
           { nixpkgs.hostPlatform = { inherit (args) system; }; }
         ] ++ [ ../nixosModules ] ++ (args.modules or [ ]);
-      }));
+      };
 in {
   flake.nixosConfigurations = {
-    nix-iso = nixosSystem {
+    nix-iso = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "nix-iso";
     };
-    nix-ws = nixosSystem {
+    nix-ws = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "nix-ws";
       modules = guiHome;
     };
-    nix-x570 = nixosSystem {
+    nix-x570 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "nix-x570";
       modules = guiHome;
     };
-    nix-vp4670 = nixosSystem {
+    nix-vp4670 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "nix-vp4670";
       modules = guiHome;
     };
-    nix-rockpro64 = nixosSystem {
+    nix-rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
       modules = cliHome;
     };
-    nix-starbook = nixosSystem {
+    nix-starbook = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "nix-starbook";
       modules = guiHome;
