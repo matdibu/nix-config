@@ -1,23 +1,15 @@
 { inputs, ... }:
 let hw-modules = inputs.nixos-hardware.nixosModules;
 in {
-  imports = [ hw-modules."pine64-pinebook-pro" ./networking.nix ];
-
-  modules = {
-    impermanence = {
-      enable = true;
-      device = "/dev/disk/by-path/platform-fe330000.mmc";
-    };
-  };
+  imports = [ hw-modules."pine64-pinebook-pro" ./networking.nix ./disk.nix ];
 
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = false;
   };
 
-  hardware.enableAllFirmware = true;
-
   boot.initrd.kernelModules = [
+    # list obtained by running 'lsmod' while running the installer ISO
     "pcie_rockchip_host"
     "phy_rockchip_pcie"
     "rockchip_dfi"
