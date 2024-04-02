@@ -1,10 +1,19 @@
-{ pkgs, ... }: {
+{
   networking.hostId = "c8041639";
 
-  environment.systemPackages = with pkgs; [ iwd wpa_supplicant ];
+  networking.wireless.iwd = {
+    enable = true;
+    settings = {
+      Settings = {
+        TransitionDisable = true;
+        DsiabledTransitionModes = "personal,enterprise,open";
+        AutoConnect = true;
+      };
+    };
+  };
 
   systemd.network.networks."10-wan" = {
-    matchConfig.Name = "wlp45s0";
+    matchConfig.Name = "wlan0";
     networkConfig = {
       DHCP = "ipv4";
       IPv6AcceptRA = true;
