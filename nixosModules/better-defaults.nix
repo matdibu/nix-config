@@ -27,5 +27,7 @@
     services.dbus.implementation = "broker";
 
     hardware.enableAllFirmware = true;
+
+    boot.initrd.systemd.enable = true;
   };
 }
