@@ -20,10 +20,10 @@
     in lib.head orderedCompatiblePackages;
   in {
     boot = {
-      kernelPackages = lib.mkDefault (if config.modules.zfs.hardened then
+      kernelPackages = if config.modules.zfs.hardened then
         kernelLatestZfsHardened
       else
-        kernelLatestZfs);
+        kernelLatestZfs;
       initrd.supportedFilesystems = [ "zfs" ];
       # fix for VM's, where devices might not have serial numbers
       zfs.devNodes = "/dev/disk/by-partuuid";
