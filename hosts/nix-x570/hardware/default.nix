@@ -3,17 +3,9 @@
     common-pc
     common-pc-ssd
     common-cpu-amd-pstate
-  ]) ++ [ ./impermanence.nix ./networking.nix ./nas.nix ];
+  ]) ++ [ ./disk.nix ./networking.nix ./nas.nix ];
 
-  modules = {
-    zfs.enable = true;
-    gpu-nvidia.enable = true;
-    impermanence = {
-      enable = true;
-      device =
-        "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
-    };
-  };
+  modules = { gpu-nvidia.enable = true; };
 
   hardware.cpu.amd.updateMicrocode = true;
 
@@ -23,7 +15,6 @@
   };
 
   boot.initrd.kernelModules = [
-    "nvme"
     # Chip `AMD Family 17h thermal sensors' (confidence: 9)
     "k10temp"
     # ISA bus, address 0x290
