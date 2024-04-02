@@ -24,6 +24,8 @@ in {
   config = lib.mkIf cfg.enable
     (let snapshotName = "${cfg.poolName}/system/root@blank";
     in {
+
+      modules.zfs.enable = true;
       # Don't allow mutation of users outside of the config.
       users.mutableUsers = false;
 
