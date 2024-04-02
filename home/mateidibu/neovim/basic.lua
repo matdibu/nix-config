@@ -16,3 +16,10 @@ vim.o.expandtab = true
 
 vim.o.listchars = "tab:<->,trail:~,extends:>,precedes:<,leadmultispace:···+"
 vim.o.list = true
+
+vim.cmd("syntax off")
+
+require("nvim-treesitter.configs").setup({
+    highlight = { enable = true },
+    indent = { enable = true },
+})
