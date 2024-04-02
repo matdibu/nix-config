@@ -30,11 +30,9 @@ in {
     ];
 
     extraPackages = with pkgs; [
-      git # gitsigns
-
-      # lsp's
+      git
       nil
-      nixpkgs-fmt
+      nixfmt
       nodePackages.bash-language-server
       texlab
       lua54Packages.digestif
@@ -43,6 +41,7 @@ in {
       cmake-language-server
       ruff
       lua-language-server
+      clang-tools
     ];
 
     extraLuaConfig = readFile ./basic.lua + readFile ./jump-to-last-position.lua
