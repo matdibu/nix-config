@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [ ./fonts.nix ];
 
   gtk = {
@@ -26,11 +27,18 @@
   #   ];
   # };
 
-  home.packages = with pkgs; [ mako wl-clipboard ];
+  home.packages = with pkgs; [
+    mako
+    wl-clipboard
+  ];
 
   programs.foot = {
     enable = true;
-    settings = { main = { font = "monospace:size=14"; }; };
+    settings = {
+      main = {
+        font = "monospace:size=14";
+      };
+    };
   };
 
   # xdg.configFile."sway/config".source = ./sway.config;

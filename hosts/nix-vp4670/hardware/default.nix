@@ -1,9 +1,18 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   imports =
-    (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ])
-    ++ [ ./disk.nix ./networking.nix ];
+    (with inputs.nixos-hardware.nixosModules; [
+      common-pc
+      common-pc-ssd
+    ])
+    ++ [
+      ./disk.nix
+      ./networking.nix
+    ];
 
-  modules = { gpu-intel.enable = true; };
+  modules = {
+    gpu-intel.enable = true;
+  };
 
   hardware.cpu.intel.updateMicrocode = true;
 

@@ -6,7 +6,9 @@ let
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {
+          inherit inputs;
+        };
         users.mateidibu = import ../home/mateidibu;
       };
     }
@@ -14,7 +16,11 @@ let
   ];
 
   guiHome = cliHome ++ [
-    { home-manager = { users.mateidibu = import ../home/mateidibu/gui; }; }
+    {
+      home-manager = {
+        users.mateidibu = import ../home/mateidibu/gui;
+      };
+    }
     { modules.audio.enable = true; }
     {
       programs.dconf.enable = true;
@@ -26,17 +32,29 @@ let
   ];
 
   # wrapper over 'nixosSystem', with default configs and imports
-  mkNixosSystem = args:
+  mkNixosSystem =
+    args:
     inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs;
+      };
       inherit (args) system;
       modules = [
         ./${args.hostName}
-        { networking = { inherit (args) hostName; }; }
-        { nixpkgs.hostPlatform = { inherit (args) system; }; }
+        {
+          networking = {
+            inherit (args) hostName;
+          };
+        }
+        {
+          nixpkgs.hostPlatform = {
+            inherit (args) system;
+          };
+        }
       ] ++ [ ../nixosModules ] ++ (args.modules or [ ]);
     };
-in {
+in
+{
   flake.nixosConfigurations = {
     nix-iso = mkNixosSystem {
       system = "x86_64-linux";

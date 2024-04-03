@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   disko.devices = {
     zpool = {
       ${config.modules.impermanence.poolName} = {

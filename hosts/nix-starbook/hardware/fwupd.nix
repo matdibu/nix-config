@@ -3,7 +3,8 @@ let
   overlay-replace-flashrom = final: _prev: {
     flashrom = final.callPackage inputs.flashrom-meson { };
   };
-in {
+in
+{
   # for bios updates
   boot.kernelParams = [ "iomem=relaxed" ];
 

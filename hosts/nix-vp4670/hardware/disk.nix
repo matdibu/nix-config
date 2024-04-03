@@ -1,5 +1,9 @@
-{ config, ... }: {
-  boot.initrd.kernelModules = [ "sdhci_pci" "nvme" ];
+{ config, ... }:
+{
+  boot.initrd.kernelModules = [
+    "sdhci_pci"
+    "nvme"
+  ];
 
   modules = {
     impermanence = {
@@ -9,6 +13,8 @@
   };
 
   environment.persistence.${config.modules.impermanence.mountpoint} = {
-    users."mateidibu" = { directories = [ "git" ]; };
+    users."mateidibu" = {
+      directories = [ "git" ];
+    };
   };
 }

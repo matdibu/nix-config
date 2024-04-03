@@ -1,4 +1,10 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
   options = {
     modules.xdg-portal.enable = lib.mkEnableOption "xdg-desktop-portal";
   };
@@ -7,7 +13,12 @@
       enable = true;
       xdgOpenUsePortal = true;
       wlr.enable = true;
-      config = { sway.default = [ "wlr" "gtk" ]; };
+      config = {
+        sway.default = [
+          "wlr"
+          "gtk"
+        ];
+      };
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
   };

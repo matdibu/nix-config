@@ -1,4 +1,5 @@
-{ modulesPath, ... }: {
+{ modulesPath, ... }:
+{
   imports = [
     "${modulesPath}/profiles/hardened.nix"
     "${modulesPath}/profiles/minimal.nix"

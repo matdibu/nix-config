@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # nixpkgs.overlays = [
   #   (
   #     _final: prev: {

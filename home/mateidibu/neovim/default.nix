@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let inherit (builtins) readFile;
-in {
+let
+  inherit (builtins) readFile;
+in
+{
   programs.neovim = {
     enable = true;
     vimdiffAlias = true;
@@ -44,8 +46,11 @@ in {
       clang-tools
     ];
 
-    extraLuaConfig = readFile ./basic.lua + readFile ./jump-to-last-position.lua
-      + readFile ./lsp-conf.lua + readFile ./lsp-list.lua;
+    extraLuaConfig =
+      readFile ./basic.lua
+      + readFile ./jump-to-last-position.lua
+      + readFile ./lsp-conf.lua
+      + readFile ./lsp-list.lua;
   };
   home.sessionVariables.EDITOR = "nvim";
 }

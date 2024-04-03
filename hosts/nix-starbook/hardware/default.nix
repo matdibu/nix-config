@@ -1,12 +1,19 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
   imports =
-    (with inputs.nixos-hardware.nixosModules; [ common-pc common-pc-ssd ]) ++ [
+    (with inputs.nixos-hardware.nixosModules; [
+      common-pc
+      common-pc-ssd
+    ])
+    ++ [
       ./disk.nix
       ./networking.nix
       # ./fwupd.nix # disabled because it affects security
     ];
 
-  modules = { gpu-intel.enable = true; };
+  modules = {
+    gpu-intel.enable = true;
+  };
 
   boot = {
     initrd.systemd.enable = true;

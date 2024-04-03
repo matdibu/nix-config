@@ -1,15 +1,17 @@
-{ config, ... }: {
+{ config, ... }:
+{
   boot.initrd.kernelModules = [ "nvme" ];
 
   modules = {
     impermanence = {
       enable = true;
-      device =
-        "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
     };
   };
 
   environment.persistence.${config.modules.impermanence.mountpoint} = {
-    users."mateidibu" = { directories = [ "git" ]; };
+    users."mateidibu" = {
+      directories = [ "git" ];
+    };
   };
 }

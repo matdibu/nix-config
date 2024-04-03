@@ -1,7 +1,13 @@
 { inputs, ... }:
-let hw-modules = inputs.nixos-hardware.nixosModules;
-in {
-  imports = [ hw-modules."pine64-pinebook-pro" ./networking.nix ./disk.nix ];
+let
+  hw-modules = inputs.nixos-hardware.nixosModules;
+in
+{
+  imports = [
+    hw-modules."pine64-pinebook-pro"
+    ./networking.nix
+    ./disk.nix
+  ];
 
   boot.loader = {
     systemd-boot.enable = true;

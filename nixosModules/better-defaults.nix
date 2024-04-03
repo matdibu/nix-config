@@ -1,4 +1,10 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
   options = {
     modules.better-defaults.enable = lib.mkEnableOption "better defaults" // {
       default = true;

@@ -16,9 +16,14 @@ let
     # Same IOMMU group as USB
     "1022:1485" # Starship/Matisse Reserved SPP
   ];
-in { lib, ... }: {
+in
+{ lib, ... }:
+{
   boot = {
-    initrd.kernelModules = [ "vfio" "vfio_pci" ];
+    initrd.kernelModules = [
+      "vfio"
+      "vfio_pci"
+    ];
 
     kernelParams = [
       "amd_iommu=pgtbl_v2"

@@ -1,6 +1,9 @@
 {
-  boot.initrd.kernelModules =
-    [ "pcie_rockchip_host" "phy_rockchip_pcie" "sdhci_pci" ];
+  boot.initrd.kernelModules = [
+    "pcie_rockchip_host"
+    "phy_rockchip_pcie"
+    "sdhci_pci"
+  ];
 
   modules = {
     impermanence = {

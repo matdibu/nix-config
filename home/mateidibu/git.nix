@@ -1,10 +1,14 @@
 {
-  home.sessionVariables = { GIT_SSH_COMMAND = "ssh -4"; };
+  home.sessionVariables = {
+    GIT_SSH_COMMAND = "ssh -4";
+  };
   programs.git = {
     enable = true;
     userName = "Matei Dibu";
     ignores = [ "result" ];
-    extraConfig = { push.autoSetupRemote = true; };
+    extraConfig = {
+      push.autoSetupRemote = true;
+    };
     includes = [
       {
         contents = {
@@ -14,8 +18,7 @@
           # tag.gpgsign = true;
           extraConfig = {
             core = {
-              sshCommand =
-                "ssh -4 -i ~/.ssh/id_ed25519_sk_rk_yubi-backup_mateidibu";
+              sshCommand = "ssh -4 -i ~/.ssh/id_ed25519_sk_rk_yubi-backup_mateidibu";
             };
           };
         };
@@ -26,8 +29,7 @@
           user.email = "contact@mateidibu.dev";
           extraConfig = {
             core = {
-              sshCommand =
-                "ssh -4 -i ~/.ssh/id_ed25519_sk_rk_yubi-backup_mateidibu";
+              sshCommand = "ssh -4 -i ~/.ssh/id_ed25519_sk_rk_yubi-backup_mateidibu";
             };
           };
         };

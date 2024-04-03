@@ -1,11 +1,20 @@
-{ inputs, ... }: {
-  imports = (with inputs.nixos-hardware.nixosModules; [
-    common-pc
-    common-pc-ssd
-    common-cpu-amd-pstate
-  ]) ++ [ ./disk.nix ./networking.nix ./nas.nix ];
+{ inputs, ... }:
+{
+  imports =
+    (with inputs.nixos-hardware.nixosModules; [
+      common-pc
+      common-pc-ssd
+      common-cpu-amd-pstate
+    ])
+    ++ [
+      ./disk.nix
+      ./networking.nix
+      ./nas.nix
+    ];
 
-  modules = { gpu-nvidia.enable = true; };
+  modules = {
+    gpu-nvidia.enable = true;
+  };
 
   hardware.cpu.amd.updateMicrocode = true;
 

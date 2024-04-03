@@ -1,5 +1,13 @@
-{ lib, config, pkgs, ... }: {
-  options = { modules.gpu-nvidia.enable = lib.mkEnableOption "Nvidia GPU"; };
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options = {
+    modules.gpu-nvidia.enable = lib.mkEnableOption "Nvidia GPU";
+  };
   config = lib.mkIf config.modules.gpu-nvidia.enable {
 
     modules = {
@@ -34,7 +42,11 @@
 
     services.xserver.videoDrivers = [ "nvidia" ];
 
-    boot.initrd.kernelModules = [ "nvidia" "nvidia_drm" "nvidia_modeset" ];
+    boot.initrd.kernelModules = [
+      "nvidia"
+      "nvidia_drm"
+      "nvidia_modeset"
+    ];
 
     boot.kernelParams = lib.mkBefore [
       # "nvidia_drm.fbdev=1"

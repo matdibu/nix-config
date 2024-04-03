@@ -1,4 +1,5 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   options = {
     modules.security.enable = lib.mkEnableOption "Security Hardening" // {
       default = true;

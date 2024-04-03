@@ -1,5 +1,13 @@
-{ pkgs, lib, config, ... }: {
-  options = { modules.sway.enable = lib.mkEnableOption "sway"; };
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options = {
+    modules.sway.enable = lib.mkEnableOption "sway";
+  };
   config = lib.mkIf config.modules.sway.enable {
     modules = {
       xdg-portal.enable = true;
@@ -12,7 +20,12 @@
         base = true;
         gtk = true;
       };
-      extraPackages = with pkgs; [ wofi shotman i3status foot ];
+      extraPackages = with pkgs; [
+        wofi
+        shotman
+        i3status
+        foot
+      ];
       extraOptions = [
         "--unsupported-gpu" # nvidia
       ];
