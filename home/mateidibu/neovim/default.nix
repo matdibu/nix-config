@@ -32,7 +32,7 @@ in {
     extraPackages = with pkgs; [
       git
       nil
-      nixfmt
+      nixfmt-rfc-style
       nodePackages.bash-language-server
       texlab
       lua54Packages.digestif
