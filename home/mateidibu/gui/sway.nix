@@ -33,10 +33,12 @@
     settings = { main = { font = "monospace:size=14"; }; };
   };
 
+  # xdg.configFile."sway/config".source = ./sway.config;
+
   wayland.windowManager.sway = {
     enable = true;
-    package = null;
-    xwayland = false;
+    package = null; # use NixOS package
+    systemd.enable = true;
     config = {
       fonts = {
         names = [ "monospace" ];
@@ -51,20 +53,16 @@
       bindsym Print+Shift         exec ${pkgs.shotman}/bin/shotman -c region
       bindsym Print+Shift+Control exec ${pkgs.shotman}/bin/shotman -c window
 
-      output * adaptive_sync on
-
       xwayland disable
 
       output 'LG Electronics LG TV SSCR2 0x01010101' disable
 
       output 'Dell Inc. DELL S2721DGF BS4J623' {
-        mode 2560x1440@165Hz
-        adaptive_sync on
-        render_bit_depth 10
-        subpixel rgb
+        # mode 2560x1440@165Hz
+        # adaptive_sync on
+        # render_bit_depth 10
+        # subpixel rgb
       }
-
-      include /etc/sway/config.d/*
     '';
   };
 }
