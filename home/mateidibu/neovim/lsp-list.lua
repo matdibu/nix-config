@@ -83,3 +83,8 @@ require("lspconfig").lua_ls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
+
+require("lspconfig").digestif.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
