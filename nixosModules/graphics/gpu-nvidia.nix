@@ -10,11 +10,6 @@
   };
   config = lib.mkIf config.modules.gpu-nvidia.enable {
 
-    modules = {
-      opengl.enable = true;
-      wayland.enable = true;
-    };
-
     hardware.opengl.extraPackages = with pkgs; [
       nvidia-vaapi-driver
       vaapiVdpau
@@ -48,9 +43,7 @@
       "nvidia_modeset"
     ];
 
-    boot.kernelParams = lib.mkBefore [
-      # "nvidia_drm.fbdev=1"
-    ];
+    boot.kernelParams = lib.mkBefore [ "nvidia_drm.fbdev=1" ];
 
     hardware.nvidia = {
       modesetting.enable = true;

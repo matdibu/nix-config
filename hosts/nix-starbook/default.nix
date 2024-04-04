@@ -1,7 +1,9 @@
 {
   imports = [ ./hardware ];
 
-  modules.sway.enable = true;
+  modules = {
+    sway.enable = true;
+  };
 
   services.upower.enable = true;
 

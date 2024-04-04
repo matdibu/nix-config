@@ -5,7 +5,9 @@
     ./disk.nix
   ];
 
-  modules.gpu-nvidia.enable = true;
+  modules = {
+    gpu-nvidia.enable = true;
+  };
 
   boot.loader = {
     systemd-boot.enable = true;
