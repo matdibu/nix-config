@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix" ];
+  imports = [ "${modulesPath}/installer/sd-card/sd-image-aarch64-installer.nix" ];
 
   services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
 

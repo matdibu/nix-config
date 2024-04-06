@@ -56,9 +56,14 @@ let
 in
 {
   flake.nixosConfigurations = {
-    nix-iso = mkNixosSystem {
+    nix-iso-x86_64 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "nix-iso";
+    };
+    nix-sd-card-aarch64 = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "nix-sd-card";
+      modules = [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     nix-ws = mkNixosSystem {
       system = "x86_64-linux";
@@ -78,7 +83,7 @@ in
     nix-rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rockpro64";
-      modules = cliHome;
+      modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     nix-starbook = mkNixosSystem {
       system = "x86_64-linux";
