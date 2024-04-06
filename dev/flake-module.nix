@@ -58,7 +58,7 @@
         in
         lib.mapAttrs' (host: cfg: {
           name = "deploy-${host}";
-          value.program = toString (pkgs.writeShellScript "deploy-${host}" script { inherit host cfg; });
+          value.program = toString (pkgs.writeShellScript "deploy-${host}" (script host cfg));
         }) inputs.self.nixosConfigurations;
     };
 }
