@@ -85,8 +85,10 @@ in
       hostName = "nix-rockpro64";
       modules = cliHome;
     };
-    nix-rockpro64-cross = inputs.self.nixosConfigurations.nix-rockpro64 // {
-      modules = [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+    nix-rockpro64-cross = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "nix-rockpro64";
+      modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     nix-starbook = mkNixosSystem {
       system = "x86_64-linux";
