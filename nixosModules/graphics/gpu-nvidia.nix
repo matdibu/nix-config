@@ -37,20 +37,13 @@
 
     services.xserver.videoDrivers = [ "nvidia" ];
 
-    boot.initrd.kernelModules = [
-      "nvidia"
-      "nvidia_drm"
-      "nvidia_modeset"
-    ];
-
     boot.kernelParams = lib.mkBefore [ "nvidia_drm.fbdev=1" ];
 
     hardware.nvidia = {
       modesetting.enable = true;
-      #powerManagement.enable = false;
-      #powerManagement.finegrained = false;
-      #open = true;
-      #nvidiaSettings = false;
+      powerManagement.enable = true;
+      open = true;
+      nvidiaSettings = false;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
