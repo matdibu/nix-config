@@ -4,6 +4,7 @@
     (with inputs.nixos-hardware.nixosModules; [
       common-pc
       common-pc-ssd
+      common-cpu-intel-comet-lake
     ])
     ++ [
       ./disk.nix
@@ -13,8 +14,6 @@
   modules = {
     gpu-intel.enable = true;
   };
-
-  hardware.cpu.intel.updateMicrocode = true;
 
   boot.loader = {
     systemd-boot.enable = true;

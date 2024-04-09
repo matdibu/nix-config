@@ -1,9 +1,6 @@
 { config, ... }:
 {
-  boot.initrd.kernelModules = [
-    "sdhci_pci"
-    "nvme"
-  ];
+  boot.initrd.kernelModules = [ "nvme" ];
 
   modules = {
     impermanence = {
