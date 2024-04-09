@@ -46,11 +46,10 @@
             # run nixos-rebuild
             ${lib.getExe (pkgs.nixos-rebuild.override { nix = pkgs.nixUnstable; })} \
               "$TASK" \
-              -s \
-              --use-remote-sudo \
               --fast \
               --flake ${inputs.self}#${host} \
-              --target-host ${cfg.config.networking.hostName} \
+              --use-remote-sudo \
+              --target-host ${cfg.config.networking.hostName}.lan \
               ${
                 lib.optionalString (cfg.config.nixpkgs.hostPlatform == "aarch64-linux") "--build-host ${buildHost}"
               }
