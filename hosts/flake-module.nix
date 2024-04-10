@@ -95,5 +95,15 @@ in
       hostName = "nix-starbook";
       modules = guiHome;
     };
+    nix-rpi4 = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "nix-rpi4";
+      modules = cliHome;
+    };
+    nix-rpi4-cross = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "nix-rpi4";
+      modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+    };
   };
 }
