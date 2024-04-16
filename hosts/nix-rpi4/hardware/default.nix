@@ -1,5 +1,8 @@
 {
-  imports = [ ./networking.nix ];
+  imports = [
+    ./networking.nix
+    ./disk.nix
+  ];
 
   boot = {
     initrd.availableKernelModules = [
