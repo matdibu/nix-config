@@ -23,11 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    # for flashrom-based fwupd, eg StarBook
-    flashrom-meson = {
-      url = "github:roger/flashrom-meson-nix";
-      flake = false;
-    };
   };
 
   outputs =

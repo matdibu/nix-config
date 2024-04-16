@@ -95,11 +95,6 @@ in
       hostName = "nix-rockpro64";
       modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
-    nix-starbook = mkNixosSystem {
-      system = "x86_64-linux";
-      hostName = "nix-starbook";
-      modules = guiHome;
-    };
     nix-rpi4 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "nix-rpi4";
