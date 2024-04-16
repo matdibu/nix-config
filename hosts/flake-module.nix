@@ -60,6 +60,11 @@ in
       system = "x86_64-linux";
       hostName = "nix-iso";
     };
+    nix-iso-aarch64 = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "nix-iso";
+      modules = [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+    };
     nix-sd-card-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "nix-sd-card";
