@@ -1,9 +1,5 @@
-{ modulesPath, ... }:
 {
-  imports = [
-    "${modulesPath}/installer/sd-card/sd-image-aarch64.nix"
-    ./hardware
-  ];
+  imports = [ ./hardware ];
 
   system.stateVersion = "24.05";
 }
