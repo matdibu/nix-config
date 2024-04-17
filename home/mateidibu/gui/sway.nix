@@ -66,10 +66,10 @@
       output 'LG Electronics LG TV SSCR2 0x01010101' disable
 
       output 'Dell Inc. DELL S2721DGF BS4J623' {
-        # mode 2560x1440@165Hz
-        # adaptive_sync on
-        # render_bit_depth 10
-        # subpixel rgb
+        mode 2560x1440@165Hz
+        adaptive_sync on
+        render_bit_depth 10
+        subpixel rgb
       }
     '';
   };
