@@ -56,53 +56,53 @@ let
 in
 {
   flake.nixosConfigurations = {
-    nix-iso-x86_64 = mkNixosSystem {
+    iso-x86_64 = mkNixosSystem {
       system = "x86_64-linux";
-      hostName = "nix-iso";
+      hostName = "iso";
     };
-    nix-iso-aarch64 = mkNixosSystem {
+    iso-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
-      hostName = "nix-iso";
+      hostName = "iso";
       modules = [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
-    nix-sd-card-aarch64 = mkNixosSystem {
+    sd-card-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
-      hostName = "nix-sd-card";
+      hostName = "sd-card";
       modules = [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
-    nix-ws = mkNixosSystem {
+    ws = mkNixosSystem {
       system = "x86_64-linux";
-      hostName = "nix-ws";
+      hostName = "ws";
       modules = guiHome;
     };
-    nix-x570 = mkNixosSystem {
+    x570 = mkNixosSystem {
       system = "x86_64-linux";
-      hostName = "nix-x570";
+      hostName = "x570";
       modules = guiHome;
     };
-    nix-vp4670 = mkNixosSystem {
+    vp4670 = mkNixosSystem {
       system = "x86_64-linux";
-      hostName = "nix-vp4670";
+      hostName = "vp4670";
       modules = guiHome;
     };
-    nix-rockpro64 = mkNixosSystem {
+    rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
-      hostName = "nix-rockpro64";
+      hostName = "rockpro64";
       modules = cliHome;
     };
-    nix-rockpro64-cross = mkNixosSystem {
+    rockpro64-cross = mkNixosSystem {
       system = "aarch64-linux";
-      hostName = "nix-rockpro64";
+      hostName = "rockpro64";
       modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
-    nix-rpi4 = mkNixosSystem {
+    rpi4 = mkNixosSystem {
       system = "aarch64-linux";
-      hostName = "nix-rpi4";
+      hostName = "rpi4";
       modules = cliHome;
     };
-    nix-rpi4-cross = mkNixosSystem {
+    rpi4-cross = mkNixosSystem {
       system = "aarch64-linux";
-      hostName = "nix-rpi4";
+      hostName = "rpi4";
       modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
   };
