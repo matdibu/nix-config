@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
@@ -9,10 +8,6 @@ let
   cfg = config.modules.impermanence;
 in
 {
-  imports = [
-    inputs.impermanence.nixosModules.impermanence
-    inputs.disko.nixosModules.default
-  ];
   options.modules.impermanence = {
     enable = lib.mkEnableOption "impermanence";
     device = lib.mkOption {

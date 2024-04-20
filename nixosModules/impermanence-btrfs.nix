@@ -1,17 +1,8 @@
-{
-  inputs,
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   cfg = config.modules.impermanence-btrfs;
 in
 {
-  imports = [
-    # inputs.impermanence.nixosModules.impermanence
-    # inputs.disko.nixosModules.default
-  ];
   options.modules.impermanence-btrfs = {
     enable = lib.mkEnableOption "impermanence";
     device = lib.mkOption {

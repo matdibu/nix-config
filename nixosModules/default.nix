@@ -1,5 +1,8 @@
+{ inputs, ... }:
 {
   imports = [
+    inputs.impermanence.nixosModules.impermanence
+    inputs.disko.nixosModules.default
     ./better-defaults.nix
     ./better-nix.nix
     ./docs.nix
