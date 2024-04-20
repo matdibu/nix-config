@@ -97,7 +97,7 @@ in
                   };
                   preMountHook = ''
                     TMPDIR=$(mktemp --directory)
-                    mount -t btrfs ${cfg.device} $TMPDIR
+                    mount -t btrfs ${config.disko.devices.disk."root-impermanence".content.paritions.btrfs-root.device} $TMPDIR
                     btrfs subvolume delete $TMPDIR/rootfs || true
                     btrfs subvolume create $TMPDIR/rootfs
                   '';
