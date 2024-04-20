@@ -96,8 +96,10 @@ in
                     };
                   };
                   preMountHook = ''
-                    btrfs subvolume delete /rootfs
-                    btrfs subvolume create /rootfs
+                    TMPDIR=$(mktemp --directory)
+                    mount -t btrfs ${cfg.device} $TMPDIR
+                    btrfs subvolume delete $TMPDIR/rootfs || true
+                    btrfs subvolume create $TMPDIR/rootfs
                   '';
                 };
               };
