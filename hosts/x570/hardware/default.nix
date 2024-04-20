@@ -9,7 +9,7 @@
     ++ [
       ./disk.nix
       ./networking.nix
-      ./nas.nix
+      # ./nas.nix
     ];
 
   modules = {
