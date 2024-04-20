@@ -101,7 +101,7 @@ in
                     btrfs subvolume delete $TMPDIR/rootfs || true
                     btrfs subvolume create $TMPDIR/rootfs
                     umount $TMPDIR
-                    rm $TMPDIR
+                    rm -rf $TMPDIR
                   '';
                 };
               };
