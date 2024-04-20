@@ -26,6 +26,8 @@ in
     boot.initrd.supportedFilesystems = [ "btrfs" ]; # boot from btrfs
     boot.supportedFilesystems = [ "btrfs" ]; # boot from btrfs
 
+    fileSystems.${cfg.mountpoint}.neededForBoot = true;
+
     environment.persistence.${cfg.mountpoint} = {
       hideMounts = true;
       files = lib.mkMerge [
