@@ -96,12 +96,12 @@ in
                     };
                   };
                   preMountHook = ''
-                    TMPDIR=$(mktemp --directory)
-                    mount -t btrfs ${config.disko.devices.disk."root-impermanence".content.partitions.btrfs-root.device} $TMPDIR
-                    btrfs subvolume delete $TMPDIR/rootfs || true
-                    btrfs subvolume create $TMPDIR/rootfs
-                    umount $TMPDIR
-                    rm -rf $TMPDIR
+                    PRE_MOUNT_HOOK_TMPDIR=$(mktemp --directory)
+                    mount -t btrfs ${config.disko.devices.disk."root-impermanence".content.partitions.btrfs-root.device} $PRE_MOUNT_HOOK_TMPDIR
+                    btrfs subvolume delete $PRE_MOUNT_HOOK_TMPDIR/rootfs || true
+                    btrfs subvolume create $PRE_MOUNT_HOOK_TMPDIR/rootfs
+                    umount $PRE_MOUNT_HOOK_TMPDIR
+                    rm -rf $PRE_MOUNT_HOOK_TMPDIR
                   '';
                 };
               };
