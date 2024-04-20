@@ -5,6 +5,7 @@
     ./docs.nix
     ./graphics
     ./impermanence.nix
+    ./impermanence-btrfs.nix
     ./networking.nix
     ./openssh.nix
     ./security.nix
