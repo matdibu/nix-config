@@ -58,6 +58,7 @@ in
                 content = {
                   type = "filesystem";
                   format = "vfat";
+                  extraArgs = "-F32";
                   mountpoint = "/boot";
                   mountOptions = [
                     "fmask=0137"
