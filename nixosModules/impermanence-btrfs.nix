@@ -100,6 +100,8 @@ in
                     mount -t btrfs ${config.disko.devices.disk."root-impermanence".content.partitions.btrfs-root.device} $TMPDIR
                     btrfs subvolume delete $TMPDIR/rootfs || true
                     btrfs subvolume create $TMPDIR/rootfs
+                    umount $TMPDIR
+                    rm $TMPDIR
                   '';
                 };
               };
