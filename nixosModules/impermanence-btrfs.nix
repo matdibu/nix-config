@@ -13,10 +13,6 @@ in
       type = lib.types.str;
       default = "/mnt/persist";
     };
-    poolName = lib.mkOption {
-      type = lib.types.str;
-      default = "tank";
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -40,6 +36,16 @@ in
       directories = [
         "/var/log"
         # "/var/lib/systemd/coredump"
+      ];
+    };
+
+    fileSystems."/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+        "size=25%"
+        "mode=755"
+        "nosuid"
       ];
     };
 
@@ -73,17 +79,11 @@ in
                   type = "btrfs";
                   extraArgs = [ "-f" ]; # Override existing partition
                   subvolumes = {
-                    "/rootfs" = {
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                      mountpoint = "/";
-                    };
                     "/nix" = {
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
+                        "checksum=sha256"
                       ];
                       mountpoint = "/nix";
                     };
@@ -91,18 +91,11 @@ in
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
+                        "checksum=blake2b"
                       ];
                       inherit (cfg) mountpoint;
                     };
                   };
-                  preMountHook = ''
-                    PRE_MOUNT_HOOK_TMPDIR=$(mktemp --directory)
-                    mount -t btrfs ${config.disko.devices.disk."root-impermanence".content.partitions.btrfs-root.device} $PRE_MOUNT_HOOK_TMPDIR
-                    btrfs subvolume delete $PRE_MOUNT_HOOK_TMPDIR/rootfs || true
-                    btrfs subvolume create $PRE_MOUNT_HOOK_TMPDIR/rootfs
-                    umount $PRE_MOUNT_HOOK_TMPDIR
-                    rm -rf $PRE_MOUNT_HOOK_TMPDIR
-                  '';
                 };
               };
             };
