@@ -106,8 +106,9 @@ in
 
     boot.initrd.systemd.services."rollback-btrfs-rootfs" = {
       description = "Rollback BTRFS root subvolume to a pristine state";
+      before = [ "sysroot.mount" ];
       requires = [ "initrd-root-device.target" ];
-      wantedBy = [ "initrd-root-fs.target" ];
+      wantedBy = [ "initrd.target" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script =
