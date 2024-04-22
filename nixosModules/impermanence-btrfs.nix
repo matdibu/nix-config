@@ -110,6 +110,7 @@ in
       wantedBy = [ "initrd.target" ];
       before = [ "sysroot.mount" ];
       after = [ "systemd-udevd.service" ];
+      requires = [ "systemd-udevd.service" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script =
