@@ -8,7 +8,7 @@
   imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix" ];
 
   isoImage = {
-    makeBiosBootable = true;
+    # makeBiosBootable = true;
     makeEfiBootable = true;
     makeUsbBootable = true;
   };
