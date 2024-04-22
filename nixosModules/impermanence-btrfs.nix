@@ -35,7 +35,6 @@ in
       ];
       directories = [
         "/var/log"
-        # "/var/lib/systemd/coredump"
       ];
     };
 
@@ -105,15 +104,10 @@ in
       };
     };
 
-    boot.initrd.systemd.services.rollback = {
+    boot.initrd.systemd.services."rollback-btrfs-rootfs" = {
       description = "Rollback BTRFS root subvolume to a pristine state";
-      # wantedBy = [ "initrd.target" ];
-      # before = [ "sysroot.mount" ];
-      # before = [ "initrd-root-fs.target" ];
-      wantedBy = [ "initrd-root-fs.target" ];
-      # requires = [ "systemd-udev-settle.service" ];
-      # wants = [ "systemd-udev-settle.service" ];
       requires = [ "initrd-root-device.target" ];
+      wantedBy = [ "initrd-root-fs.target" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script =
