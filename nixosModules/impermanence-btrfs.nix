@@ -116,9 +116,7 @@ in
         mkdir -p /mnt_btrfs
         # We first mount the btrfs root to /mnt_btrfs
         # so we can manipulate btrfs subvolumes.
-        mount -t btrfs -o subvol=/ ${
-          config.disko.devices.disk."root-impermanence".device
-        }-part1 /mnt_btrfs
+        mount -t btrfs -o subvol=/ ${config.disko.devices.disk."root-impermanence".device}-part1 /mnt_btrfs
         # While we're tempted to just delete /rootfs and create
         # a new snapshot from /root-blank, /rootfs is already
         # populated at this point with a number of subvolumes,
