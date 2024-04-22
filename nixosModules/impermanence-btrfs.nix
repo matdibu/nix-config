@@ -109,13 +109,14 @@ in
       description = "Rollback BTRFS root subvolume to a pristine state";
       wantedBy = [ "initrd.target" ];
       before = [ "sysroot.mount" ];
+      after = [ "systemd-udevd.service" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script = ''
         mkdir -p /mnt_btrfs
         # We first mount the btrfs root to /mnt_btrfs
         # so we can manipulate btrfs subvolumes.
-        mount -o subvol=/ ${
+        mount -t btrfs -o subvol=/ ${
           config.disko.devices.disk."root-impermanence".content.partitions."btrfs-root".device
         } /mnt_btrfs
         # While we're tempted to just delete /rootfs and create
