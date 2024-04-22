@@ -107,9 +107,10 @@ in
 
     boot.initrd.systemd.services.rollback = {
       description = "Rollback BTRFS root subvolume to a pristine state";
-      wantedBy = [ "initrd.target" ];
+      # wantedBy = [ "initrd.target" ];
       # before = [ "sysroot.mount" ];
-      before = [ "initrd-root-fs.target" ];
+      # before = [ "initrd-root-fs.target" ];
+      wantedBy = [ "initrd-root-fs.target" ];
       # requires = [ "systemd-udev-settle.service" ];
       # wants = [ "systemd-udev-settle.service" ];
       requires = [ "initrd-root-device.target" ];
