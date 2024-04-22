@@ -33,9 +33,7 @@ in
         ])
         [ "/etc/machine-id" ]
       ];
-      directories = [
-        "/var/log"
-      ];
+      directories = [ "/var/log" ];
     };
 
     disko.devices = {
