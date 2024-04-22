@@ -39,16 +39,6 @@ in
       ];
     };
 
-    fileSystems."/" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-        "size=25%"
-        "mode=755"
-        "nosuid"
-      ];
-    };
-
     disko.devices = {
       disk = {
         "root-impermanence" = {
@@ -77,13 +67,24 @@ in
                 size = "100%";
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-f" ]; # Override existing partition
+                  extraArgs = [
+                    "--force" # Override existing partition
+                    "--checksum blake2b" # stronger than crc32c and xxhash, faster than sha256
+                  ];
                   subvolumes = {
+                    "/rootfs" = {
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                        "ssd"
+                      ];
+                      mountpoint = "/";
+                    };
                     "/nix" = {
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
-                        "checksum=sha256"
+                        "ssd"
                       ];
                       mountpoint = "/nix";
                     };
@@ -91,7 +92,7 @@ in
                       mountOptions = [
                         "compress=zstd"
                         "noatime"
-                        "checksum=blake2b"
+                        "ssd"
                       ];
                       inherit (cfg) mountpoint;
                     };
@@ -102,6 +103,50 @@ in
           };
         };
       };
+    };
+
+    boot.initrd.systemd.services.rollback = {
+      description = "Rollback BTRFS root subvolume to a pristine state";
+      wantedBy = [ "initrd.target" ];
+      before = [ "sysroot.mount" ];
+      unitConfig.DefaultDependencies = "no";
+      serviceConfig.Type = "oneshot";
+      script = ''
+        mkdir -p /mnt_btrfs
+        # We first mount the btrfs root to /mnt_btrfs
+        # so we can manipulate btrfs subvolumes.
+        mount -o subvol=/ ${
+          config.disko.devices.disk."root-impermanence".content.partitions."btrfs-root".device
+        } /mnt_btrfs
+        # While we're tempted to just delete /rootfs and create
+        # a new snapshot from /root-blank, /rootfs is already
+        # populated at this point with a number of subvolumes,
+        # which makes `btrfs subvolume delete` fail.
+        # So, we remove them first.
+        #
+        # /rootfs contains subvolumes:
+        # - /rootfs/var/lib/portables
+        # - /rootfs/var/lib/machines
+        #
+        # I suspect these are related to systemd-nspawn, but
+        # since I don't use it I'm not 100% sure.
+        # Anyhow, deleting these subvolumes hasn't resulted
+        # in any issues so far, except for fairly
+        # benign-looking errors from systemd-tmpfiles.
+        btrfs subvolume list -o /mnt_btrfs/rootfs |
+          cut -f9 -d' ' |
+          while read subvolume; do
+            echo "deleting /$subvolume subvolume..."
+            btrfs subvolume delete "/mnt_btrfs/$subvolume"
+          done &&
+          echo "deleting /rootfs subvolume..." &&
+          btrfs subvolume delete /mnt_btrfs/rootfs
+        echo "creating blank /rootfs subvolume..."
+        btrfs subvolume create /mnt_btrfs/rootfs
+        # Once we're done rolling back to a blank snapshot,
+        # we can unmount /mnt_btrfs and continue on the boot process.
+        umount /mnt_btrfs
+      '';
     };
   };
 }
