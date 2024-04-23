@@ -7,9 +7,7 @@
 }:
 {
   options = {
-    modules.better-nix.enable = lib.mkEnableOption "better nix defaults" // {
-      default = true;
-    };
+    modules.better-nix.enable = lib.mkEnableOption "better nix defaults";
   };
   config = lib.mkIf config.modules.better-nix.enable {
     nix = {

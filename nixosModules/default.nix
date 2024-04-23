@@ -4,16 +4,16 @@
     inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.default
     ./better-defaults.nix
+    ./better-networking.nix
     ./better-nix.nix
-    ./docs.nix
     ./graphics
     ./impermanence.nix
     ./impermanence-btrfs.nix
-    ./networking.nix
     ./openssh.nix
+    ./remove-docs.nix
     ./security.nix
     ./smartd.nix
-    ./users.nix
+    ./user-mateidibu.nix
     ./zfs.nix
   ];
 }

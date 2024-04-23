@@ -3,15 +3,17 @@ let
   cfg = config.modules.impermanence-btrfs;
 in
 {
-  options.modules.impermanence-btrfs = {
-    enable = lib.mkEnableOption "impermanence";
-    device = lib.mkOption {
-      type = lib.types.str;
-      default = null;
-    };
-    mountpoint = lib.mkOption {
-      type = lib.types.str;
-      default = "/mnt/persist";
+  options = {
+    modules.impermanence-btrfs = {
+      enable = lib.mkEnableOption "impermanence";
+      device = lib.mkOption {
+        type = lib.types.str;
+        default = null;
+      };
+      mountpoint = lib.mkOption {
+        type = lib.types.str;
+        default = "/mnt/persist";
+      };
     };
   };
 

@@ -1,11 +1,9 @@
 { lib, config, ... }:
 {
   options = {
-    modules.networking-modern.enable = lib.mkEnableOption "Use modern networking" // {
-      default = true;
-    };
+    modules.better-networking.enable = lib.mkEnableOption "Use modern networking";
   };
-  config = lib.mkIf config.modules.networking-modern.enable {
+  config = lib.mkIf config.modules.better-networking.enable {
     networking = {
       firewall.enable = true;
       useDHCP = false;

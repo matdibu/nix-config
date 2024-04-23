@@ -1,9 +1,7 @@
 { lib, config, ... }:
 {
   options = {
-    modules.openssh.enable = lib.mkEnableOption "OpenSSH settings and authorized keys" // {
-      default = true;
-    };
+    modules.openssh.enable = lib.mkEnableOption "OpenSSH settings and authorized keys";
   };
   config = lib.mkIf config.modules.openssh.enable {
     users.users = {
