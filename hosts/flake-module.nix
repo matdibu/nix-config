@@ -15,6 +15,18 @@ let
     }
   ];
 
+  installerDefaults = [
+    {
+      modules = {
+        better-nix.enable = true;
+        remove-docs.enable = true;
+        openssh.enable = true;
+        zfs.enable = true;
+      };
+    }
+    { programs.git.enable = true; }
+  ];
+
   cliHome = betterDefaults ++ [
     inputs.home-manager.nixosModule
     {
@@ -74,16 +86,17 @@ in
     iso-x86_64 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "iso";
+      modules = installerDefaults;
     };
     iso-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "iso";
-      modules = [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = installerDefaults ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     sd-card-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "sd-card";
-      modules = [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = installerDefaults ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     ws = mkNixosSystem {
       system = "x86_64-linux";
