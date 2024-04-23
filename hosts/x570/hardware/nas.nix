@@ -4,6 +4,8 @@ let
   poolName = "nas";
 in
 {
+  modules.zfs.enable = true;
+
   disko.devices = {
     disk = {
       ${diskName} = {
