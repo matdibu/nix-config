@@ -9,17 +9,19 @@
     modules.better-defaults.enable = lib.mkEnableOption "better defaults";
   };
   config = lib.mkIf config.modules.better-defaults.enable {
-    programs.vim.defaultEditor = true;
-    programs.nano.enable = false;
+    programs = {
+      vim.defaultEditor = true;
+      nano.enable = false;
+      git.enable = true;
+      htop.enable = true;
+    };
 
     # Packages that shoulds always be available.
     environment.systemPackages = with pkgs; [
       wget
-      gitMinimal
       tree
       curl
       jq
-      htop
       pciutils
       usbutils
       lm_sensors
