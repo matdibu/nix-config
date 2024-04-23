@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 {
   imports =
     (with inputs.nixos-hardware.nixosModules; [
@@ -23,11 +23,20 @@
     efi.canTouchEfiVariables = true;
   };
 
-  boot.kernelPatches = [
-    {
-      name = "asus-wmi-x570";
-      patch = ./asus-wmi-x570.patch;
-    }
+  # boot.kernelPatches = [
+  #   {
+  #     name = "asus-wmi-x570";
+  #     patch = ./asus-wmi-x570.patch;
+  #   }
+  # ];
+
+  powerManagement.cpuFreqGovernor = "performance";
+
+  environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
+
+  boot.kernelParams = [
+    "amd_pstate=active"
+    "amd_pstate_epp=performance"
   ];
 
   boot.kernelModules = [
