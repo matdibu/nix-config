@@ -3,7 +3,7 @@
     ./hardware
     # ./roles/hypervisor
     # ./roles/nas
-    # ./roles/container-host
+    ./roles/container-host
   ];
 
   modules = {
