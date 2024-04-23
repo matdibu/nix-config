@@ -1,0 +1,12 @@
+diff --git a/drivers/hwmon/asus_wmi_sensors.c b/drivers/hwmon/asus_wmi_sensors.c
+index cfe089c2f..b32df26e6 100644
+--- a/drivers/hwmon/asus_wmi_sensors.c
++++ b/drivers/hwmon/asus_wmi_sensors.c
+@@ -72,6 +72,7 @@
+ static const struct dmi_system_id asus_wmi_dmi_table[] = {
+ 	DMI_EXACT_MATCH_ASUS_BOARD_NAME("PRIME X399-A"),
+ 	DMI_EXACT_MATCH_ASUS_BOARD_NAME("PRIME X470-PRO"),
++	DMI_EXACT_MATCH_ASUS_BOARD_NAME("Pro WS X570-ACE"),
+ 	DMI_EXACT_MATCH_ASUS_BOARD_NAME("ROG CROSSHAIR VI EXTREME"),
+ 	DMI_EXACT_MATCH_ASUS_BOARD_NAME("CROSSHAIR VI HERO"),
+ 	DMI_EXACT_MATCH_ASUS_BOARD_NAME("ROG CROSSHAIR VI HERO (WI-FI AC)"),
