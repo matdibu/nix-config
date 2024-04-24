@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs, ... }:
 {
   imports =
     (with inputs.nixos-hardware.nixosModules; [
@@ -23,24 +23,7 @@
     efi.canTouchEfiVariables = true;
   };
 
-  # boot.kernelPatches = [
-  #   {
-  #     name = "asus-wmi-x570";
-  #     patch = ./asus-wmi-x570.patch;
-  #   }
-  # ];
-
   powerManagement.cpuFreqGovernor = "performance";
-
-  environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
-
-  boot.kernelParams = [
-    "amd_pstate=active"
-    "amd_pstate_epp=performance"
-    # bypass motherboard firmware falsely reporting x2APIC method is not supported
-    # https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF/Examples#droserasprout_poor_man's_setup
-    "intremap=no_x2apic_optout"
-  ];
 
   boot.kernelModules = [
     # Chip `AMD Family 17h thermal sensors'
