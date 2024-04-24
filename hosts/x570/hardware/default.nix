@@ -37,17 +37,20 @@
     "i2c-dev"
     "i2c-piix4"
 
+    # a single "temp1" sensor, always at "+31.9°C"
     # Bus `SMBus PIIX4 adapter port 1 at 0b20'
     # Busdriver `i2c_piix4', I2C address 0x4f
-    # Chip `lm75'
-    "lm75"
+    # Chip `ds75'
+    # "lm75"
 
+    # RAM temperature
     # Bus `SMBus PIIX4 adapter port 0 at 0b00'
     # Busdriver `i2c_piix4', I2C address 0x18/0x19/0x1a/0x1b
     # Chip `jc42'
     "jc42"
 
     # ram SPD EEPROM, for 'decode-dimms'
+    # i2c-0, address 0x50/0x51/0x52/0x53
     "ee1004"
   ];
 }
