@@ -22,7 +22,7 @@
     '';
     shares = {
       "torrents" = {
-        path = "/torrents";
+        path = "/mnt/torrents";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "yes";
