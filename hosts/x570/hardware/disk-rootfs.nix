@@ -3,9 +3,10 @@
   boot.initrd.kernelModules = [ "nvme" ];
 
   modules = {
-    impermanence = {
+    impermanence-btrfs = {
       enable = true;
-      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J";
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNF0M943331J_1";
+      extraPartitions = [ "containers" ];
     };
   };
 

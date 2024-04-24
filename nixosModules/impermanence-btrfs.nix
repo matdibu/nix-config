@@ -14,6 +14,10 @@ in
         type = lib.types.str;
         default = "/mnt/persist";
       };
+      extraPartitions = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+      };
     };
   };
 
@@ -70,32 +74,45 @@ in
                     "--force" # Override existing partition
                     "--checksum blake2b" # stronger than crc32c and xxhash, faster than sha256
                   ];
-                  subvolumes = {
-                    "/rootfs" = {
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                        "ssd"
-                      ];
-                      mountpoint = "/";
-                    };
-                    "/nix" = {
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                        "ssd"
-                      ];
-                      mountpoint = "/nix";
-                    };
-                    "/persist" = {
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                        "ssd"
-                      ];
-                      inherit (cfg) mountpoint;
-                    };
-                  };
+                  subvolumes =
+                    {
+                      "/rootfs" = {
+                        mountOptions = [
+                          "compress=zstd"
+                          "noatime"
+                          "ssd"
+                        ];
+                        mountpoint = "/";
+                      };
+                      "/nix" = {
+                        mountOptions = [
+                          "compress=zstd"
+                          "noatime"
+                          "ssd"
+                        ];
+                        mountpoint = "/nix";
+                      };
+                      "/persist" = {
+                        mountOptions = [
+                          "compress=zstd"
+                          "noatime"
+                          "ssd"
+                        ];
+                        inherit (cfg) mountpoint;
+                      };
+                    }
+                    // lib.mergeAttrsList (
+                      builtins.map (partition: {
+                        "/${partition}" = {
+                          mountOptions = [
+                            "compress=zstd"
+                            "noatime"
+                            "ssd"
+                          ];
+                          mountpoint = "/mnt/${partition}";
+                        };
+                      }) cfg.extraPartitions
+                    );
                 };
               };
             };

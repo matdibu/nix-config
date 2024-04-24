@@ -7,9 +7,9 @@
       common-cpu-amd-pstate
     ])
     ++ [
-      ./disk.nix
+      ./disk-rootfs.nix
+      ./disk-nas.nix
       ./networking.nix
-      ./nas.nix
     ];
 
   modules = {
