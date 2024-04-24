@@ -7,7 +7,10 @@
 
   boot.kernelModules = [ "kvm-amd" ];
 
-  environment.systemPackages = with pkgs; [ cloud-hypervisor qemu_kvm ];
+  environment.systemPackages = with pkgs; [
+    cloud-hypervisor
+    qemu_kvm
+  ];
 
   boot.kernelParams = [
     "kvm_amd.avic=1"
