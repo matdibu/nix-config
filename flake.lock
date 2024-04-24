@@ -143,15 +143,16 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1713521961,
-        "narHash": "sha256-EwR8wW9AqJhSIY+0oxWRybUZ32BVKuZ9bjlRh8SJvQ8=",
-        "owner": "NixOS",
+        "lastModified": 1713966481,
+        "narHash": "sha256-aTtVhTOPVMGsdbyxzxPH83yP4yoJxtZHvv70VCeqf5Q=",
+        "owner": "matdibu",
         "repo": "nixos-hardware",
-        "rev": "5d48925b815fd202781bfae8fb6f45c07112fdb2",
+        "rev": "d48a92c5909c687941aa7d74e347d9d3d28e9011",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "matdibu",
+        "ref": "x570-pro-ws-ace",
         "repo": "nixos-hardware",
         "type": "github"
       }

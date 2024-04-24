@@ -5,7 +5,8 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    # nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "github:matdibu/nixos-hardware/x570-pro-ws-ace";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
