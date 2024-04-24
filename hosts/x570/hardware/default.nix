@@ -37,6 +37,9 @@
   boot.kernelParams = [
     "amd_pstate=active"
     "amd_pstate_epp=performance"
+    # bypass motherboard firmware falsely reporting x2APIC method is not supported
+    # https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF/Examples#droserasprout_poor_man's_setup
+    "intremap=no_x2apic_optout"
   ];
 
   boot.kernelModules = [
