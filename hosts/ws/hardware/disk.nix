@@ -2,6 +2,7 @@
 {
   modules.impermanence = {
     enable = true;
+    type = "btrfs";
     device = "/dev/disk/by-path/virtio-pci-0000:00:07.0";
   };
 

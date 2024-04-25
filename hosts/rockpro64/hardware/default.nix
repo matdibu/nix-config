@@ -1,10 +1,7 @@
 { inputs, ... }:
-let
-  hw-modules = inputs.nixos-hardware.nixosModules;
-in
 {
   imports = [
-    hw-modules."pine64-pinebook-pro"
+    inputs.nixos-hardware.nixosModules."pine64-rockpro64"
     ./networking.nix
     ./disk.nix
   ];

@@ -8,6 +8,7 @@
   modules = {
     impermanence = {
       enable = true;
+      type = "btrfs";
       device = "/dev/disk/by-path/platform-fe330000.mmc";
     };
   };

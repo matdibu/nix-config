@@ -7,8 +7,7 @@
     ./better-networking.nix
     ./better-nix.nix
     ./graphics
-    ./impermanence.nix
-    ./impermanence-btrfs.nix
+    ./impermanence
     ./openssh.nix
     ./remove-docs.nix
     ./security.nix

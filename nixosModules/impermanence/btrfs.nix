@@ -1,72 +1,17 @@
 { lib, config, ... }:
 let
-  cfg = config.modules.impermanence-btrfs;
+  cfg = config.modules.impermanence;
 in
 {
-  options = {
-    modules.impermanence-btrfs = {
-      enable = lib.mkEnableOption "impermanence";
-      device = lib.mkOption {
-        type = lib.types.str;
-        default = null;
-      };
-      mountpoint = lib.mkOption {
-        type = lib.types.str;
-        default = "/mnt/persist";
-      };
-      extraPartitions = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ];
-      };
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
-    # Don't allow mutation of users outside of the config.
-    users.mutableUsers = false;
-
-    boot.initrd.supportedFilesystems = [ "btrfs" ]; # boot from btrfs
-    boot.supportedFilesystems = [ "btrfs" ]; # boot from btrfs
-
-    fileSystems.${cfg.mountpoint}.neededForBoot = true;
-
-    environment.persistence.${cfg.mountpoint} = {
-      hideMounts = true;
-      files = lib.mkMerge [
-        (lib.mkIf config.services.openssh.enable [
-          "/etc/ssh/ssh_host_ed25519_key"
-          "/etc/ssh/ssh_host_rsa_key"
-        ])
-        [ "/etc/machine-id" ]
-      ];
-      directories = [ "/var/log" ];
-    };
-
-    disko.devices = {
+  config = lib.mkIf (cfg.enable && (cfg.type == "btrfs")) {
+    modules.impermanence.disko-devices = {
       disk = {
         "root-impermanence" = {
-          inherit (cfg) device;
-          type = "disk";
+          # type = "disk";
           content = {
-            type = "gpt";
+            #type = "gpt";
             partitions = {
-              ESP = {
-                priority = 1;
-                size = "500M";
-                type = "EF00";
-                content = {
-                  type = "filesystem";
-                  format = "vfat";
-                  extraArgs = [ "-F32" ];
-                  mountpoint = "/boot";
-                  mountOptions = [
-                    "fmask=0137"
-                    "dmask=0027"
-                    "noatime"
-                  ];
-                };
-              };
-              btrfs-root = {
+              "btrfs-root" = {
                 size = "100%";
                 content = {
                   type = "btrfs";
@@ -102,16 +47,16 @@ in
                       };
                     }
                     // lib.mergeAttrsList (
-                      builtins.map (partition: {
-                        "/${partition}" = {
+                      builtins.map (volume: {
+                        "/${volume}" = {
                           mountOptions = [
                             "compress=zstd"
                             "noatime"
                             "ssd"
                           ];
-                          mountpoint = "/mnt/${partition}";
+                          mountpoint = "/mnt/${volume}";
                         };
-                      }) cfg.extraPartitions
+                      }) cfg.extraVolumes
                     );
                 };
               };
@@ -122,14 +67,14 @@ in
     };
 
     boot.initrd.systemd.services."rollback-btrfs-rootfs" = {
-      description = "Rollback BTRFS root subvolume to a pristine state";
+      description = "Rollback BTRFS rootfs to a pristine state";
+      wantedBy = [ "initrd.target" ];
       after = [
         "initrd-root-device.target"
         "dev-disk-by\x2dpartlabel-disk\x2droot\x2dimpermanence\x2dbtrfs\x2droot.device"
       ];
       requires = [ "initrd-root-device.target" ];
       before = [ "sysroot.mount" ];
-      wantedBy = [ "initrd.target" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script =

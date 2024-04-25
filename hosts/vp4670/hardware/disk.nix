@@ -3,8 +3,9 @@
   boot.initrd.kernelModules = [ "nvme" ];
 
   modules = {
-    impermanence-btrfs = {
+    impermanence = {
       enable = true;
+      type = "btrfs";
       device = "/dev/disk/by-id/nvme-WDS200T1X0E-00AFY0_21469J442501_1";
     };
   };
