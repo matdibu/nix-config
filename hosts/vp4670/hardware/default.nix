@@ -1,15 +1,10 @@
 { inputs, ... }:
 {
-  imports =
-    (with inputs.nixos-hardware.nixosModules; [
-      common-pc
-      common-pc-ssd
-      common-cpu-intel-comet-lake
-    ])
-    ++ [
-      ./disk.nix
-      ./networking.nix
-    ];
+  imports = [
+    inputs.nixos-hardware.nixosModules.protectli-vp4670
+    ./disk.nix
+    ./networking.nix
+  ];
 
   modules = {
     gpu-intel.enable = true;
