@@ -1,11 +1,16 @@
 { inputs, ... }:
 {
-  imports = [
-    inputs.nixos-hardware.nixosModules.asus-pro-ws-x570-ace
-    ./disk-rootfs.nix
-    ./disk-nas.nix
-    ./networking.nix
-  ];
+  imports =
+    (with inputs.nixos-hardware.nixosModules; [
+      common-pc
+      common-pc-ssd
+      common-cpu-amd-pstate
+    ])
+    ++ [
+      ./disk-rootfs.nix
+      ./disk-nas.nix
+      ./networking.nix
+    ];
 
   modules = {
     gpu-nvidia.enable = true;
