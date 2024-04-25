@@ -48,7 +48,12 @@ let
         users.mateidibu = import ../home/mateidibu/gui;
       };
     }
-    { modules.audio.enable = true; }
+    {
+      modules = {
+        audio.enable = true;
+        sway.enable = true;
+      };
+    }
     {
       programs.dconf.enable = true;
       security = {
