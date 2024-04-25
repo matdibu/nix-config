@@ -61,7 +61,7 @@
       bindsym Print+Shift         exec ${pkgs.shotman}/bin/shotman -c region
       bindsym Print+Shift+Control exec ${pkgs.shotman}/bin/shotman -c window
 
-      xwayland disable
+      # xwayland disable
 
       output 'LG Electronics LG TV SSCR2 0x01010101' disable
 
