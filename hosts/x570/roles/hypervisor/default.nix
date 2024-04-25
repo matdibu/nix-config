@@ -2,7 +2,7 @@
 {
   imports = [
     ./libvirt.nix
-    #./vfio.nix
+    ./vfio.nix
   ];
 
   boot.kernelModules = [ "kvm-amd" ];
