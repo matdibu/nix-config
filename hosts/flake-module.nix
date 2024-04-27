@@ -1,6 +1,5 @@
 { inputs, ... }:
 let
-
   betterDefaults = [
     {
       modules = {
@@ -111,7 +110,7 @@ in
     x570 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "x570";
-      modules = guiHome;
+      modules = cliHome;
     };
     vp4670 = mkNixosSystem {
       system = "x86_64-linux";
