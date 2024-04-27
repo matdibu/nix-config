@@ -110,7 +110,7 @@ in
     x570 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "x570";
-      modules = cliHome;
+      modules = guiHome;
     };
     vp4670 = mkNixosSystem {
       system = "x86_64-linux";
