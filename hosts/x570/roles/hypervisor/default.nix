@@ -9,6 +9,7 @@
 
   environment.systemPackages = with pkgs; [
     cloud-hypervisor
+    rust-hypervisor-firmware
     qemu_kvm
   ];
 
