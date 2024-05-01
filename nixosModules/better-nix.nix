@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   lib,
   config,
   ...
@@ -11,7 +10,6 @@
   };
   config = lib.mkIf config.modules.better-nix.enable {
     nix = {
-      package = pkgs.nixUnstable;
       registry.nixpkgs.flake = inputs.nixpkgs;
       channel.enable = false;
       nixPath = lib.singleton config.nix.settings.nix-path;
