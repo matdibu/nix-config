@@ -1,66 +1,6 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 let
-  betterDefaults = [
-    {
-      modules = {
-        better-defaults.enable = true;
-        better-networking.enable = true;
-        better-nix.enable = true;
-        remove-docs.enable = true;
-        openssh.enable = true;
-        smartd.enable = true;
-        user-mateidibu.enable = true;
-      };
-    }
-  ];
-
-  installerDefaults = [
-    {
-      modules = {
-        better-nix.enable = true;
-        remove-docs.enable = true;
-        openssh.enable = true;
-        zfs.enable = true;
-      };
-    }
-    { programs.git.enable = true; }
-  ];
-
-  cliHome = betterDefaults ++ [
-    inputs.home-manager.nixosModule
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = {
-          inherit inputs;
-        };
-        users.mateidibu = import ../home/mateidibu;
-      };
-    }
-    { programs.fuse.userAllowOther = true; }
-  ];
-
-  guiHome = cliHome ++ [
-    {
-      home-manager = {
-        users.mateidibu = import ../home/mateidibu/gui;
-      };
-    }
-    {
-      modules = {
-        audio.enable = true;
-        sway.enable = true;
-      };
-    }
-    {
-      programs.dconf.enable = true;
-      security = {
-        polkit.enable = true;
-        rtkit.enable = true;
-      };
-    }
-  ];
+  inherit (self.nixosModules) profiles-installer profiles-gui profiles-cli;
 
   # wrapper over 'nixosSystem', with default configs and imports
   mkNixosSystem =
@@ -90,52 +30,52 @@ in
     iso-x86_64 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "iso";
-      modules = installerDefaults;
+      modules = [ profiles-installer ];
     };
     iso-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "iso";
-      modules = installerDefaults ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = [ profiles-installer ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     sd-card-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "sd-card";
-      modules = installerDefaults ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = [ profiles-installer ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     ws = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "ws";
-      modules = guiHome;
+      modules = [ profiles-gui ];
     };
     x570 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "x570";
-      modules = guiHome;
+      modules = [ profiles-cli ];
     };
     vp4670 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "vp4670";
-      modules = guiHome;
+      modules = [ profiles-gui ];
     };
     rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rockpro64";
-      modules = cliHome;
+      modules = [ profiles-cli ];
     };
     rockpro64-cross = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rockpro64";
-      modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     rpi4 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rpi4";
-      modules = cliHome;
+      modules = [ profiles-cli ];
     };
     rpi4-cross = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rpi4";
-      modules = cliHome ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
   };
 }
