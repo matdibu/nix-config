@@ -16,5 +16,7 @@
     efi.canTouchEfiVariables = true;
   };
 
+  boot.kernelParams = [ "amd_pstate=guided" ];
+
   powerManagement.cpuFreqGovernor = "performance";
 }
