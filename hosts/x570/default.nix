@@ -1,4 +1,4 @@
-{ self, pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./hardware
@@ -11,7 +11,7 @@
       imports = [ ./roles/hypervisor ];
     };
     "steam".configuration = {
-      imports = [ self.nixosModules.profiles-gui ];
+      imports = [ inputs.self.nixosModules.profiles-gui ];
       programs.steam = {
         enable = true;
         extraCompatPackages = with pkgs; [ proton-ge-bin ];
