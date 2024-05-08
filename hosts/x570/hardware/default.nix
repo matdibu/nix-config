@@ -5,7 +5,7 @@
     ./disk-rootfs.nix
     ./disk-nas.nix
     ./networking.nix
-    ./amd_pstate.nix
+    # ./amd_pstate.nix # didn't improve performance
   ];
 
   modules = {
