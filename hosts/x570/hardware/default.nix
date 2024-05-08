@@ -5,6 +5,7 @@
     ./disk-rootfs.nix
     ./disk-nas.nix
     ./networking.nix
+    ./amd_pstate.nix
   ];
 
   modules = {
