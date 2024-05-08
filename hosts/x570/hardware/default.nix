@@ -19,4 +19,8 @@
   boot.kernelParams = [ "amd_pstate=guided" ];
 
   powerManagement.cpuFreqGovernor = "performance";
+
+  hardware.rasdaemon = {
+    enable = true;
+  };
 }
