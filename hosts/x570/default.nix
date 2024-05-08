@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [
     ./hardware
@@ -12,10 +12,7 @@
     };
     "steam".configuration = {
       imports = [ inputs.self.nixosModules.profiles-gui ];
-      programs.steam = {
-        enable = true;
-        extraCompatPackages = with pkgs; [ proton-ge-bin ];
-      };
+      modules.steam.enable = true;
     };
   };
 
