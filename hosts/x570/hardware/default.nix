@@ -8,10 +8,6 @@
     # ./amd_pstate.nix # didn't improve performance
   ];
 
-  modules = {
-    gpu-nvidia.enable = true;
-  };
-
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;

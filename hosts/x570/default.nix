@@ -12,7 +12,10 @@
     };
     "steam".configuration = {
       imports = [ inputs.self.nixosModules.profiles-gui ];
-      modules.steam.enable = true;
+      modules = {
+        gpu-nvidia.enable = true;
+        steam.enable = true;
+      };
     };
   };
 
