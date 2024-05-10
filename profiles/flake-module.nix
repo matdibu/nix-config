@@ -5,6 +5,7 @@
     profiles-gui = ./gui.nix;
     profiles-installer = ./installer.nix;
     profiles-qemu-guest = ./qemu-guest.nix;
+    profiles-server = ./server.nix;
     profiles-server-minimal-hardened = ./server-minimal-hardened.nix;
   };
 }

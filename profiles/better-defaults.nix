@@ -1,11 +1,12 @@
+{ lib, ... }:
 {
   modules = {
-    better-defaults.enable = true;
-    better-networking.enable = true;
-    better-nix.enable = true;
-    remove-docs.enable = true;
-    openssh.enable = true;
-    smartd.enable = true;
-    user-mateidibu.enable = true;
+    better-defaults.enable = lib.mkDefault true;
+    better-networking.enable = lib.mkDefault true;
+    better-nix.enable = lib.mkDefault true;
+    remove-docs.enable = lib.mkDefault true;
+    openssh.enable = lib.mkDefault true;
+    smartd.enable = lib.mkDefault true;
+    user-mateidibu.enable = lib.mkDefault true;
   };
 }

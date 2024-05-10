@@ -1,6 +1,11 @@
 { self, inputs, ... }:
 let
-  inherit (self.nixosModules) profiles-installer profiles-gui profiles-cli;
+  inherit (self.nixosModules)
+    profiles-installer
+    profiles-gui
+    profiles-cli
+    profiles-server
+    ;
 
   # wrapper over 'nixosSystem', with default configs and imports
   mkNixosSystem =
@@ -60,12 +65,12 @@ in
     rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rockpro64";
-      modules = [ profiles-cli ];
+      modules = [ profiles-server ];
     };
     rockpro64-cross = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rockpro64";
-      modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
     rpi4 = mkNixosSystem {
       system = "aarch64-linux";
