@@ -1,4 +1,4 @@
-{ inputs, self, ... }:
+{ inputs, ... }:
 {
   imports = [ inputs.treefmt-nix.flakeModule ];
 
@@ -7,8 +7,13 @@
       pkgs,
       lib,
       inputs',
+      system,
       ...
     }:
+    let
+      inherit (lib.strings) hasPrefix concatLines;
+      inherit (lib.attrsets) mapAttrsToList;
+    in
     {
       devShells.default = pkgs.mkShellNoCC {
         packages = [
@@ -29,15 +34,20 @@
       # build shell scripts for deployment on each host, named "deploy-$host"
       apps =
         let
-          hosts = lib.attrsets.filterAttrs(
-            name: value: (!lib.strings.hasInfix "iso" name && !lib.strings.hasInfix "sd-card" name && value.config.nixpkgs.buildPlatform.system == "x86_64-linux")
+          hosts = lib.attrsets.filterAttrs (
+            name: value:
+            (
+              !hasPrefix "iso-" name
+              && !hasPrefix "sd-card-" name
+              && value.config.nixpkgs.buildPlatform.system == system
+            )
           ) inputs.self.nixosConfigurations;
+          user = "mateidibu";
         in
         (
           let
-            user = "mateidibu";
             script = host: cfg: ''
-              set -x
+              set -ex
 
               # default to 'boot'
               if [[ -n "$1" ]]; then
@@ -47,7 +57,7 @@
               fi
 
               # force pseudo-terminal allocation (man 1 ssh)
-              # export NIX_SSHOPTS="-tt"
+              export NIX_SSHOPTS="-tt"
 
               # run nixos-rebuild
               ${lib.getExe pkgs.nixos-rebuild} \
@@ -65,12 +75,16 @@
         )
         // (
           let
-            hostNames = lib.mapAttrsToList (name: _value: name) hosts;
-            script =
-              "set -x\n" + lib.strings.concatLines (map (host: inputs.self.apps."x86_64-linux"."deploy-${host}".program) hostNames);
+            forEachTargetHost = f: ("set -ex\n" + concatLines (mapAttrsToList f hosts));
+            deployHost = host: _cfg: inputs.self.apps.${system}."deploy-${host}".program;
+            rebootHost = _host: cfg: ''
+              ssh ${user}@${cfg.config.networking.hostName}.lan -tt -- \
+              sudo systemctl reboot --when='+1minute'
+            '';
           in
           {
-            "deploy-all".program = toString (pkgs.writeShellScript "deploy-all" script);
+            "deploy-all".program = toString (pkgs.writeShellScript "deploy-all" (forEachTargetHost deployHost));
+            "reboot-all".program = toString (pkgs.writeShellScript "reboot-all" (forEachTargetHost rebootHost));
           }
         );
     };
