@@ -47,11 +47,11 @@ in
       hostName = "sd-card";
       modules = [ profiles-installer ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
-    ws = mkNixosSystem {
-      system = "x86_64-linux";
-      hostName = "ws";
-      modules = [ profiles-gui ];
-    };
+    #ws = mkNixosSystem {
+    #  system = "x86_64-linux";
+    #  hostName = "ws";
+    #  modules = [ profiles-gui ];
+    #};
     x570 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "x570";
@@ -72,15 +72,15 @@ in
       hostName = "rockpro64";
       modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
-    rpi4 = mkNixosSystem {
-      system = "aarch64-linux";
-      hostName = "rpi4";
-      modules = [ profiles-cli ];
-    };
-    rpi4-cross = mkNixosSystem {
-      system = "aarch64-linux";
-      hostName = "rpi4";
-      modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
-    };
+    #rpi4 = mkNixosSystem {
+    #  system = "aarch64-linux";
+    #  hostName = "rpi4";
+    #  modules = [ profiles-cli ];
+    #};
+    #rpi4-cross = mkNixosSystem {
+    #  system = "aarch64-linux";
+    #  hostName = "rpi4";
+    #  modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+    #};
   };
 }
