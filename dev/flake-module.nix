@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   imports = [ inputs.treefmt-nix.flakeModule ];
 
@@ -29,7 +29,7 @@
       # build shell scripts for deployment on each host, named "deploy-$host"
       apps =
         let
-          buildHost = "nix-hv.lan";
+          buildHost = self.nixosConfigurations.x570.configuration.networking.hostName;
           script = host: cfg: ''
             set -x
 
@@ -49,10 +49,9 @@
               --fast \
               --flake ${inputs.self}#${host} \
               --use-remote-sudo \
-              --target-host ${cfg.config.networking.hostName}.lan \
-              ${
-                lib.optionalString (cfg.config.nixpkgs.hostPlatform == "aarch64-linux") "--build-host ${buildHost}"
-              }
+              --target-host ${host}.lan \
+              --build-host "${buildHost}.lan"
+              # temporarily use ${buildHost} for all builds, since it's the most powerful
           '';
         in
         lib.mapAttrs' (host: cfg: {
