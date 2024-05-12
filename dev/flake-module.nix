@@ -57,11 +57,12 @@
               fi
 
               # force pseudo-terminal allocation (man 1 ssh)
-              export NIX_SSHOPTS="-tt"
+              # export NIX_SSHOPTS="-tt"
 
               # run nixos-rebuild
               ${lib.getExe pkgs.nixos-rebuild} \
                 "$TASK" \
+                --max-jobs 1 \
                 --fast \
                 --flake ${inputs.self}#${host} \
                 --use-remote-sudo \
