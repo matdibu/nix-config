@@ -7,11 +7,9 @@
 
   boot.kernelModules = [ "kvm-amd" ];
 
-  environment.systemPackages = with pkgs; [
-    cloud-hypervisor
-    rust-hypervisor-firmware
-    qemu_kvm
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs) cloud-hypervisor rust-hypervisor-firmware qemu_kvm;
+  };
 
   boot.kernelParams = [
     "kvm_amd.avic=1"

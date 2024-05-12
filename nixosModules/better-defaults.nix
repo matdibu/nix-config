@@ -17,15 +17,17 @@
     };
 
     # Packages that shoulds always be available.
-    environment.systemPackages = with pkgs; [
-      wget
-      tree
-      curl
-      jq
-      pciutils
-      usbutils
-      lm_sensors
-    ];
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        wget
+        tree
+        curl
+        jq
+        pciutils
+        usbutils
+        lm_sensors
+        ;
+    };
 
     time.timeZone = "Europe/Bucharest";
     i18n.defaultLocale = "en_US.UTF-8";

@@ -14,23 +14,24 @@
   #   enable = true;
   #   xdgOpenUsePortal = true;
   #   config = {
-  #     common.default = [ "wlr" "gtk" ];
-  #     sway.default = [ "wlr" "gtk" ];
+  #     common.default = [
+  #       "wlr"
+  #       "gtk"
+  #     ];
+  #     sway.default = [
+  #       "wlr"
+  #       "gtk"
+  #     ];
   #   };
-  #   configPackages = with pkgs; [
-  #     xdg-desktop-portal-wlr
-  #     xdg-desktop-portal-gtk
-  #   ];
-  #   extraPortals = with pkgs; [
-  #     xdg-desktop-portal-wlr
-  #     xdg-desktop-portal-gtk
-  #   ];
+  #   configPackages = builtins.attrValues {
+  #     inherit (pkgs) xdg-desktop-portal-wlr xdg-desktop-portal-gtk;
+  #   };
+  #   extraPortals = builtins.attrValues {
+  #     inherit (pkgs) xdg-desktop-portal-wlr xdg-desktop-portal-gtk;
+  #   };
   # };
 
-  home.packages = with pkgs; [
-    mako
-    wl-clipboard
-  ];
+  home.packages = builtins.attrValues { inherit (pkgs) mako wl-clipboard; };
 
   programs.foot = {
     enable = true;

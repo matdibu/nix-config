@@ -9,10 +9,9 @@
     modules.gpu-nvidia.enable = lib.mkEnableOption "Nvidia GPU";
   };
   config = lib.mkIf config.modules.gpu-nvidia.enable {
-    hardware.opengl.extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-      vaapiVdpau
-    ];
+    hardware.opengl.extraPackages = builtins.attrValues {
+      inherit (pkgs) nvidia-vaapi-driver vaapiVdpau;
+    };
 
     environment.variables = {
       # Necessary to correctly enable va-api (video codec hardware

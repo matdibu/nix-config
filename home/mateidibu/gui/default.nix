@@ -5,5 +5,5 @@
     ./librewolf.nix
   ];
 
-  home.packages = with pkgs; [ telegram-desktop ];
+  home.packages = builtins.attrValues { inherit (pkgs) telegram-desktop; };
 }
