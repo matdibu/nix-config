@@ -1,9 +1,10 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./hardware
     ./roles/nas
     ./roles/container-host
+    ./openmw.nix
   ];
 
   specialisation = {
@@ -16,6 +17,7 @@
         gpu-nvidia.enable = true;
         steam.enable = true;
       };
+      environment.systemPackages = [ pkgs.openmw ];
     };
   };
 
