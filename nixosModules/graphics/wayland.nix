@@ -4,7 +4,6 @@
     modules.wayland.enable = lib.mkEnableOption "wayland";
   };
   config = lib.mkIf config.modules.wayland.enable {
-
     modules.opengl.enable = true;
 
     environment.variables = {

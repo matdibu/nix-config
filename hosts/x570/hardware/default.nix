@@ -17,7 +17,5 @@
 
   powerManagement.cpuFreqGovernor = "performance";
 
-  hardware.rasdaemon = {
-    enable = true;
-  };
+  hardware.rasdaemon.enable = true;
 }

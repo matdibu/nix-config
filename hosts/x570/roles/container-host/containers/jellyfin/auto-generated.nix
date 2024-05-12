@@ -1,6 +1,5 @@
 # Auto-generated using compose2nix v0.1.9.
 { lib, ... }:
-
 {
   # Runtime
   virtualisation.podman = {

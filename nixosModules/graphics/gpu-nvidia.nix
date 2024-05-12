@@ -9,7 +9,6 @@
     modules.gpu-nvidia.enable = lib.mkEnableOption "Nvidia GPU";
   };
   config = lib.mkIf config.modules.gpu-nvidia.enable {
-
     hardware.opengl.extraPackages = with pkgs; [
       nvidia-vaapi-driver
       vaapiVdpau

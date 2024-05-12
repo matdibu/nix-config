@@ -39,8 +39,13 @@ in
     # Don't allow mutation of users outside of the config.
     users.mutableUsers = false;
 
-    boot.initrd.supportedFilesystems = [ cfg.type ];
-    boot.supportedFilesystems = [ cfg.type ];
+    boot = {
+      initrd = {
+        supportedFilesystems = [ cfg.type ];
+        systemd.enable = true;
+      };
+      supportedFilesystems = [ cfg.type ];
+    };
 
     fileSystems.${cfg.mountpoint}.neededForBoot = true;
 
@@ -55,8 +60,6 @@ in
       ];
       directories = [ "/var/log" ];
     };
-
-    boot.initrd.systemd.enable = true;
 
     disko.devices = lib.attrsets.recursiveUpdate cfg.disko-devices {
       disk = {
