@@ -29,6 +29,9 @@
           deadnix.enable = true;
           statix.enable = true;
         };
+        settings.formatter = {
+          statix.excludes = [ "auto-generated.nix" ];
+        };
       };
 
       # build shell scripts for deployment on each host, named "deploy-$host"
