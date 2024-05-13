@@ -9,6 +9,7 @@
         openssh.authorizedKeys.keys = with (import ../ssh-keys.nix); [
           yubi-main
           yubi-backup
+          yubi-backup-fast
           pixel8
         ];
       };
