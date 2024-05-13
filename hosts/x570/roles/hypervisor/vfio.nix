@@ -1,3 +1,4 @@
+{ lib, ... }:
 let
   pciIDs = [
     # RTX 3080 LHR
@@ -17,7 +18,6 @@ let
     "1022:1485" # Starship/Matisse Reserved SPP
   ];
 in
-{ lib, ... }:
 {
   boot = {
     initrd.kernelModules = [
