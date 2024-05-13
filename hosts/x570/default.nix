@@ -2,9 +2,9 @@
 {
   imports = [
     ./hardware
+    ./overlays
     ./roles/nas
     ./roles/container-host
-    ./openmw.nix
   ];
 
   specialisation = {
@@ -12,7 +12,10 @@
       imports = [ ./roles/hypervisor ];
     };
     "steam".configuration = {
-      imports = [ inputs.self.nixosModules.profiles-gui ];
+      imports = [
+        inputs.self.nixosModules.profiles-gui
+        ./openmw.nix
+      ];
       modules = {
         gpu-nvidia.enable = true;
         steam.enable = true;
