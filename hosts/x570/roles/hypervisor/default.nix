@@ -26,9 +26,9 @@
       "kvm.report_ignored_msrs=1"
       # "amd_iommu=pgtbl_v2" # issues with kernel 6.9.0
       "amd_iommu_intr=vapic"
-      # "default_hugepagesz=1G"
-      # "hugepagesz=1G"
-      # "hugepages=20"
+      "default_hugepagesz=1G"
+      "hugepagesz=1G"
+      "hugepages=32"
     ];
   };
 }
