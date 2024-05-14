@@ -25,10 +25,6 @@ in
       "vfio_pci"
     ];
 
-    kernelParams = [
-      "amd_iommu=pgtbl_v2"
-      "amd_iommu_intr=vapic"
-      ("vfio-pci.ids=" + lib.concatStringsSep "," pciIDs)
-    ];
+    kernelParams = [ ("vfio_pci.ids=" + lib.concatStringsSep "," pciIDs) ];
   };
 }
