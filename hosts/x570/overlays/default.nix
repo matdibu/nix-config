@@ -1,1 +1,6 @@
-{ imports = [ ./openmw.nix ]; }
+{
+  imports = [
+    ./openmw.nix
+    ./qemu-iommufd.nix
+  ];
+}
