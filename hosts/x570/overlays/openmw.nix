@@ -11,7 +11,7 @@
           rev = "MyGUI${final.mygui.version}";
           hash = "sha256-qif9trHgtWpYiDVXY3cjRsXypjjjgStX8tSWCnXhXlk=";
         };
-        patches = [];
+        patches = [ ];
         # cmakeFlags = prev.mygui.cmakeFlags ++ ["-DMYGUI_STATIC=ON"];
       });
     })
@@ -31,7 +31,7 @@
           libsForQt5.qt5.qttools
         ];
         dontWrapQtApps = true;
-        cmakeFlags = prev.openmw.cmakeFlags ++ ["-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"];
+        cmakeFlags = prev.openmw.cmakeFlags ++ [ "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON" ];
       });
     })
   ];

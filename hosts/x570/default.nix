@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [
     ./hardware
@@ -20,7 +20,7 @@
         gpu-nvidia.enable = true;
         steam.enable = true;
       };
-      environment.systemPackages = [ pkgs.openmw ];
+      # environment.systemPackages = [ pkgs.openmw ];
     };
   };
 
