@@ -36,10 +36,14 @@
 
     hardware.enableAllFirmware = true;
 
-    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-
-    boot.initrd.systemd.enable = true;
-
-    boot.loader.systemd-boot.configurationLimit = 5;
+    boot = {
+      kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+      initrd.systemd.enable = true;
+      loader.systemd-boot = {
+        configurationLimit = 5;
+        consoleMode = "max";
+        memtest86.enable = true;
+      };
+    };
   };
 }
