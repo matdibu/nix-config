@@ -39,5 +39,7 @@
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
     boot.initrd.systemd.enable = true;
+
+    boot.loader.systemd-boot.configurationLimit = 5;
   };
 }
