@@ -42,7 +42,7 @@
       loader.systemd-boot = {
         configurationLimit = 5;
         consoleMode = "max";
-        memtest86.enable = true;
+        memtest86.enable = config.nixpkgs.hostPlatform == "x86_64-linux";
       };
     };
   };
