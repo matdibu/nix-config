@@ -1,5 +1,1 @@
-{
-  imports = [
-    ./openmw.nix
-  ];
-}
+{ imports = [ ./openmw.nix ]; }
