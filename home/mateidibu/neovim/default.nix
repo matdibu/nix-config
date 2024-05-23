@@ -44,6 +44,7 @@ in
       ruff
       lua-language-server
       clang-tools
+      zls
     ];
 
     extraLuaConfig =

@@ -88,3 +88,8 @@ require("lspconfig").digestif.setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
+
+require("lspconfig").zls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
