@@ -45,6 +45,7 @@ in
       lua-language-server
       clang-tools
       zls
+      vscode-langservers-extracted
     ];
 
     extraLuaConfig =

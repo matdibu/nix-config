@@ -93,3 +93,8 @@ require("lspconfig").zls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
+
+require("lspconfig").jsonls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
