@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   ...
@@ -9,11 +8,8 @@
     modules.better-nix.enable = lib.mkEnableOption "better nix defaults";
   };
   config = lib.mkIf config.modules.better-nix.enable {
-    nixpkgs.flake.source = inputs.nixpkgs;
     nix = {
-      registry.nixpkgs.flake = inputs.nixpkgs;
       channel.enable = false;
-      nixPath = lib.singleton config.nix.settings.nix-path;
       gc = {
         automatic = true;
         dates = "weekly";
@@ -26,7 +22,6 @@
           "cgroups"
           "auto-allocate-uids"
         ];
-        nix-path = "nixpkgs=flake:nixpkgs";
         use-cgroups = true;
         auto-allocate-uids = true;
         builders-use-substitutes = true;
