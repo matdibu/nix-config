@@ -9,6 +9,7 @@
     modules.better-nix.enable = lib.mkEnableOption "better nix defaults";
   };
   config = lib.mkIf config.modules.better-nix.enable {
+    nixpkgs.flake.source = inputs.nixpkgs;
     nix = {
       registry.nixpkgs.flake = inputs.nixpkgs;
       channel.enable = false;
