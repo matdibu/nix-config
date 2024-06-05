@@ -27,7 +27,7 @@ let
             inherit (args) system;
           };
         }
-      ] ++ [ ../nixosModules ] ++ (args.modules or [ ]);
+      ] ++ [ ../nixosModules ] ++ [ inputs.lix-module.nixosModules.default ] ++ (args.modules or [ ]);
     };
 in
 {
