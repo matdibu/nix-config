@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options = {
     modules.better-nix.enable = lib.mkEnableOption "better nix defaults";
