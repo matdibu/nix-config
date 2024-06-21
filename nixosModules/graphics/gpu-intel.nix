@@ -9,10 +9,9 @@
     modules.gpu-intel.enable = lib.mkEnableOption "Intel GPU";
   };
   config = lib.mkIf config.modules.gpu-intel.enable {
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = [
         # VA-API
         pkgs.intel-media-driver

@@ -3,7 +3,7 @@
     ./audio.nix
     ./gpu-intel.nix
     ./gpu-nvidia.nix
-    ./opengl.nix
+    ./graphics.nix
     ./steam.nix
     ./sway.nix
     ./wayland.nix
