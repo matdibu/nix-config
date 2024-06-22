@@ -6,7 +6,7 @@
   ];
 
   environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) cloud-hypervisor rust-hypervisor-firmware qemu_kvm;
+    inherit (pkgs) cloud-hypervisor qemu_kvm;
   };
 
   boot = {
