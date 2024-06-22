@@ -2,7 +2,6 @@
 {
   imports = [
     ./hardware
-    ./overlays
     ./roles/nas
     ./containers
   ];
