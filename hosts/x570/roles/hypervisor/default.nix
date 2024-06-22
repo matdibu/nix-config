@@ -5,9 +5,7 @@
     ./vfio.nix
   ];
 
-  environment.systemPackages = builtins.attrValues {
-    inherit (pkgs) cloud-hypervisor qemu_kvm;
-  };
+  environment.systemPackages = builtins.attrValues { inherit (pkgs) cloud-hypervisor qemu_kvm; };
 
   boot = {
     initrd.kernelModules = [ "kvm-amd" ];
