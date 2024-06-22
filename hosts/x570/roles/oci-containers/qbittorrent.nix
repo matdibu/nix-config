@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   networking.firewall = {
     allowedTCPPorts = [
@@ -16,13 +15,15 @@
   };
 
   virtualisation.oci-containers.containers."qbittorrent" = {
-    image = "lscr.io/linuxserver/qbittorrent:latest";
+    image = "ghcr.io/qbittorrent/docker-qbittorrent-nox:4.6.5-1";
     environment = {
       PGID = "0";
       PUID = "0";
-      TORRENTING_PORT = "6881";
+      # TORRENTING_PORT = "6881";
+      QBT_EULA = "accept";
+      QBT_LEGAL_NOTICE = "confirm";
       TZ = "Europe/Bucharest";
-      WEBUI_PORT = "8080";
+      QBT_WEBUI_PORT = "8080";
     };
     volumes = [
       "/mnt/containers/qbittorrent/config:/config:rw"
@@ -33,15 +34,6 @@
       "6881:6881/tcp"
       "6881:6881/udp"
     ];
-    log-driver = "journald";
     extraOptions = [ "--network=host" ];
-  };
-
-  systemd.services."podman-qbittorrent" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 500 "always";
-    };
-    partOf = [ "podman-compose-nix-containers-root.target" ];
-    wantedBy = [ "podman-compose-nix-containers-root.target" ];
   };
 }

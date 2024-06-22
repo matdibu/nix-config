@@ -4,7 +4,7 @@
     ./hardware
     ./overlays
     ./roles/nas
-    ./roles/container-host
+    ./roles/oci-containers
   ];
 
   specialisation = {

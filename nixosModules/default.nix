@@ -8,6 +8,7 @@
     ./better-nix.nix
     ./graphics
     ./impermanence
+    ./oci-containers.nix
     ./openssh.nix
     ./remove-docs.nix
     ./security.nix
