@@ -17,13 +17,8 @@
   virtualisation.oci-containers.containers."qbittorrent" = {
     image = "ghcr.io/qbittorrent/docker-qbittorrent-nox@sha256:ed8bbbbf9be0fbb69b9b6e063ed7d1260af86222c99f7907d6f04a764ced5ff5";
     environment = {
-      PGID = "0";
-      PUID = "0";
-      # TORRENTING_PORT = "6881";
       QBT_EULA = "accept";
       QBT_LEGAL_NOTICE = "confirm";
-      TZ = "Europe/Bucharest";
-      QBT_WEBUI_PORT = "8080";
     };
     volumes = [
       "/mnt/containers/qbittorrent/config:/config:rw"
@@ -34,6 +29,9 @@
       "6881:6881/tcp"
       "6881:6881/udp"
     ];
-    extraOptions = [ "--network=host" ];
+    labels = {
+        "traefik.http.routers.qbittorrent.rule"="Host(`qbittorrent.mateidibu.dev`)";
+        "traefik.http.services.qbittorrent.loadbalancer.server.port"="8080";
+    };
   };
 }

@@ -22,7 +22,6 @@
       "/mnt/containers/jellyfin/config:/config:rw"
       "/mnt/containers/jellyfin/media:/media:ro"
     ];
-    user = "0:0";
     extraOptions = [ "--network=host" ];
   };
 }
