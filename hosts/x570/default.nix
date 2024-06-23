@@ -11,9 +11,7 @@
       imports = [ ./roles/hypervisor ];
     };
     "steam".configuration = {
-      imports = [
-        inputs.self.nixosModules.profiles-gui
-      ];
+      imports = [ inputs.self.nixosModules.profiles-gui ];
       modules = {
         gpu-nvidia.enable = true;
         steam.enable = true;
