@@ -13,6 +13,7 @@ in
       QBT_EULA = "accept";
       QBT_LEGAL_NOTICE = "confirm";
       QBT_WEBUI_PORT = "8080";
+      PGID = "100";
     };
     volumes = [
       "/mnt/containers/qbittorrent/config:/config:rw"
