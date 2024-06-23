@@ -1,10 +1,12 @@
 {
+  networking.firewall.allowedTCPPorts = [ 2049 ];
+
   services.nfs = {
     server = {
       enable = true;
       exports = ''
         /mnt          192.168.1.0/24(rw,fsid=0,no_subtree_check)
-        /mnt/torrents 192.168.1.0/24(rw,nohide,insecure,no_subtree_check,pnfs,all_squash)
+        /mnt/torrents 192.168.1.0/24(ro,nohide,insecure,no_subtree_check,pnfs,all_squash)
       '';
     };
     settings = {
@@ -18,5 +20,4 @@
       };
     };
   };
-  networking.firewall.allowedTCPPorts = [ 2049 ];
 }
