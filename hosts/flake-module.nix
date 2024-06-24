@@ -72,15 +72,15 @@ in
       hostName = "rockpro64";
       modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
-    #rpi4 = mkNixosSystem {
-    #  system = "aarch64-linux";
-    #  hostName = "rpi4";
-    #  modules = [ profiles-cli ];
-    #};
-    #rpi4-cross = mkNixosSystem {
-    #  system = "aarch64-linux";
-    #  hostName = "rpi4";
-    #  modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
-    #};
+    rpi4 = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "rpi4";
+      modules = [ profiles-cli ];
+    };
+    rpi4-cross = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "rpi4";
+      modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+    };
   };
 }
