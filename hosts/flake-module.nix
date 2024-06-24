@@ -75,12 +75,12 @@ in
     rpi4 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rpi4";
-      modules = [ profiles-cli ];
+      modules = [ profiles-server ];
     };
     rpi4-cross = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rpi4";
-      modules = [ profiles-cli ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
     };
   };
 }
