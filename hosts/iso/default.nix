@@ -13,6 +13,10 @@
     makeUsbBootable = true;
   };
 
+  boot.loader.systemd-boot.enable = true;
+
+  boot.loader.grub.enable = false;
+
   services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
 
   environment.systemPackages = builtins.attrValues {
