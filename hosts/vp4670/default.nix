@@ -1,8 +1,8 @@
 {
   imports = [
     ./hardware
-    ./containers
-    ./nas
+    # ./containers
+    # ./nas
   ];
 
   system.stateVersion = "24.05";

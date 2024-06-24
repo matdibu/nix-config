@@ -1,9 +1,10 @@
 let
   version = "sha256:ed8bbbbf9be0fbb69b9b6e063ed7d1260af86222c99f7907d6f04a764ced5ff5";
 in
+{ config, ... }:
 {
-  fileSystems."/mnt/containers/qbittorrent/downloads" = {
-    device = "/mnt/persist/torrents";
+  fileSystems."${config.modules.oci-containers.storage-path}/qbittorrent/downloads" = {
+    device = "/mnt/torrents";
     options = [ "bind" ];
   };
 

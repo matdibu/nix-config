@@ -1,9 +1,10 @@
 let
   version = "sha256:5a60ca20d4b35e0f3c71c67893bfdae52eaf90f5219155d7a6a7f771105d6263";
 in
+{ config, ... }:
 {
-  fileSystems."/mnt/containers/jellyfin/media" = {
-    device = "/mnt/persist/torrents";
+  fileSystems."${config.modules.oci-containers.storage-path}/jellyfin/media" = {
+    device = "/mnt/torrents";
     options = [ "bind" ];
   };
 
