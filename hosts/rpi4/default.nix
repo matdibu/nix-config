@@ -14,6 +14,7 @@ in
       type = "zfs-tmpfs";
       inherit device;
     };
+    smartd.enable = false;
   };
 
   nixpkgs.overlays = [
