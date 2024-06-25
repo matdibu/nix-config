@@ -39,6 +39,5 @@
       };
     };
     mainsail.enable = true;
-    fluidd.enable = true;
   };
 }
