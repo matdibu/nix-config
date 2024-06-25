@@ -1,7 +1,8 @@
+{lib, ...}:
 {
   networking.firewall.allowedTCPPorts = [ 80 ];
 
-  networking.firewall.enable = false;
+  networking.firewall.enable = lib.mkForce false;
 
   services = {
     klipper = {
