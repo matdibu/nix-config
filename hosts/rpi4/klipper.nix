@@ -1,4 +1,6 @@
 {
+  network.firewall.allowedTCPPorts = [ 80 ];
+
   services = {
     klipper = {
       enable = true;
