@@ -20,5 +20,6 @@
       user = "root";
     };
     mainsail.enable = true;
+    fluidd.enable = true;
   };
 }
