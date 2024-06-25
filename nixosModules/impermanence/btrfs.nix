@@ -43,7 +43,7 @@ in
                           "noatime"
                           "ssd"
                         ];
-                        inherit (cfg) mountpoint;
+                        mountpoint = "/mnt/persist";
                       };
                     }
                     // lib.mergeAttrsList (

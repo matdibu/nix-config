@@ -62,7 +62,7 @@ in
                 };
                 "system/persist" = {
                   type = "zfs_fs";
-                  inherit (cfg) mountpoint;
+                  mountpoint = "/mnt/persist";
                 };
               }
               // lib.mergeAttrsList (

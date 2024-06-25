@@ -6,6 +6,8 @@ in
   imports = [
     ./btrfs.nix
     ./zfs.nix
+    ./zfs-tmpfs.nix
+    ./tmpfs.nix
   ];
 
   options = {
@@ -14,24 +16,16 @@ in
       type = lib.mkOption {
         type = lib.types.enum [
           "zfs"
+          "zfs-tmpfs"
           "btrfs"
         ];
       };
       device = lib.mkOption { type = lib.types.str; };
-      mountpoint = lib.mkOption {
-        type = lib.types.str;
-        default = "/mnt/persist";
-      };
       extraVolumes = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
       };
       disko-devices = lib.mkOption { internal = true; };
-      poolName = lib.mkOption {
-        type = lib.types.str;
-        default = "tank";
-        # internal = true;
-      };
     };
   };
 
@@ -39,17 +33,11 @@ in
     # Don't allow mutation of users outside of the config.
     users.mutableUsers = false;
 
-    boot = {
-      initrd = {
-        supportedFilesystems = [ cfg.type ];
-        systemd.enable = true;
-      };
-      supportedFilesystems = [ cfg.type ];
-    };
+    boot.initrd.systemd.enable = true;
 
-    fileSystems.${cfg.mountpoint}.neededForBoot = true;
+    fileSystems."/mnt/persist".neededForBoot = true;
 
-    environment.persistence.${cfg.mountpoint} = {
+    environment.persistence."/mnt/persist/" = {
       # hideMounts = true;
       files = lib.mkMerge [
         (lib.mkIf config.services.openssh.enable [
@@ -83,6 +71,12 @@ in
                     "dmask=0027"
                     "noatime"
                   ];
+                };
+              };
+              swap = {
+                size = "8G";
+                content = {
+                  type = "swap";
                 };
               };
             };
