@@ -18,7 +18,7 @@ in
 
   nixpkgs.overlays = [
     (_final: prev: {
-      klipper-firmware = prev.klipper-firmware.override { gcc-arm-embedded = pkgs.gcc-arm-embedded-13; };
+      klipper-firmware = prev.klipper-firmware.override { gcc-arm-embedded = pkgs.gcc-arm-embedded-11; };
     })
   ];
 
