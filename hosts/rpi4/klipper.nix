@@ -1,7 +1,10 @@
 {
-    services = {
-        klipper.enable = true;
-        moonraker.enable = true;
-        mainsail.enable = true;
+  services = {
+    klipper = {
+      enable = true;
+      settings = { };
     };
+    moonraker.enable = true;
+    mainsail.enable = true;
+  };
 }
