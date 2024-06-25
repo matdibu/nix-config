@@ -12,6 +12,7 @@
         "ender3" = {
           enable = true;
           configFile = ./firmware.cfg;
+          enableKlipperFlash = true;
         };
       };
     };
