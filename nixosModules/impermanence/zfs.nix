@@ -10,11 +10,11 @@ in
 {
   config = lib.mkIf (cfg.enable && (cfg.type == "zfs")) (
     let
-      snapshotName = "${cfg.poolName}/system/root@blank";
+      snapshotName = "tank/system/root@blank";
     in
     {
       modules.zfs.enable = true;
-      boot.zfs.extraPools = [ "${cfg.poolName}" ];
+      boot.zfs.extraPools = [ "tank" ];
 
       modules.impermanence.disko-devices = {
         disk = {
@@ -25,7 +25,7 @@ in
                   size = "100%";
                   content = {
                     type = "zfs";
-                    pool = cfg.poolName;
+                    pool = "tank";
                   };
                 };
               };
@@ -33,7 +33,7 @@ in
           };
         };
         zpool = {
-          ${cfg.poolName} = {
+          "tank" = {
             type = "zpool";
             options = {
               ashift = "12";
@@ -83,7 +83,7 @@ in
           "zfs.target"
           "initrd.target"
         ];
-        after = [ "zfs-import-${cfg.poolName}.service" ];
+        after = [ "zfs-import-tank.service" ];
         before = [ "sysroot.mount" ];
         path = [ pkgs.zfs ];
         unitConfig.DefaultDependencies = "no";

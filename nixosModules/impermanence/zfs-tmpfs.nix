@@ -5,7 +5,7 @@ in
 {
   config = lib.mkIf (cfg.enable && (cfg.type == "zfs-tmpfs")) {
     modules.zfs.enable = true;
-    boot.zfs.extraPools = [ "${cfg.poolName}" ];
+    boot.zfs.extraPools = [ "tank" ];
 
     modules.impermanence.disko-devices = {
       disk = {
@@ -16,7 +16,7 @@ in
                 size = "100%";
                 content = {
                   type = "zfs";
-                  pool = cfg.poolName;
+                  pool = "tank";
                 };
               };
             };
@@ -24,7 +24,7 @@ in
         };
       };
       zpool = {
-        ${cfg.poolName} = {
+        "tank" = {
           type = "zpool";
           options = {
             ashift = "12";
