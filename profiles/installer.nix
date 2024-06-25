@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   modules = {
     better-nix.enable = true;
@@ -7,4 +8,6 @@
   };
 
   programs.git.enable = true;
+
+  services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
 }

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [ inputs.nixos-hardware.nixosModules.raspberry-pi-4 ];
 
@@ -19,8 +19,8 @@
     initrd.availableKernelModules = [ "xhci_pci" ];
     loader = {
       systemd-boot.enable = true;
-      generic-extlinux-compatible.enable = false;
-      efi.canTouchEfiVariables = true;
+      # generic-extlinux-compatible.enable = true;
+      efi.canTouchEfiVariables = false;
     };
   };
 

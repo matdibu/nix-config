@@ -1,9 +1,4 @@
-{
-  modulesPath,
-  lib,
-  pkgs,
-  ...
-}:
+{ modulesPath, pkgs, ... }:
 {
   imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix" ];
 
@@ -13,11 +8,10 @@
     makeUsbBootable = true;
   };
 
-  boot.loader.systemd-boot.enable = true;
-
-  boot.loader.grub.enable = false;
-
-  services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
+  boot.loader = {
+    systemd-boot.enable = true;
+    grub.enable = false;
+  };
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
@@ -28,5 +22,5 @@
       ;
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
