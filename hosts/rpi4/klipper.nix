@@ -2,11 +2,11 @@
   services = {
     klipper = {
       enable = true;
-      configFile = ./creality-v4.2.7.cfg;
+      configFile = ./klipper-creality-v4.2.7.cfg;
       firmwares = {
         "ender3" = {
             enable = true;
-            configFile = ./creality-v4.2.7.cfg;
+            configFile = ./firmware-creality-v4.2.7.cfg;
         };
       };
     };
