@@ -10,7 +10,10 @@
         };
       };
     };
-    moonraker.enable = true;
+    moonraker = {
+      enable = true;
+      user = "root";
+    };
     mainsail.enable = true;
   };
 }
