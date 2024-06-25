@@ -5,8 +5,8 @@
       configFile = ./klipper.cfg;
       firmwares = {
         "ender3" = {
-            enable = true;
-            configFile = ./firmware.cfg;
+          enable = true;
+          configFile = ./firmware.cfg;
         };
       };
     };
