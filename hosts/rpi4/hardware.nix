@@ -28,4 +28,14 @@
     };
     linkConfig.RequiredForOnline = "routable";
   };
+
+  networking.wireless = {
+    enable = true;
+    networks = {
+      "dibux" = {
+        psk = "okmijnqaz";
+        authProtocols = [ "SAE" ];
+      };
+    };
+  };
 }
