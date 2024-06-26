@@ -45,6 +45,9 @@
       "dibux-legacy" = {
         psk = "okmijnqaz";
         authProtocols = [ "SAE" ];
+        extraConfig = ''
+            ieee80211w=2
+        '';
       };
     };
   };
