@@ -44,11 +44,7 @@
     networks = {
       "dibux-legacy" = {
         psk = "okmijnqaz";
-        authProtocols = [ "WPA-PSK" "WPA-PSK-SHA256" "SAE" ];
-        extraConfig = ''
-            proto=RSN
-            ieee80211w=1
-        '';
+        # authProtocols = [ "WPA-PSK" ];
       };
     };
   };
