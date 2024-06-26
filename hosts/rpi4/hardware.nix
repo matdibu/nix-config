@@ -27,7 +27,6 @@
         DHCP = "ipv4";
         IPv6AcceptRA = true;
       };
-      # linkConfig.RequiredForOnline = "routable";
     };
     "20-wwan" = {
       matchConfig.Name = "wlan0";
@@ -44,7 +43,6 @@
     networks = {
       "dibux-legacy" = {
         psk = "okmijnqaz";
-        # authProtocols = [ "WPA-PSK" ];
       };
     };
   };
