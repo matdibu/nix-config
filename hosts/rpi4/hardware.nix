@@ -42,8 +42,10 @@
   networking.wireless = {
     enable = true;
     networks = {
-      "dibux".psk = "okmijnqaz";
-      "dibux-legacy".psk = "okmijnqaz";
+      "dibux-legacy" = {
+        psk = "okmijnqaz";
+        authProtocols = [ "WPA-PSK" ];
+      };
     };
   };
 }
