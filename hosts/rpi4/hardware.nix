@@ -32,7 +32,7 @@
   networking.wireless = {
     enable = true;
     networks = {
-      "dibux" = {
+      "dibux-legacy" = {
         psk = "okmijnqaz";
         authProtocols = [ "SAE" ];
       };
