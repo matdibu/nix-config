@@ -43,8 +43,12 @@
     enable = true;
     networks = {
       "dibux-legacy" = {
-        pskRaw = "499f3e627ab6d43ed8ed2dfe13c2fc790a1d88000d064399a0c7352b583ea44f";
-        authProtocols = [ "WPA-PSK-SHA256" ];
+        psk = "okmijnqaz";
+        authProtocols = [ "WPA-PSK" "WPA-PSK-SHA256" "SAE" ];
+        extraConfig = ''
+            proto=RSN
+            ieee80211w=1
+        '';
       };
     };
   };
