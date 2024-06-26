@@ -27,6 +27,7 @@
         DHCP = "ipv4";
         IPv6AcceptRA = true;
       };
+      linkConfig.RequiredForOnline = "no";
     };
     "20-wwan" = {
       matchConfig.Name = "wlan0";
