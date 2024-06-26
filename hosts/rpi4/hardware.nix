@@ -42,13 +42,8 @@
   networking.wireless = {
     enable = true;
     networks = {
-      "dibux-legacy" = {
-        psk = "okmijnqaz";
-        authProtocols = [ "SAE" ];
-        extraConfig = ''
-            ieee80211w=2
-        '';
-      };
+      "dibux".psk = "okmijnqaz";
+      "dibux-legacy".psk = "okmijnqaz";
     };
   };
 }
