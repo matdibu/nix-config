@@ -21,6 +21,9 @@ in
         ];
       };
       device = lib.mkOption { type = lib.types.str; };
+      swap = lib.mkEnableOption "swap" // {
+        default = true;
+      };
       extraVolumes = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
@@ -73,7 +76,7 @@ in
                   ];
                 };
               };
-              swap = {
+              swap = lib.mkIf cfg.swap.enable {
                 size = "8G";
                 content = {
                   type = "swap";
