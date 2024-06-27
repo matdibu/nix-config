@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   boot.initrd.kernelModules = [ "nvme" ];
 
@@ -11,7 +10,7 @@
     };
   };
 
-  environment.persistence.${config.modules.impermanence.mountpoint} = {
+  environment.persistence."/mnt/persist" = {
     users."mateidibu" = {
       directories = [ "git" ];
     };
