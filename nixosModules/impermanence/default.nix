@@ -76,7 +76,7 @@ in
                   ];
                 };
               };
-              swap = lib.mkIf cfg.swap.enable {
+              swap = lib.mkIf cfg.swap {
                 size = "8G";
                 content = {
                   type = "swap";
