@@ -67,20 +67,20 @@ in
       hostName = "rockpro64";
       modules = [ profiles-server ];
     };
-    rockpro64-cross = mkNixosSystem {
-      system = "aarch64-linux";
-      hostName = "rockpro64";
-      modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
-    };
+    # rockpro64-cross = mkNixosSystem {
+    #   system = "aarch64-linux";
+    #   hostName = "rockpro64";
+    #   modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+    # };
     rpi4 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rpi4";
       modules = [ profiles-server ];
     };
-    rpi4-cross = mkNixosSystem {
-      system = "aarch64-linux";
-      hostName = "rpi4";
-      modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
-    };
+    # rpi4-cross = mkNixosSystem {
+    #   system = "aarch64-linux";
+    #   hostName = "rpi4";
+    #   modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+    # };
   };
 }
