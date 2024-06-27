@@ -34,7 +34,7 @@
         };
       };
 
-      # build shell scripts for deployment on each host, named "deploy-$host"
+      # build shell scripts for nixos-rebuild on each host, named "nixos-rebuild-$host"
       apps =
         let
           hosts = lib.attrsets.filterAttrs (
@@ -73,8 +73,8 @@
             '';
           in
           lib.mapAttrs' (host: cfg: {
-            name = "deploy-${host}";
-            value.program = toString (pkgs.writeShellScript "deploy-${host}" (script host cfg));
+            name = "nixos-rebuild-${host}";
+            value.program = toString (pkgs.writeShellScript "nixos-rebuild-${host}" (script host cfg));
           }) hosts
         )
         // (
@@ -101,11 +101,11 @@
         // (
           let
             script = f: ("set -ex\n" + concatLines (mapAttrsToList f hosts));
-            deployHost = host: _cfg: inputs.self.apps.${system}."deploy-${host}".program;
+            nixosRebuildHost = host: _cfg: inputs.self.apps.${system}."nixos-rebuild-${host}".program;
             rebootHost = host: _cfg: inputs.self.apps.${system}."reboot-${host}".program;
           in
           {
-            "deploy-all".program = toString (pkgs.writeShellScript "deploy-all" (script deployHost));
+            "nixos-rebuild-all".program = toString (pkgs.writeShellScript "nixos-rebuild-all" (script nixosRebuildHost));
             "reboot-all".program = toString (pkgs.writeShellScript "reboot-all" (script rebootHost));
           }
         );
