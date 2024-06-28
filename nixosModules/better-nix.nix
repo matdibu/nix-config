@@ -22,7 +22,7 @@
         auto-allocate-uids = true;
         builders-use-substitutes = true;
         warn-dirty = false;
-        trusted-users = [ "@wheel" ];
+        trusted-users = [ "@wheel" "mateidibu" ];
         allowed-users = lib.mapAttrsToList (_: u: u.name) (
           lib.filterAttrs (_: user: user.isNormalUser) config.users.users
         );
