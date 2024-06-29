@@ -6,6 +6,8 @@
     ./containers
   ];
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   specialisation = {
     "vfio".configuration = {
       imports = [ ./roles/hypervisor ];
