@@ -40,11 +40,6 @@
           real-hosts = lib.attrsets.filterAttrs (
             name: _value: (!hasPrefix "iso-" name && !hasPrefix "sd-card-" name)
           ) inputs.self.nixosConfigurations;
-
-          same-arch-hosts = lib.attrsets.filterAttrs (
-            _name: value: (value.config.nixpkgs.buildPlatform.system == system)
-          ) real-hosts;
-
           user = "mateidibu";
         in
         (
@@ -75,7 +70,7 @@
           lib.mapAttrs' (host: cfg: {
             name = "nixos-rebuild-${host}";
             value.program = toString (pkgs.writeShellScript "nixos-rebuild-${host}" (script host cfg));
-          }) same-arch-hosts
+          }) real-hosts
         )
         // (
           let
@@ -106,7 +101,7 @@
           in
           {
             "nixos-rebuild-all".program = toString (
-              pkgs.writeShellScript "nixos-rebuild-all" (script nixosRebuildHost same-arch-hosts)
+              pkgs.writeShellScript "nixos-rebuild-all" (script nixosRebuildHost real-hosts)
             );
             "reboot-all".program = toString (pkgs.writeShellScript "reboot-all" (script rebootHost real-hosts));
           }
