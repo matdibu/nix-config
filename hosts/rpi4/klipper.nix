@@ -10,7 +10,6 @@
     })
   ];
 
-
   services = {
     klipper = {
       enable = true;

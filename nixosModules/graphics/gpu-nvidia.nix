@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options = {
     modules.gpu-nvidia.enable = lib.mkEnableOption "Nvidia GPU";
