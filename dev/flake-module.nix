@@ -60,6 +60,7 @@
               # run nixos-rebuild
               ${lib.getExe pkgs.nixos-rebuild} \
                 "$TASK" \
+                --accept-flake-config \
                 --max-jobs 1 \
                 --fast \
                 --flake ${inputs.self}#${host} \
