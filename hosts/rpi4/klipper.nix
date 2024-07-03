@@ -18,7 +18,7 @@
         "btt-skr-mini-e3-v3" = {
           enable = true;
           configFile = ./firmware/btt-skr-mini-e3-v3.cfg;
-          serial = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0";
+          serial = "/dev/serial/by-id/usb-Klipper_stm32g0b1xx_420013000250415339373620-if00";
         };
       };
     };
