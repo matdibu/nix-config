@@ -15,13 +15,14 @@
       enable = true;
       configFile = ./klipper-config/ender3-btt-skr-mini-e3-v3.cfg;
       firmwares = {
-        "ender3" = {
+        "btt-skr-mini-e3-v3" = {
           enable = true;
           configFile = ./firmware/btt-skr-mini-e3-v3.cfg;
           serial = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0";
         };
       };
     };
+
     moonraker = {
       enable = true;
       user = "root";
