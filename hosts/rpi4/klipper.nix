@@ -14,8 +14,6 @@
     klipper = {
       enable = true;
       logFile = "/var/lib/klipper/klipper.log";
-      mutableConfig = true;
-      mutableConfigFolder = "/tmp/klipper";
       configFile = ./klipper-config/ender3-btt-skr-mini-e3-v3.cfg;
       firmwares = {
         "btt-skr-mini-e3-v3" = {
