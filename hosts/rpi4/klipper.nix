@@ -1,14 +1,14 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
   networking.firewall.allowedTCPPorts = [ 80 ];
 
   networking.firewall.enable = lib.mkForce false;
 
-  nixpkgs.overlays = [
-    (_final: prev: {
-      klipper-firmware = prev.klipper-firmware.override { gcc-arm-embedded = pkgs.gcc-arm-embedded-11; };
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (_final: prev: {
+  #     klipper-firmware = prev.klipper-firmware.override { gcc-arm-embedded = pkgs.gcc-arm-embedded-11; };
+  #   })
+  # ];
 
   services = {
     klipper = {
