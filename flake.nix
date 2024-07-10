@@ -15,10 +15,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,12 +24,9 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://mateidibu.cachix.org"
-      "https://cache.nixos.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "mateidibu.cachix.org-1:9YiZ97RR2tUHvt79sMP0oXhP+nA3OYanCs5A2/bnmAA="
     ];
   };
 

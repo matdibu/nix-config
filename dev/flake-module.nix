@@ -14,13 +14,6 @@
       inherit (lib.strings) hasPrefix concatLines;
     in
     {
-      devShells.default = pkgs.mkShellNoCC {
-        packages = [
-          inputs'.agenix.packages.agenix
-          pkgs.age-plugin-yubikey
-        ];
-      };
-
       treefmt = {
         projectRootFile = "flake.nix";
         programs = {
