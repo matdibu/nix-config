@@ -20,6 +20,6 @@ vim.o.list = true
 vim.cmd("syntax off")
 
 require("nvim-treesitter.configs").setup({
-    highlight = { enable = true },
-    indent = { enable = true },
+	highlight = { enable = true },
+	indent = { enable = true },
 })
