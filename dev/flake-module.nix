@@ -27,6 +27,7 @@
           nixfmt.enable = true;
           deadnix.enable = true;
           statix.enable = true;
+          stylua.enable = true;
         };
       };
 
@@ -36,35 +37,38 @@
             lib.attrNames inputs.self.nixosConfigurations
           );
           user = "mateidibu";
-
-          nixos-rebuild-script = host: ''
-            set -ex
-
-            TASK_DEFAULT="boot"
-            if [[ -n "$1" ]]; then
-              TASK="$1"
-            else
-              TASK="$TASK_DEFAULT"
-            fi
-
-            ${lib.getExe pkgs.nixos-rebuild} \
-              "$TASK" \
-              --accept-flake-config \
-              --max-jobs 1 \
-              --fast \
-              --flake ${inputs.self}#${host} \
-              --use-remote-sudo \
-              --target-host "${user}@${host}.lan"
-          '';
         in
-        lib.listToAttrs (
-          lib.map (host: {
-            name = "nixos-rebuild-${host}";
-            value.program = toString (
-              pkgs.writeShellScript "nixos-rebuild-${host}" (nixos-rebuild-script host)
-            );
-          }) real-hosts
+        # apps "nixos-rebuild-${system}"
+        (
+          let
+            nixos-rebuild-script = host: ''
+              set -ex
+
+              TASK_DEFAULT="boot"
+              if [[ -n "$1" ]]; then
+                TASK="$1"
+              else
+                TASK="$TASK_DEFAULT"
+              fi
+
+              ${lib.getExe pkgs.nixos-rebuild} \
+                "$TASK" \
+                --accept-flake-config \
+                --max-jobs 1 \
+                --fast \
+                --flake ${inputs.self}#${host} \
+                --use-remote-sudo \
+                --target-host "${user}@${host}.lan"
+            '';
+          in
+          lib.listToAttrs (
+            lib.map (host: {
+              name = "nixos-rebuild-${host}";
+              value.program = pkgs.writeShellScriptBin "nixos-rebuild-${host}" (nixos-rebuild-script host);
+            }) real-hosts
+          )
         )
+        # apps "reboot-${system}"
         // (
           let
             reboot-script = host: ''
@@ -84,19 +88,13 @@
           lib.listToAttrs (
             lib.map (host: {
               name = "reboot-${host}";
-              value.program = toString (pkgs.writeShellScript "reboot-${host}" (reboot-script host));
+              value.program = pkgs.writeShellScriptBin "reboot-${host}" (reboot-script host);
             }) real-hosts
           )
         )
+        # app "nixos-rebuild-all"
         // (
           let
-            nixos-rebuild-all = hosts: ''
-              set -x
-              # do the builds before deploying, to batch the 2FA requests at the end
-              ${concatLines (lib.map host-to-prebuild-command hosts)}
-              ${concatLines (lib.map host-to-rebuild-app hosts)}
-            '';
-
             host-to-prebuild-command =
               host:
               pkgs.writeShellScript "nix-build-${host}" ''
@@ -107,22 +105,24 @@
             host-to-rebuild-app = host: (inputs.self.apps.${system}."nixos-rebuild-${host}".program + " $@");
           in
           {
-            "nixos-rebuild-all".program = toString (
-              pkgs.writeShellScript "nixos-rebuild-all" (nixos-rebuild-all real-hosts)
-            );
+            "nixos-rebuild-all".program = pkgs.writeShellScriptBin "nixos-rebuild-all" ''
+              set -x
+              # do the builds before deploying, to batch the 2FA requests at the end
+              ${concatLines (lib.map host-to-prebuild-command real-hosts)}
+              ${concatLines (lib.map host-to-rebuild-app real-hosts)}
+            '';
           }
         )
+        # app "reboot-all"
         // (
           let
-            reboot-all = hosts: ''
-              set -x
-              ${concatLines (lib.map host-to-reboot-app hosts)}
-            '';
-
             host-to-reboot-app = host: (inputs.self.apps.${system}."reboot-${host}".program + " $@");
           in
           {
-            "reboot-all".program = toString (pkgs.writeShellScript "reboot-all" (reboot-all real-hosts));
+            "reboot-all".program = pkgs.writeShellScriptBin "reboot-all" ''
+              set -x
+              ${concatLines (lib.map host-to-reboot-app real-hosts)}
+            '';
           }
         );
     };
