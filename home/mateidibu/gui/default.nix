@@ -5,5 +5,5 @@
     ./librewolf.nix
   ];
 
-  home.packages = builtins.attrValues { inherit (pkgs) telegram-desktop; };
+  home.packages = builtins.attrValues { inherit (pkgs) telegram-desktop super-slicer-beta; };
 }

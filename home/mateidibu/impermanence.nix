@@ -15,6 +15,7 @@
       ];
       directories = lib.optional osConfig.programs.steam.enable ".local/share/Steam" ++ [
         ".local/share/TelegramDesktop"
+        ".config/SuperSlicer"
       ];
     };
   };
