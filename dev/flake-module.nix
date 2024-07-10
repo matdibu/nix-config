@@ -12,7 +12,6 @@
     }:
     let
       inherit (lib.strings) hasPrefix concatLines;
-      inherit (lib.attrsets) mapAttrsToList;
     in
     {
       devShells.default = pkgs.mkShellNoCC {
@@ -25,57 +24,50 @@
       treefmt = {
         projectRootFile = "flake.nix";
         programs = {
-          nixfmt-rfc-style.enable = true;
+          nixfmt.enable = true;
           deadnix.enable = true;
           statix.enable = true;
         };
-        settings.formatter = {
-          statix.excludes = [ "auto-generated.nix" ];
-        };
       };
 
-      # build shell scripts for nixos-rebuild on each host, named "nixos-rebuild-$host"
       apps =
         let
-          real-hosts = lib.attrsets.filterAttrs (
-            name: _value: (!hasPrefix "iso-" name && !hasPrefix "sd-card-" name)
-          ) inputs.self.nixosConfigurations;
+          real-hosts = lib.filter (name: (!hasPrefix "iso-" name && !hasPrefix "sd-card-" name)) (
+            lib.attrNames inputs.self.nixosConfigurations
+          );
           user = "mateidibu";
+
+          nixos-rebuild-script = host: ''
+            set -ex
+
+            TASK_DEFAULT="boot"
+            if [[ -n "$1" ]]; then
+              TASK="$1"
+            else
+              TASK="$TASK_DEFAULT"
+            fi
+
+            ${lib.getExe pkgs.nixos-rebuild} \
+              "$TASK" \
+              --accept-flake-config \
+              --max-jobs 1 \
+              --fast \
+              --flake ${inputs.self}#${host} \
+              --use-remote-sudo \
+              --target-host "${user}@${host}.lan"
+          '';
         in
-        (
-          let
-            script = host: cfg: ''
-              set -ex
-
-              TASK_DEFAULT="boot"
-              if [[ -n "$1" ]]; then
-                TASK="$1"
-              else
-                TASK="$TASK_DEFAULT"
-              fi
-
-              # force pseudo-terminal allocation (man 1 ssh)
-              # export NIX_SSHOPTS="-tt"
-
-              # run nixos-rebuild
-              ${lib.getExe pkgs.nixos-rebuild} \
-                "$TASK" \
-                --accept-flake-config \
-                --max-jobs 1 \
-                --fast \
-                --flake ${inputs.self}#${host} \
-                --use-remote-sudo \
-                --target-host "${user}@${cfg.config.networking.hostName}.lan"
-            '';
-          in
-          lib.mapAttrs' (host: cfg: {
+        lib.listToAttrs (
+          lib.map (host: {
             name = "nixos-rebuild-${host}";
-            value.program = toString (pkgs.writeShellScript "nixos-rebuild-${host}" (script host cfg));
+            value.program = toString (
+              pkgs.writeShellScript "nixos-rebuild-${host}" (nixos-rebuild-script host)
+            );
           }) real-hosts
         )
         // (
           let
-            script = _host: cfg: ''
+            reboot-script = host: ''
               set -ex
 
               WHEN_DEFAULT="+1minute"
@@ -85,26 +77,52 @@
                 WHEN="$WHEN_DEFAULT"
               fi
 
-              ssh "${user}@${cfg.config.networking.hostName}.lan" -tt -- \
+              ssh "${user}@${host}.lan" -tt -- \
                 sudo systemctl reboot --when=$WHEN
             '';
           in
-          lib.mapAttrs' (host: cfg: {
-            name = "reboot-${host}";
-            value.program = toString (pkgs.writeShellScript "reboot-${host}" (script host cfg));
-          }) real-hosts
+          lib.listToAttrs (
+            lib.map (host: {
+              name = "reboot-${host}";
+              value.program = toString (pkgs.writeShellScript "reboot-${host}" (reboot-script host));
+            }) real-hosts
+          )
         )
         // (
           let
-            script = f: _hosts: ("set -ex\n" + concatLines (mapAttrsToList f _hosts));
-            nixosRebuildHost = host: _cfg: inputs.self.apps.${system}."nixos-rebuild-${host}".program;
-            rebootHost = host: _cfg: inputs.self.apps.${system}."reboot-${host}".program;
+            nixos-rebuild-all = hosts: ''
+              set -x
+              # do the builds before deploying, to batch the 2FA requests at the end
+              ${concatLines (lib.map host-to-prebuild-command hosts)}
+              ${concatLines (lib.map host-to-rebuild-app hosts)}
+            '';
+
+            host-to-prebuild-command =
+              host:
+              pkgs.writeShellScript "nix-build-${host}" ''
+                nix build \
+                    --no-link \
+                    .#nixosConfigurations."${host}".config.system.build.toplevel
+              '';
+            host-to-rebuild-app = host: (inputs.self.apps.${system}."nixos-rebuild-${host}".program + " $@");
           in
           {
             "nixos-rebuild-all".program = toString (
-              pkgs.writeShellScript "nixos-rebuild-all" (script nixosRebuildHost real-hosts)
+              pkgs.writeShellScript "nixos-rebuild-all" (nixos-rebuild-all real-hosts)
             );
-            "reboot-all".program = toString (pkgs.writeShellScript "reboot-all" (script rebootHost real-hosts));
+          }
+        )
+        // (
+          let
+            reboot-all = hosts: ''
+              set -x
+              ${concatLines (lib.map host-to-reboot-app hosts)}
+            '';
+
+            host-to-reboot-app = host: (inputs.self.apps.${system}."reboot-${host}".program + " $@");
+          in
+          {
+            "reboot-all".program = toString (pkgs.writeShellScript "reboot-all" (reboot-all real-hosts));
           }
         );
     };
