@@ -1,4 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
+let
+  inherit (builtins) readFile toFile;
+in
 {
   networking.firewall.allowedTCPPorts = [
     80
@@ -9,16 +12,16 @@
   networking.firewall.enable = lib.mkForce false;
 
   nixpkgs.overlays = [
-    (_final: prev: {
-      klipper-firmware = prev.klipper-firmware.overrideAttrs (oldAttrs: {
-        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
-          pkgs.pkgsCross.aarch64-embedded.stdenv.cc
-          pkgs.pkgsCross.arm-embedded.stdenv.cc
-          pkgs.pkgsCross.avr.stdenv.cc
-          pkgs.pkgsCross.raspberryPi.stdenv.cc
-        ];
-      });
-    })
+    # (_final: prev: {
+    #   klipper-firmware = prev.klipper-firmware.overrideAttrs (oldAttrs: {
+    #     nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
+    #       pkgs.pkgsCross.aarch64-embedded.stdenv.cc
+    #       pkgs.pkgsCross.arm-embedded.stdenv.cc
+    #       pkgs.pkgsCross.avr.stdenv.cc
+    #       pkgs.pkgsCross.raspberryPi.stdenv.cc
+    #     ];
+    #   });
+    # })
     # (_final: prev: {
     #   klipper-firmware = prev.klipper-firmware.override {
     #     gcc-arm-embedded = pkgs.gcc-arm-embedded-11;
@@ -30,7 +33,12 @@
     klipper = {
       enable = true;
       logFile = "/var/lib/klipper/klipper.log";
-      configFile = ./klipper-config/ender3-btt-skr-mini-e3-v3.cfg;
+      configFile = toFile "ender3-btt-skr-mini-e3-v3.cfg" (
+        readFile ./klipper-config/include/btt-skr-mini-e3-v3.cfg
+        + readFile ./klipper-config/include/ender3.cfg
+        + readFile ./klipper-config/include/macros.cfg
+        + readFile ./klipper-config/ender3-btt-skr-mini-e3-v3.cfg
+      );
       firmwares = {
         "btt-skr-mini-e3-v3" = {
           enable = true;
