@@ -1,14 +1,8 @@
 { lib, ... }:
 {
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall.allowedTCPPorts = [ 80 7125 7130];
 
   networking.firewall.enable = lib.mkForce false;
-
-  # nixpkgs.overlays = [
-  #   (_final: prev: {
-  #     klipper-firmware = prev.klipper-firmware.override { gcc-arm-embedded = pkgs.gcc-arm-embedded-11; };
-  #   })
-  # ];
 
   services = {
     klipper = {
@@ -20,6 +14,11 @@
           enable = true;
           configFile = ./firmware/btt-skr-mini-e3-v3.cfg;
           serial = "/dev/serial/by-id/usb-Klipper_stm32g0b1xx_420013000250415339373620-if00";
+        };
+        "btt-adxl345-v2" = {
+          enable = true;
+          configFile = ./firmware/btt-adxl345-v2.cfg;
+          serial = "/dev/serial/by-id/usb-Klipper_";
         };
       };
     };
@@ -47,6 +46,7 @@
         };
       };
     };
+
     mainsail.enable = true;
   };
 }
