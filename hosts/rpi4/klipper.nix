@@ -38,6 +38,7 @@ in
         + readFile ./klipper-config/include/ender3.cfg
         + readFile ./klipper-config/include/macros.cfg
         + readFile ./klipper-config/ender3-btt-skr-mini-e3-v3.cfg
+        + readFile ./klipper-config/adxl345-v2.0.cfg
       );
       firmwares = {
         "btt-skr-mini-e3-v3" = {
@@ -48,7 +49,7 @@ in
         "btt-adxl345-v2" = {
           enable = true;
           configFile = ./firmware/btt-adxl345-v2.cfg;
-          serial = "/dev/serial/by-id/usb-Klipper_";
+          serial = "/dev/serial/by-id/usb-Klipper_rp2040_454741505C0335AA-if00";
         };
       };
     };
