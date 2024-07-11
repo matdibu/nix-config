@@ -12,6 +12,13 @@ in
   networking.firewall.enable = lib.mkForce false;
 
   nixpkgs.overlays = [
+    (_final: prev: {
+      klipper-firmware = prev.klipper-firmware.overrideAttrs (oldAttrs: {
+            installPhase = oldAttrs.installPhase + ''
+                cp out/klipper.uf2 $out/ || true
+            '';
+      });
+    })
     # (_final: prev: {
     #   klipper-firmware = prev.klipper-firmware.overrideAttrs (oldAttrs: {
     #     nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
@@ -44,11 +51,13 @@ in
         "btt-skr-mini-e3-v3" = {
           enable = true;
           configFile = ./firmware/btt-skr-mini-e3-v3.cfg;
+          enableKlipperFlash = true;
           serial = "/dev/serial/by-id/usb-Klipper_stm32g0b1xx_420013000250415339373620-if00";
         };
         "btt-adxl345-v2" = {
           enable = true;
           configFile = ./firmware/btt-adxl345-v2.cfg;
+          enableKlipperFlash = true;
           serial = "/dev/serial/by-id/usb-Klipper_rp2040_454741505C0335AA-if00";
         };
       };
