@@ -1,8 +1,30 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
-  networking.firewall.allowedTCPPorts = [ 80 7125 7130];
+  networking.firewall.allowedTCPPorts = [
+    80
+    7125
+    7130
+  ];
 
   networking.firewall.enable = lib.mkForce false;
+
+  nixpkgs.overlays = [
+    (_final: prev: {
+      klipper-firmware = prev.klipper-firmware.overrideAttrs (oldAttrs: {
+        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
+          pkgs.pkgsCross.aarch64-embedded.stdenv.cc
+          pkgs.pkgsCross.arm-embedded.stdenv.cc
+          pkgs.pkgsCross.avr.stdenv.cc
+          pkgs.pkgsCross.raspberryPi.stdenv.cc
+        ];
+      });
+    })
+    # (_final: prev: {
+    #   klipper-firmware = prev.klipper-firmware.override {
+    #     gcc-arm-embedded = pkgs.gcc-arm-embedded-11;
+    #   };
+    # })
+  ];
 
   services = {
     klipper = {
