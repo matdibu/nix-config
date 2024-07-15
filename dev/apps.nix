@@ -34,6 +34,7 @@
               TASK_DEFAULT="boot"
               if [[ -n "$1" ]]; then
                 TASK="$1"
+                shift
               else
                 TASK="$TASK_DEFAULT"
               fi
@@ -45,7 +46,8 @@
                 --fast \
                 --flake ${inputs.self}#${host} \
                 --use-remote-sudo \
-                --target-host "${user}@${host}.lan"
+                --target-host "${user}@${host}.lan" \
+                $@
             '';
           in
           listToAttrs (
@@ -64,12 +66,13 @@
               WHEN_DEFAULT="+1minute"
               if [[ -n "$1" ]]; then
                 WHEN="$1"
+                shift
               else
                 WHEN="$WHEN_DEFAULT"
               fi
 
               ssh "${user}@${host}.lan" -tt -- \
-                sudo systemctl reboot --when=$WHEN
+                sudo systemctl reboot --when=$WHEN $@
             '';
           in
           listToAttrs (

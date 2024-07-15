@@ -45,7 +45,7 @@ in
         + readFile ./klipper-config/include/ender3.cfg
         + readFile ./klipper-config/include/macros.cfg
         + readFile ./klipper-config/ender3-btt-skr-mini-e3-v3.cfg
-        + readFile ./klipper-config/adxl345-v2.0.cfg
+        # + readFile ./klipper-config/adxl345-v2.0.cfg
       );
       firmwares = {
         "btt-skr-mini-e3-v3" = {
