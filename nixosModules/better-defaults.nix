@@ -10,7 +10,10 @@
   };
   config = lib.mkIf config.modules.better-defaults.enable {
     programs = {
-      vim.defaultEditor = true;
+      vim = {
+        enable = true;
+        defaultEditor = true;
+      };
       nano.enable = false;
       git.enable = true;
       htop.enable = true;
