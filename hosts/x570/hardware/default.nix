@@ -7,6 +7,10 @@
     ./networking.nix
   ];
 
+  modules = {
+    gpu-nvidia.enable = true;
+  };
+
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;

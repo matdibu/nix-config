@@ -11,7 +11,6 @@
       jack.enable = true;
     };
 
-    # disable pulseaudio
     hardware.pulseaudio.enable = false;
   };
 }

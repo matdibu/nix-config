@@ -1,8 +1,9 @@
 { lib, config, ... }:
 {
   options = {
-    modules.better-networking.enable = lib.mkEnableOption "Use modern networking";
+    modules.better-networking.enable = lib.mkEnableOption "modern networking";
   };
+
   config = lib.mkIf config.modules.better-networking.enable {
     networking = {
       firewall.enable = true;

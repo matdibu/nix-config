@@ -1,15 +1,13 @@
+{ inputs, ... }:
 {
   imports = [
+    inputs.self.nixosModules.profiles-hm-gui
     ./hardware
     ./roles/nas
     ./containers
   ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  modules = {
-    gpu-nvidia.enable = true;
-  };
 
   specialisation = {
     "vfio".configuration = {

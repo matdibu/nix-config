@@ -1,5 +1,9 @@
+{ inputs, ... }:
 {
-  imports = [ ./hardware ];
+  imports = [
+    inputs.self.nixosModules.profiles-server
+    ./hardware
+  ];
 
   system.stateVersion = "24.05";
 }

@@ -1,6 +1,14 @@
-{ modulesPath, pkgs, ... }:
 {
-  imports = [ "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix" ];
+  inputs,
+  modulesPath,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    inputs.self.nixosModules.profiles-installer
+    "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+  ];
 
   isoImage = {
     # makeBiosBootable = true;

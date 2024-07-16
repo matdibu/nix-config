@@ -14,9 +14,6 @@
         enable = true;
         defaultEditor = true;
       };
-      nano.enable = false;
-      git.enable = true;
-      htop.enable = true;
     };
 
     # Packages that shoulds always be available.
@@ -29,6 +26,8 @@
         pciutils
         usbutils
         lm_sensors
+        htop
+        git
         ;
     };
 

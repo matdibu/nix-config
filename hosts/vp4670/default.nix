@@ -1,5 +1,7 @@
+{ inputs, ... }:
 {
   imports = [
+    inputs.self.nixosModules.profiles-hm-gui
     ./hardware
     # ./containers
     # ./nas

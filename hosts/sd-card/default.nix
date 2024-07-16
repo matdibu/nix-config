@@ -1,6 +1,9 @@
-{ modulesPath, ... }:
+{ self, modulesPath, ... }:
 {
-  imports = [ "${modulesPath}/installer/sd-card/sd-image.nix" ];
+  imports = [
+    self.nixosModules.profiles-installer
+    "${modulesPath}/installer/sd-card/sd-image.nix"
+  ];
 
   boot.loader.generic-extlinux-compatible.enable = true;
 
