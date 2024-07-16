@@ -1,5 +1,5 @@
 let
-  version = "sha256:49572434ce4cf3f7b5f0d6ae775333260c77281dbe8da47cb6d96f03e81e8f1b";
+  version = "sha256:dc4467f8e4ea66e0aa8cfd0e50a31934df3218a4048c18dc86f835f496061f44";
 in
 {
   fileSystems."/mnt/containers/jellyfin/media" = {

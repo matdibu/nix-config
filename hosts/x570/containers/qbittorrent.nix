@@ -1,5 +1,5 @@
 let
-  version = "sha256:c5d8ae78460772deaf9b3bd91055f4ad19ab85cc6ebe1392369475d10cfffa52";
+  version = "sha256:ed8bbbbf9be0fbb69b9b6e063ed7d1260af86222c99f7907d6f04a764ced5ff5";
 in
 {
   fileSystems."/mnt/containers/qbittorrent/downloads" = {

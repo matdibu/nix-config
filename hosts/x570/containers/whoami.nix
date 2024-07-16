@@ -1,5 +1,5 @@
 let
-  version = "sha256:ab0ca2603e47e42f7d45e094b6f4cecc5d5b7b0ef6ca89170ce1a771ed1a0066";
+  version = "sha256:7000846753fcc36eb2a1a3a21fe897da09c71e1d3b5381f912ea6e6e1c8871b6";
 in
 {
   virtualisation.oci-containers.containers."whoami" = {
