@@ -51,7 +51,7 @@ in
         kernelPackages = if cfg.hardened then kernelLatestZfsHardened else kernelLatestZfs;
         initrd.supportedFilesystems = [ "zfs" ];
         # fix for VM's, where devices might not have serial numbers
-        zfs.devNodes = "/dev/disk/by-partuuid";
+        # zfs.devNodes = "/dev/disk/by-partuuid";
       };
       systemd.services.zfs-mount.enable = false;
     }
