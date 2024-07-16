@@ -2,8 +2,8 @@
 let
   inherit (self.nixosModules)
     profiles-installer
-    profiles-gui
-    profiles-cli
+    # profiles-hm-cli
+    profiles-hm-gui
     profiles-server
     ;
 
@@ -40,47 +40,32 @@ in
     iso-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "iso";
-      modules = [ profiles-installer ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
+      modules = [ profiles-installer ];
     };
-    sd-card-aarch64 = mkNixosSystem {
-      system = "aarch64-linux";
-      hostName = "sd-card";
-      modules = [ profiles-installer ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
-    };
-    #ws = mkNixosSystem {
-    #  system = "x86_64-linux";
-    #  hostName = "ws";
-    #  modules = [ profiles-gui ];
-    #};
+    # sd-card-aarch64 = mkNixosSystem {
+    #   system = "aarch64-linux";
+    #   hostName = "sd-card";
+    #   modules = [ profiles-installer ];
+    # };
     x570 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "x570";
-      modules = [ profiles-cli ];
+      modules = [ profiles-hm-gui ];
     };
     vp4670 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "vp4670";
-      modules = [ profiles-gui ];
+      modules = [ profiles-hm-gui ];
     };
     rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rockpro64";
       modules = [ profiles-server ];
     };
-    # rockpro64-cross = mkNixosSystem {
-    #   system = "aarch64-linux";
-    #   hostName = "rockpro64";
-    #   modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
-    # };
     rpi4 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rpi4";
       modules = [ profiles-server ];
     };
-    # rpi4-cross = mkNixosSystem {
-    #   system = "aarch64-linux";
-    #   hostName = "rpi4";
-    #   modules = [ profiles-server ] ++ [ { nixpkgs.buildPlatform = "x86_64-linux"; } ];
-    # };
   };
 }

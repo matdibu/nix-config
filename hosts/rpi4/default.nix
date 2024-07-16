@@ -5,7 +5,7 @@ in
 {
   imports = [
     ./hardware.nix
-    ./klipper.nix
+    ./klipper
   ];
 
   modules = {

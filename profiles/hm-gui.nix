@@ -1,5 +1,5 @@
 {
-  imports = [ ./cli.nix ];
+  imports = [ ./hm-cli.nix ];
 
   home-manager = {
     users.mateidibu = import ../home/mateidibu/gui;

@@ -7,19 +7,17 @@
       system,
       ...
     }:
-    let
-      inherit (lib)
-        filter
-        map
-        attrNames
-        getExe
-        listToAttrs
-        ;
-      inherit (lib.strings) hasPrefix concatLines;
-    in
     {
       apps =
         let
+          inherit (lib)
+            filter
+            map
+            attrNames
+            getExe
+            listToAttrs
+            ;
+          inherit (lib.strings) hasPrefix concatLines;
           real-hosts = filter (name: (!hasPrefix "iso-" name && !hasPrefix "sd-card-" name)) (
             attrNames inputs.self.nixosConfigurations
           );

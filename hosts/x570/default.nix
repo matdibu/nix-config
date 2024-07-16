@@ -1,10 +1,8 @@
-{ inputs, ... }:
 {
   imports = [
     ./hardware
     ./roles/nas
     ./containers
-    inputs.self.nixosModules.profiles-gui
   ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

@@ -2,7 +2,7 @@
 {
   imports = [
     inputs.home-manager.nixosModule
-    ./server.nix
+    ./better-defaults.nix
   ];
 
   home-manager = {

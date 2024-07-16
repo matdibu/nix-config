@@ -14,9 +14,11 @@ in
   nixpkgs.overlays = [
     (_final: prev: {
       klipper-firmware = prev.klipper-firmware.overrideAttrs (oldAttrs: {
-            installPhase = oldAttrs.installPhase + ''
-                cp out/klipper.uf2 $out/ || true
-            '';
+        installPhase =
+          oldAttrs.installPhase
+          + ''
+            cp out/klipper.uf2 $out/ || true
+          '';
       });
     })
     # (_final: prev: {
@@ -41,11 +43,11 @@ in
       enable = true;
       logFile = "/var/lib/klipper/klipper.log";
       configFile = toFile "ender3-btt-skr-mini-e3-v3.cfg" (
-        readFile ./klipper-config/include/btt-skr-mini-e3-v3.cfg
-        + readFile ./klipper-config/include/ender3.cfg
-        + readFile ./klipper-config/include/macros.cfg
-        + readFile ./klipper-config/ender3-btt-skr-mini-e3-v3.cfg
-        # + readFile ./klipper-config/adxl345-v2.0.cfg
+        readFile ./config/include/btt-skr-mini-e3-v3.cfg
+        + readFile ./config/include/ender3.cfg
+        + readFile ./config/include/macros.cfg
+        + readFile ./config/ender3-btt-skr-mini-e3-v3.cfg
+        # + readFile ./config/adxl345-v2.0.cfg
       );
       firmwares = {
         "btt-skr-mini-e3-v3" = {
@@ -68,17 +70,8 @@ in
       user = "root";
       settings = {
         authorization = {
-          cors_domains = [
-            "*.local"
-            "*.lan"
-            "*://app.fluidd.xyz"
-            "*://my.mainsail.xyz"
-          ];
+          cors_domains = [ "*.lan" ];
           trusted_clients = [
-            "10.0.0.0/8"
-            "127.0.0.0/8"
-            "169.254.0.0/16"
-            "172.16.0.0/12"
             "192.168.1.0/24"
             "FE80::/10"
             "::1/128"
