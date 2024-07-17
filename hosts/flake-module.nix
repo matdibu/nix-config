@@ -6,6 +6,7 @@ let
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
+        offlineTarget = args.offlineTarget or null;
       };
       inherit (args) system;
       modules = [
@@ -33,6 +34,11 @@ in
     iso-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "iso";
+    };
+    iso-vp4670 = mkNixosSystem {
+      system = "x86_64-linux";
+      hostName = "iso";
+      offlineTarget = "vp4670";
     };
     # sd-card-aarch64 = mkNixosSystem {
     #   system = "aarch64-linux";
