@@ -1,6 +1,16 @@
 { inputs, ... }:
+let
+  device = "/dev/disk/by-id/usb-Samsung_Flash_Drive_FIT_0342121020007839-0:0";
+in
 {
-  imports = [ inputs.nixos-hardware.nixosModules.raspberry-pi-4 ];
+  imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    inputs.self.nixosModules.profiles-tmpfs-root-with-swap-and-zfs
+  ];
+
+  disko.devices = {
+    disk."root-disk".device = device;
+  };
 
   hardware.raspberry-pi."4" = {
     apply-overlays-dtmerge.enable = true;

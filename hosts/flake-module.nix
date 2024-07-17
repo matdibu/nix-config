@@ -61,7 +61,7 @@ in
       system = "aarch64-linux";
       hostName = "rockpro64";
     };
-    iso-rockpro64= mkNixosSystem {
+    iso-rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "iso";
       offlineTarget = "rockpro64";
