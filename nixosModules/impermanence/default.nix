@@ -8,6 +8,7 @@ in
     ./zfs.nix
     ./zfs-tmpfs.nix
     ./tmpfs.nix
+    ./simple.nix
   ];
 
   options = {

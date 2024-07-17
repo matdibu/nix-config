@@ -8,9 +8,11 @@
     ./better-nix.nix
     ./graphics
     ./impermanence
+    ./nfs.nix
     ./oci-containers.nix
     ./openssh.nix
     ./remove-docs.nix
+    ./samba.nix
     ./security.nix
     ./smartd.nix
     ./user-mateidibu.nix

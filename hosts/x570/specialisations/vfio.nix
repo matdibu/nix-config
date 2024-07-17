@@ -19,7 +19,6 @@ let
   ];
 in
 {
-
   boot = {
     blacklistedKernelModules = [
       # blacklist USB 3.0 module because it was binding to the device before vfio_pci
