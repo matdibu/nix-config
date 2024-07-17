@@ -1,7 +1,7 @@
-{ self, modulesPath, ... }:
+{ inputs, modulesPath, ... }:
 {
   imports = [
-    self.nixosModules.profiles-installer
+    inputs.self.nixosModules.profiles-installer
     "${modulesPath}/installer/sd-card/sd-image.nix"
   ];
 
