@@ -7,6 +7,11 @@ in
     options = [ "bind" ];
   };
 
+  systemd.tmpfiles.rules = [
+    "d /mnt/containers/jellyfin/cache 0700 root root"
+    "d /mnt/containers/jellyfin/config 0700 root root"
+  ];
+
   virtualisation.oci-containers.containers."jellyfin" = {
     image = "ghcr.io/jellyfin/jellyfin@${version}";
     volumes = [
