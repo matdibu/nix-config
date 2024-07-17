@@ -7,7 +7,7 @@ in
     options = [ "bind" ];
   };
 
-  systemd.tmpfiles.rules = [ "d /mnt/containers/qbittorrent/config 0700 root root" ];
+  systemd.tmpfiles.rules = [ "d /mnt/containers/qbittorrent/config" ];
 
   virtualisation.oci-containers.containers."qbittorrent" = {
     image = "ghcr.io/qbittorrent/docker-qbittorrent-nox@${version}";
