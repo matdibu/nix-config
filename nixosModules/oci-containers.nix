@@ -1,5 +1,7 @@
 { lib, config, ... }:
-let cfg = config.modules.oci-containers; in
+let
+  cfg = config.modules.oci-containers;
+in
 {
   options = {
     modules.oci-containers = {
