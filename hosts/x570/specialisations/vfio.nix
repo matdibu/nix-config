@@ -31,10 +31,10 @@ in
     ];
 
     kernelParams = [
-
       "default_hugepagesz=1G"
       "hugepagesz=1G"
       "hugepages=32"
-    ] ++ [ ("vfio_pci.ids=" + lib.concatStringsSep "," pciIDs) ];
+      ("vfio_pci.ids=" + lib.concatStringsSep "," pciIDs)
+    ];
   };
 }

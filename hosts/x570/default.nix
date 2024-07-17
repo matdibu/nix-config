@@ -3,8 +3,9 @@
   imports = [
     inputs.self.nixosModules.profiles-hm-gui
     ./hardware
-    ./roles/nas
-    ./roles/hypervisor.nix
+    ./services/hypervisor.nix
+    ./services/nfs.nix
+    ./services/samba.nix
     ./containers
   ];
 
@@ -12,7 +13,7 @@
 
   specialisation = {
     "vfio".configuration = {
-      imports = [ ./vfio.nix ];
+      imports = [ ./specialisations/vfio.nix ];
     };
   };
 

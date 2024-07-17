@@ -22,7 +22,6 @@
 
   boot = {
     initrd.kernelModules = [ "kvm-amd" ];
-
     kernelParams = [
       "kvm_amd.avic=1"
       # "kvm_amd.npt=1"    # default 1

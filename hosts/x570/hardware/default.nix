@@ -2,8 +2,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.asus-pro-ws-x570-ace
-    ./disk-rootfs.nix
-    ./disk-nas.nix
+    ./disk.nix
     ./networking.nix
   ];
 
