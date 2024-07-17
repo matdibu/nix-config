@@ -2,6 +2,7 @@
   inputs,
   modulesPath,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -11,9 +12,11 @@
   ];
 
   isoImage = {
-    # makeBiosBootable = true;
+    makeBiosBootable = false;
     makeEfiBootable = true;
-    makeUsbBootable = true;
+    makeUsbBootable = lib.mkForce false;
+    compressImage = false;
+    squashfsCompression = null;
   };
 
   boot.loader = {
