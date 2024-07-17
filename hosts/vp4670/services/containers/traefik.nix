@@ -1,5 +1,5 @@
 let
-  version = "sha256:3212a585ed12db136baaa944f1c2adca228f4722afaac8daed984fda07487b65";
+  version = "sha256:e8a7348f5f65e91ea26b0969b8b0febb94d8e103e2c16e7ba8f56a596271255a";
 in
 {
   networking.firewall = {
