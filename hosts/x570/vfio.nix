@@ -19,12 +19,22 @@ let
   ];
 in
 {
+
   boot = {
+    blacklistedKernelModules = [
+      # blacklist USB 3.0 module because it was binding to the device before vfio_pci
+      "xhci_pci"
+    ];
     initrd.kernelModules = [
       "vfio"
       "vfio_pci"
     ];
 
-    kernelParams = [ ("vfio_pci.ids=" + lib.concatStringsSep "," pciIDs) ];
+    kernelParams = [
+
+      "default_hugepagesz=1G"
+      "hugepagesz=1G"
+      "hugepages=32"
+    ] ++ [ ("vfio_pci.ids=" + lib.concatStringsSep "," pciIDs) ];
   };
 }

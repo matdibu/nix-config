@@ -4,6 +4,7 @@
     inputs.self.nixosModules.profiles-hm-gui
     ./hardware
     ./roles/nas
+    ./roles/hypervisor.nix
     ./containers
   ];
 
@@ -11,7 +12,7 @@
 
   specialisation = {
     "vfio".configuration = {
-      imports = [ ./roles/hypervisor ];
+      imports = [ ./vfio.nix ];
     };
   };
 

@@ -1,19 +1,27 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./libvirt.nix
-    ./vfio.nix
-  ];
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [
+          (pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd
+        ];
+      };
+    };
+  };
 
   environment.systemPackages = builtins.attrValues { inherit (pkgs) cloud-hypervisor qemu_kvm; };
 
   boot = {
     initrd.kernelModules = [ "kvm-amd" ];
-
-    blacklistedKernelModules = [
-      # blacklist USB 3.0 module because it was binding to the device before vfio_pci
-      "xhci_pci"
-    ];
 
     kernelParams = [
       "kvm_amd.avic=1"
@@ -24,9 +32,6 @@
       "kvm.report_ignored_msrs=1"
       # "amd_iommu=pgtbl_v2" # issues with kernel 6.9.0
       "amd_iommu_intr=vapic"
-      "default_hugepagesz=1G"
-      "hugepagesz=1G"
-      "hugepages=32"
     ];
   };
 }
