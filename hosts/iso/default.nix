@@ -16,8 +16,7 @@
     makeBiosBootable = false;
     makeEfiBootable = true;
     makeUsbBootable = lib.mkForce false;
-    compressImage = false;
-    squashfsCompression = null;
+    squashfsCompression = "zstd";
   };
 
   boot.loader = {
