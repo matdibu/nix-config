@@ -28,7 +28,6 @@ in
       "vfio"
       "vfio_pci"
     ];
-
     kernelParams = [
       "default_hugepagesz=1G"
       "hugepagesz=1G"

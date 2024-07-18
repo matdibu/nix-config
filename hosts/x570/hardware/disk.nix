@@ -14,10 +14,6 @@ in
         type = "zfs_fs";
         mountpoint = "/mnt/vm-storage";
       };
-      "system/containers" = {
-        type = "zfs_fs";
-        mountpoint = "/mnt/containers";
-      };
     };
   };
 
