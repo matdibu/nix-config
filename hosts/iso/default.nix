@@ -9,7 +9,7 @@
   imports = [
     inputs.self.nixosModules.profiles-installer
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-    ./allHosts.nix
+    ./offlineInstallers.nix
   ];
 
   isoImage = {

@@ -6,7 +6,7 @@ let
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
-        allHosts = args.allHosts or null;
+        offlineInstallers = args.offlineInstallers or null;
       };
       inherit (args) system;
       modules = [
@@ -27,20 +27,16 @@ let
 in
 {
   flake.nixosConfigurations = {
-    iso-allHosts-x86_64 = mkNixosSystem {
+    iso-offlineInstallers-x86_64 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "iso";
-      allHosts = true;
+      offlineInstallers = true;
     };
-    iso-allHosts-aarch64 = mkNixosSystem {
+    iso-offlineInstallers-aarch64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "iso";
-      allHosts = true;
+      offlineInstallers = true;
     };
-    # sd-card-aarch64 = mkNixosSystem {
-    #   system = "aarch64-linux";
-    #   hostName = "sd-card";
-    # };
     x570 = mkNixosSystem {
       system = "x86_64-linux";
       hostName = "x570";

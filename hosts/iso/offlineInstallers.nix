@@ -3,37 +3,38 @@
   pkgs,
   lib,
   config,
-  allHosts,
+  offlineInstallers,
   ...
 }:
 let
-  inherit (lib) filter attrNames;
-  inherit (lib.strings) hasPrefix;
-  targets = filter (
+  targets = lib.filter (
     name:
     (
-      !hasPrefix "iso-" name
-      && !hasPrefix "sd-card-" name
-      && inputs.self.nixosConfigurations.${name}.config.nixpkgs.hostPlatform.system == config.nixpkgs.hostPlatform.system
+      let
+        isSameArch =
+          inputs.self.nixosConfigurations.${name}.config.nixpkgs.hostPlatform.system
+          == config.nixpkgs.hostPlatform.system;
+      in
+      !lib.strings.hasPrefix "iso-" name && isSameArch
     )
-  ) (attrNames inputs.self.nixosConfigurations);
+  ) (lib.attrNames inputs.self.nixosConfigurations);
 in
 {
-  config = lib.mkIf (allHosts == true) {
+  config = lib.mkIf offlineInstallers {
 
     environment.etc."install-closure".source =
       let
-        inherit (lib) concatMap;
-        depsPerTarget = target: [
+        targetDerivations = target: [
           inputs.self.nixosConfigurations.${target}.config.system.build.toplevel
           inputs.self.nixosConfigurations.${target}.config.system.build.diskoScript
           inputs.self.nixosConfigurations.${target}.config.system.build.diskoScript.drvPath
           inputs.self.nixosConfigurations.${target}.pkgs.stdenv.drvPath
           (inputs.self.nixosConfigurations.${target}.pkgs.closureInfo { rootPaths = [ ]; }).drvPath
         ];
-        dependencies =
-          (concatMap depsPerTarget targets)
-          ++ builtins.map (i: i.outPath) (builtins.attrValues inputs.self.inputs);
+
+        flakeInputsDerivations = builtins.map (i: i.outPath) (builtins.attrValues inputs.self.inputs);
+
+        dependencies = (lib.concatMap targetDerivations targets) ++ flakeInputsDerivations;
 
         closureInfo = pkgs.closureInfo { rootPaths = dependencies; };
       in
