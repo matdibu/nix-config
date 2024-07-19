@@ -1,10 +1,12 @@
-{ inputs, ... }:
+# { inputs, ... }:
 {
   imports = [
-    inputs.self.nixosModules.profiles-hm-gui
+    # inputs.self.nixosModules.profiles-hm-gui
     ./hardware
     ./services/hypervisor.nix
   ];
+
+  modules.system-type.stype = "graphical-desktop";
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

@@ -3,6 +3,7 @@
   imports = [
     inputs.impermanence.nixosModules.impermanence
     inputs.disko.nixosModules.default
+    inputs.home-manager.nixosModule
     ./audio.nix
     ./better-defaults.nix
     ./better-networking.nix
@@ -19,6 +20,7 @@
     ./smartd.nix
     ./steam.nix
     ./sway.nix
+    ./system-type.nix
     ./user-mateidibu.nix
     ./wayland.nix
     ./xdg-portal.nix
