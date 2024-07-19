@@ -1,7 +1,4 @@
 { lib, config, ... }:
-let
-  cfg = config.modules.oci-containers;
-in
 {
   options = {
     modules.oci-containers = {
@@ -13,7 +10,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.modules.oci-containers.enable {
     virtualisation.podman = {
       enable = true;
       autoPrune.enable = true;

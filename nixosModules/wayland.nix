@@ -3,6 +3,7 @@
   options = {
     modules.wayland.enable = lib.mkEnableOption "wayland";
   };
+
   config = lib.mkIf config.modules.wayland.enable {
     environment.variables = {
       WLR_NO_HARDWARE_CURSORS = "1";

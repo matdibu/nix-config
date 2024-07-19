@@ -1,12 +1,10 @@
 { lib, config, ... }:
-let
-  cfg = config.modules.nfs-share;
-in
 {
   options = {
     modules.nfs-share.enable = lib.mkEnableOption "nfs network share";
   };
-  config = lib.mkIf cfg.enable {
+
+  config = lib.mkIf config.modules.nfs-share.enable {
     networking.firewall.allowedTCPPorts = [ 2049 ];
 
     services.nfs = {

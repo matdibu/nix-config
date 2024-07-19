@@ -1,15 +1,10 @@
 { lib, config, ... }:
-let
-  cfg = config.modules.simple-impermanence;
-in
 {
   options = {
-    modules.simple-impermanence = {
-      enable = lib.mkEnableOption "impermanence";
-    };
+    modules.simple-impermanence.enable = lib.mkEnableOption "impermanence";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf config.modules.simple-impermanence.enable {
     # Don't allow mutation of users outside of the config.
     users.mutableUsers = false;
 

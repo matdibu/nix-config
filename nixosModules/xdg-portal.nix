@@ -8,6 +8,7 @@
   options = {
     modules.xdg-portal.enable = lib.mkEnableOption "xdg-desktop-portal";
   };
+
   config = lib.mkIf config.modules.xdg-portal.enable {
     xdg.portal = {
       enable = true;

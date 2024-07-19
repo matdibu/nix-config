@@ -3,6 +3,7 @@
   options = {
     modules.openssh.enable = lib.mkEnableOption "OpenSSH settings and authorized keys";
   };
+
   config = lib.mkIf config.modules.openssh.enable {
     users.users = {
       "root" = {
@@ -14,7 +15,6 @@
         ];
       };
     };
-
     services.openssh = {
       enable = true;
       openFirewall = true;

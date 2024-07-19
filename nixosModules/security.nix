@@ -1,10 +1,9 @@
 { lib, config, ... }:
 {
   options = {
-    modules.security.enable = lib.mkEnableOption "Security Hardening" // {
-      default = true;
-    };
+    modules.security.enable = lib.mkEnableOption "Security Hardening";
   };
+
   config = lib.mkIf config.modules.security.enable {
     security.sudo = {
       # Only allow members of the wheel group to execute sudo by setting the executable’s permissions accordingly.

@@ -3,6 +3,7 @@
   options = {
     modules.user-mateidibu.enable = lib.mkEnableOption "personal user";
   };
+
   config = lib.mkIf config.modules.user-mateidibu.enable {
     users.users.mateidibu = {
       isNormalUser = true;

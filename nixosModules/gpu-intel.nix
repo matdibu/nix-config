@@ -3,6 +3,7 @@
   options = {
     modules.gpu-intel.enable = lib.mkEnableOption "Intel GPU";
   };
+
   config = lib.mkIf config.modules.gpu-intel.enable {
     # hardware.graphics = {
     #   enable = true;

@@ -1,12 +1,10 @@
 { lib, config, ... }:
-let
-  cfg = config.modules.smb-share;
-in
 {
   options = {
     modules.smb-share.enable = lib.mkEnableOption "smb network share";
   };
-  config = lib.mkIf cfg.enable {
+
+  config = lib.mkIf config.modules.smb-share.enable {
     networking.firewall.allowPing = true;
 
     services.samba-wsdd = {
@@ -30,6 +28,5 @@ in
       #   };
       # };
     };
-
   };
 }

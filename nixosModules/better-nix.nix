@@ -3,6 +3,7 @@
   options = {
     modules.better-nix.enable = lib.mkEnableOption "better nix defaults";
   };
+
   config = lib.mkIf config.modules.better-nix.enable {
     nix = {
       channel.enable = false;
