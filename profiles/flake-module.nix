@@ -5,7 +5,6 @@
     profiles-hm-gui = ./hm-gui.nix;
     profiles-installer = ./installer.nix;
     profiles-qemu-guest = ./qemu-guest.nix;
-    profiles-server = ./server.nix;
     profiles-server-minimal-hardened = ./server-minimal-hardened.nix;
     profiles-tmpfs-root-with-swap-and-zfs = ./tmpfs-root-with-swap-and-zfs.nix;
   };

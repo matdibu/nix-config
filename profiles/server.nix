@@ -1,1 +1,0 @@
-{ imports = [ ./better-defaults.nix ]; }

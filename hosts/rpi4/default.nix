@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    inputs.self.nixosModules.profiles-server
+    inputs.self.nixosModules.profiles-better-defaults
     ./hardware.nix
     ./klipper
   ];

@@ -1,6 +1,6 @@
 {
   modules = {
-    simple-impermanence.enable = true;
+    impermanence.enable = true;
     zfs.enable = true;
   };
 
