@@ -47,30 +47,36 @@
         };
       };
 
-      config-headless-desktop = {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          extraSpecialArgs = {
-            inherit inputs;
+      config-headless-desktop = lib.mkMerge [
+        config-server
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+            users.mateidibu = import ../home/mateidibu;
           };
-          users.mateidibu = import ../home/mateidibu;
-        };
-        programs.fuse.userAllowOther = true;
-      } // config-server;
+          programs.fuse.userAllowOther = true;
+        }
+      ];
 
-      config-graphical-desktop = {
-        home-manager.users.mateidibu = import ../home/mateidibu/gui;
-        modules = {
-          audio.enable = lib.mkDefault true;
-          sway.enable = lib.mkDefault true;
-        };
-        programs.dconf.enable = true;
-        security = {
-          polkit.enable = true;
-          rtkit.enable = true;
-        };
-      } // config-headless-desktop;
+      config-graphical-desktop = lib.mkMerge [
+        config-headless-desktop
+        {
+          home-manager.users.mateidibu = import ../home/mateidibu/gui;
+          modules = {
+            audio.enable = lib.mkDefault true;
+            sway.enable = lib.mkDefault true;
+          };
+          programs.dconf.enable = true;
+          security = {
+            polkit.enable = true;
+            rtkit.enable = true;
+          };
+        }
+      ];
     in
     lib.mkMerge [
       (lib.mkIf (config.modules.system-type.stype == "installer") config-installer)
