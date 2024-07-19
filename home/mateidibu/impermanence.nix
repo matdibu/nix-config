@@ -6,8 +6,7 @@
 }:
 {
   imports = [ inputs.impermanence.nixosModules.home-manager.impermanence ];
-  # config = lib.mkIf osConfig.modules.impermanence.enable {
-  config = lib.mkIf true {
+  config = lib.mkIf osConfig.modules.impermanence.enable {
     home.persistence."/mnt/persist/home/mateidibu" = {
       allowOther = true;
       files = [

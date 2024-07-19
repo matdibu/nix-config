@@ -33,6 +33,7 @@
         programs.git.enable = true;
         services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
       };
+
       config-server = {
         modules = {
           better-defaults.enable = lib.mkDefault true;
@@ -45,6 +46,7 @@
           user-mateidibu.enable = lib.mkDefault true;
         };
       };
+
       config-headless-desktop = {
         home-manager = {
           useGlobalPkgs = true;
@@ -56,6 +58,7 @@
         };
         programs.fuse.userAllowOther = true;
       } // config-server;
+
       config-graphical-desktop = {
         home-manager.users.mateidibu = import ../home/mateidibu/gui;
         modules = {
