@@ -84,37 +84,37 @@
             }) real-hosts
           )
         )
-        # app "nixos-build-isos"
+        # app "nix-build-isos"
         (
           let
             host-to-iso-build-command =
               host:
-              pkgs.writeShellScript "nixos-build-${host}" ''
+              pkgs.writeShellScript "nix-build-${host}" ''
                 nix build \
                     --out-link "${host}" \
                     .#nixosConfigurations."${host}".config.system.build.toplevel
               '';
           in
           {
-            "nixos-build-isos".program = pkgs.writeShellScriptBin "nixos-build-isos" ''
+            "nix-build-isos".program = pkgs.writeShellScriptBin "nix-build-isos" ''
               set -x
               ${concatLines (map host-to-iso-build-command iso-hosts)}
             '';
           }
         )
-        # app "nixos-build-all"
+        # app "nix-build-all"
         (
           let
             host-to-build-command =
               host:
-              pkgs.writeShellScript "nixos-build-${host}" ''
+              pkgs.writeShellScript "nix-build-${host}" ''
                 nix build \
                     --no-link \
                     .#nixosConfigurations."${host}".config.system.build.toplevel
               '';
           in
           {
-            "nixos-build-all".program = pkgs.writeShellScriptBin "nixos-rebuild-all" ''
+            "nix-build-all".program = pkgs.writeShellScriptBin "nix-rebuild-all" ''
               set -x
               ${concatLines (map host-to-build-command real-hosts)}
             '';
