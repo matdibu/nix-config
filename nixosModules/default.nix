@@ -7,7 +7,7 @@
     ./better-networking.nix
     ./better-nix.nix
     ./graphics
-    ./impermanence
+    ./impermanence.nix
     ./nfs.nix
     ./oci-containers.nix
     ./openssh.nix
