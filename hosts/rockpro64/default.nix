@@ -1,9 +1,7 @@
-{ inputs, ... }:
 {
-  imports = [
-    inputs.self.nixosModules.profiles-better-defaults
-    ./hardware
-  ];
+  imports = [ ./hardware ];
+
+  modules.system-type.stype = "server";
 
   system.stateVersion = "24.11";
 }

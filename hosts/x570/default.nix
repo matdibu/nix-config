@@ -1,7 +1,5 @@
-# { inputs, ... }:
 {
   imports = [
-    # inputs.self.nixosModules.profiles-hm-gui
     ./hardware
     ./services/hypervisor.nix
   ];

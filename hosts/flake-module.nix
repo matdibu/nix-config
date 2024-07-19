@@ -20,8 +20,8 @@ let
             inherit (args) system;
           };
         }
-        ../nixosModules
         ./${args.hostName}
+        ../nixosModules
       ];
     };
 in

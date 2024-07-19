@@ -1,5 +1,4 @@
 {
-  inputs,
   modulesPath,
   pkgs,
   lib,
@@ -7,10 +6,11 @@
 }:
 {
   imports = [
-    inputs.self.nixosModules.profiles-installer
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
     ./offlineInstallers.nix
   ];
+
+  modules.system-type.stype = "installer";
 
   isoImage = {
     makeBiosBootable = false;
