@@ -102,7 +102,7 @@
             '';
           }
         )
-        # app "nix-build-all"
+        # app "nix-build-all-hosts"
         (
           let
             host-to-build-command =
@@ -114,7 +114,7 @@
               '';
           in
           {
-            "nix-build-all".program = pkgs.writeShellScriptBin "nix-rebuild-all" ''
+            "nix-build-all-hosts".program = pkgs.writeShellScriptBin "nix-rebuild-all" ''
               set -x
               ${concatLines (map host-to-build-command real-hosts)}
             '';
@@ -129,7 +129,7 @@
             "nixos-rebuild-all".program = pkgs.writeShellScriptBin "nixos-rebuild-all" ''
               set -x
               # do the builds before deploying, to batch the 2FA requests at the end
-              nixos-build-all $@
+              ${inputs.self.apps.${system}."nix-build-all-hosts".program} $@
               ${concatLines (map host-to-rebuild-app real-hosts)}
             '';
           }
