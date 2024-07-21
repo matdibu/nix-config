@@ -14,13 +14,16 @@ in
 
   hardware.raspberry-pi."4" = {
     apply-overlays-dtmerge.enable = true;
-    xhci.enable = true;
+    xhci.enable = false; # "true" breaks the kernel build
   };
 
   hardware.deviceTree.enable = true;
 
   boot = {
-    initrd.availableKernelModules = [ "xhci_pci" ];
+    initrd = {
+      # availableKernelModules = [ "xhci_pci" ]; # USB3 seems to be unstable
+      systemd.enableTpm2 = false; # "true" breaks the kernel build
+    };
     loader = {
       systemd-boot.enable = true;
       generic-extlinux-compatible.enable = false;
