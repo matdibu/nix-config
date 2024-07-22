@@ -14,6 +14,13 @@ in
         type = "zfs_fs";
         mountpoint = "/mnt/containers";
       };
+      "nas" = {
+        type = "zfs_fs";
+      };
+      "nas/junk" = {
+        type = "zfs_fs";
+        mountpoint = "/mnt/junk";
+      };
     };
   };
 

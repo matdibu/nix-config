@@ -1,7 +1,8 @@
-{
+{inputs, ...}: {
   imports = [
     ./hardware
     ./services/hypervisor.nix
+        inputs.self.nixosModules.profiles-lan-filesharing
   ];
 
   modules.system-type.stype = "graphical-desktop";
