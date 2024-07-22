@@ -21,17 +21,17 @@ in
           '';
       });
     })
-    # (_final: prev: {
-    #   klipper = prev.klipper.overrideAttrs (_oldAttrs: {
-    #     version = "0.12.0-unstable-2024-07-18";
-    #     src = prev.fetchFromGitHub {
-    #       owner = "KevinOConnor";
-    #       repo = "klipper";
-    #       rev = "12cd1d9e81c32b26ccc319af1dfc3633438908f1";
-    #       sha256 = "sha256-swjZc3Lu8rOwaYQby8QQvTzuNnxtTAaZx7TY/D8Z7Qg=";
-    #     };
-    #   });
-    # })
+    (_final: prev: {
+      klipper = prev.klipper.overrideAttrs (_oldAttrs: {
+        version = "0.12.0-unstable-2024-07-18";
+        src = prev.fetchFromGitHub {
+          owner = "KevinOConnor";
+          repo = "klipper";
+          rev = "12cd1d9e81c32b26ccc319af1dfc3633438908f1";
+          sha256 = "sha256-swjZc3Lu8rOwaYQby8QQvTzuNnxtTAaZx7TY/D8Z7Qg=";
+        };
+      });
+    })
     # (_final: prev: {
     #   moonraker = prev.moonraker.overrideAttrs (_oldAttrs: {
     #     version = "0.8.0-unstable-2024-07-5";
