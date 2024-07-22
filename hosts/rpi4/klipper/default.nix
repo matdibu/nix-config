@@ -22,6 +22,28 @@ in
       });
     })
     # (_final: prev: {
+    #   klipper = prev.klipper.overrideAttrs (_oldAttrs: {
+    #     version = "0.12.0-unstable-2024-07-18";
+    #     src = prev.fetchFromGitHub {
+    #       owner = "KevinOConnor";
+    #       repo = "klipper";
+    #       rev = "12cd1d9e81c32b26ccc319af1dfc3633438908f1";
+    #       sha256 = "sha256-swjZc3Lu8rOwaYQby8QQvTzuNnxtTAaZx7TY/D8Z7Qg=";
+    #     };
+    #   });
+    # })
+    # (_final: prev: {
+    #   moonraker = prev.moonraker.overrideAttrs (_oldAttrs: {
+    #     version = "0.8.0-unstable-2024-07-5";
+    #     src = prev.fetchFromGitHub {
+    #       owner = "Arksine";
+    #       repo = "moonraker";
+    #       rev = "dc00d38b01915b9aea736999df9287b2846dd6bf";
+    #       sha256 = "sha256-5woxDg88L3vYf9TUKiC4+1KAMcAQU0SRH8aRm1FGBDw=";
+    #     };
+    #   });
+    # })
+    # (_final: prev: {
     #   klipper-firmware = prev.klipper-firmware.overrideAttrs (oldAttrs: {
     #     nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
     #       pkgs.pkgsCross.aarch64-embedded.stdenv.cc
@@ -72,8 +94,10 @@ in
         authorization = {
           cors_domains = [ "*.lan" ];
           trusted_clients = [
+            "0.0.0.0/0"
             "192.168.1.0/24"
             "FE80::/10"
+            "FC00::/7"
             "::1/128"
           ];
         };
