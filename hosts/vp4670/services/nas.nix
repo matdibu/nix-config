@@ -17,9 +17,9 @@
   };
 
   services.nfs.server.exports = ''
-    /export          *(rw,fsid=0,no_subtree_check)
-    /export/torrents *(ro,nohide,insecure,no_subtree_check,pnfs,all_squash)
-    /export/junk     *(rw,nohide,insecure,no_subtree_check,pnfs,all_squash)
+    /export          *(rw,insecure,sync,no_subtree_check,pnfs,all_squash,fsid=0)
+    /export/torrents *(ro,insecure,sync,no_subtree_check,pnfs,all_squash)
+    /export/junk     *(rw,insecure,sync,no_subtree_check,pnfs,all_squash)
   '';
 
   services.samba.shares = {

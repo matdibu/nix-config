@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./hardware.nix
     ./klipper
+    inputs.self.nixosModules.profiles-lan-filesharing
   ];
 
   modules = {

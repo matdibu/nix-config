@@ -1,5 +1,9 @@
+{ inputs, ... }:
 {
-  imports = [ ./hardware ];
+  imports = [
+    ./hardware
+    inputs.self.nixosModules.profiles-lan-filesharing
+  ];
 
   modules.system-type.stype = "server";
 
