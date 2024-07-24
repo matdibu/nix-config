@@ -1,16 +1,17 @@
-{lib, ...}:{
+{ lib, ... }:
+{
   modules = {
     nfs-share.enable = true;
     smb-share.enable = true;
   };
 
-    networking.firewall.enable = lib.mkForce false;
+  networking.firewall.enable = lib.mkForce false;
 
-    fileSystems."/export/torrents" = {
+  fileSystems."/export/torrents" = {
     device = "/mnt/torrents";
     options = [ "bind" ];
   };
-    fileSystems."/export/junk" = {
+  fileSystems."/export/junk" = {
     device = "/mnt/junk";
     options = [ "bind" ];
   };
