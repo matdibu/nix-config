@@ -5,6 +5,7 @@
   ...
 }:
 {
+  imports = [ inputs.home-manager.nixosModule ];
   options = {
     modules.system-type = {
       stype = lib.mkOption {

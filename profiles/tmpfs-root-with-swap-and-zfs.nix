@@ -1,4 +1,7 @@
+{ inputs, ... }:
 {
+  imports = [ inputs.disko.nixosModules.default ];
+
   modules = {
     impermanence.enable = true;
     zfs.enable = true;

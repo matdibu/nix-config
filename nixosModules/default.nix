@@ -1,9 +1,6 @@
-{ inputs, ... }:
+{ ... }:
 {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
-    inputs.disko.nixosModules.default
-    inputs.home-manager.nixosModule
     ./audio.nix
     ./better-defaults.nix
     ./better-networking.nix

@@ -1,5 +1,11 @@
-{ lib, config, ... }:
 {
+  inputs,
+  lib,
+  config,
+  ...
+}:
+{
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   options = {
     modules.impermanence.enable = lib.mkEnableOption "impermanence";
   };
