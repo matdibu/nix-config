@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./sway.nix # config only
+    ./sway.nix
     ./librewolf.nix
   ];
 
