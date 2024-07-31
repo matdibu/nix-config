@@ -31,7 +31,7 @@
                 pkgs.writeShellScript "nix-build-${host}" ''
                   nix build \
                       --out-link "${host}" \
-                      .#nixosConfigurations."${host}".config.system.build.toplevel
+                      .#nixosConfigurations."${host}".config.system.build.isoImage
                 '';
             in
             {
