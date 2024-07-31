@@ -8,8 +8,8 @@
     services.pipewire = {
       enable = true;
       alsa.enable = true;
-      pulse.enable = true;
-      jack.enable = true;
+      pulse.enable = false;
+      jack.enable = false;
     };
     hardware.pulseaudio.enable = false;
   };
