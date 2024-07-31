@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   imports = [
-    ./hardware
+    ./hardware.nix
     ./services/hypervisor.nix
     inputs.self.nixosModules.profiles-lan-filesharing
   ];
