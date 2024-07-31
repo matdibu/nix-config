@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   imports = [
-    ./hardware
+    ./hardware.nix
     inputs.self.nixosModules.profiles-lan-filesharing
   ];
 
