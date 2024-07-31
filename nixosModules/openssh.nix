@@ -7,12 +7,7 @@
   config = lib.mkIf config.modules.openssh.enable {
     users.users = {
       "root" = {
-        openssh.authorizedKeys.keys = with (import ../ssh-keys.nix); [
-          yubi-main
-          yubi-backup
-          yubi-backup-fast
-          pixel8
-        ];
+        openssh.authorizedKeys.keys = lib.attrValues (import ../ssh-keys.nix);
       };
     };
     services.openssh = {

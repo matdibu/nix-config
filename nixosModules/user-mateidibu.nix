@@ -13,12 +13,7 @@
         "wheel"
         "video"
       ] ++ lib.optional config.virtualisation.libvirtd.enable "libvirtd";
-      openssh.authorizedKeys.keys = with (import ../ssh-keys.nix); [
-        yubi-main
-        yubi-backup
-        yubi-backup-fast
-        pixel8
-      ];
+      openssh.authorizedKeys.keys = lib.attrValues (import ../ssh-keys.nix);
     };
   };
 }
