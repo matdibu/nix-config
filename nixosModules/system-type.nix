@@ -7,18 +7,16 @@
 {
   imports = [ inputs.home-manager.nixosModule ];
   options = {
-    modules.system-type = {
-      stype = lib.mkOption {
-        type = lib.types.nullOr (
-          lib.types.enum [
-            "installer"
-            "server"
-            "headless-desktop"
-            "graphical-desktop"
-          ]
-        );
-        default = null;
-      };
+    modules.system-type = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "installer"
+          "server"
+          "headless-desktop"
+          "graphical-desktop"
+        ]
+      );
+      default = null;
     };
   };
 
@@ -80,9 +78,9 @@
       ];
     in
     lib.mkMerge [
-      (lib.mkIf (config.modules.system-type.stype == "installer") config-installer)
-      (lib.mkIf (config.modules.system-type.stype == "server") config-server)
-      (lib.mkIf (config.modules.system-type.stype == "headless-desktop") config-headless-desktop)
-      (lib.mkIf (config.modules.system-type.stype == "graphical-desktop") config-graphical-desktop)
+      (lib.mkIf (config.modules.system-type == "installer") config-installer)
+      (lib.mkIf (config.modules.system-type == "server") config-server)
+      (lib.mkIf (config.modules.system-type == "headless-desktop") config-headless-desktop)
+      (lib.mkIf (config.modules.system-type == "graphical-desktop") config-graphical-desktop)
     ];
 }

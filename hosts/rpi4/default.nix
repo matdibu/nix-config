@@ -8,7 +8,7 @@
 
   modules = {
     smartd.enable = false;
-    system-type.stype = "server";
+    system-type = "server";
   };
 
   environment.systemPackages = [ pkgs.raspberrypi-eeprom ];

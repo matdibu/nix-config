@@ -10,7 +10,7 @@
     ./offlineInstallers.nix
   ];
 
-  modules.system-type.stype = "installer";
+  modules.system-type = "installer";
 
   isoImage = {
     makeBiosBootable = false;

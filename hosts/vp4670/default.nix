@@ -5,7 +5,7 @@
     ./services/nas.nix
   ];
 
-  modules.system-type.stype = "graphical-desktop";
+  modules.system-type = "graphical-desktop";
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
