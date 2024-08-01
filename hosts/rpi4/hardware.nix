@@ -29,6 +29,7 @@ in
       generic-extlinux-compatible.enable = false;
       efi.canTouchEfiVariables = false;
     };
+    kernelParams = [ "brcmfmac.feature_disable=0x82000" ];
   };
 
   networking.hostId = "9edbfeb9";
