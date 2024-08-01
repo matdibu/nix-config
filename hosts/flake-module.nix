@@ -41,6 +41,10 @@ in
       system = "x86_64-linux";
       hostName = "vp4670";
     };
+    rock64 = mkNixosSystem {
+      system = "aarch64-linux";
+      hostName = "rock64";
+    };
     rockpro64 = mkNixosSystem {
       system = "aarch64-linux";
       hostName = "rockpro64";
