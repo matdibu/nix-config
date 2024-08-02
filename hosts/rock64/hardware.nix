@@ -9,9 +9,9 @@
     smartd.enable = false;
   };
 
-  # not using tow-boot, yet
+  # using tow-boot
   boot.loader = {
-    # systemd-boot.enable = true;
+    systemd-boot.enable = true;
     efi.canTouchEfiVariables = false;
   };
 
