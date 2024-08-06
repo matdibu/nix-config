@@ -20,6 +20,7 @@
     ./user-mateidibu.nix
     ./wayland.nix
     ./xdg-portal.nix
+    ./yubikey.nix
     ./zfs.nix
   ];
 }
