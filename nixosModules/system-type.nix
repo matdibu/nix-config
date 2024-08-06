@@ -42,6 +42,7 @@
           remove-docs.enable = lib.mkDefault true;
           security.enable = lib.mkDefault true;
           smartd.enable = lib.mkDefault true;
+          sops.enable = lib.mkDefault true;
           user-mateidibu.enable = lib.mkDefault true;
         };
       };

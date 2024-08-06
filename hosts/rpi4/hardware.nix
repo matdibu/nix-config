@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 let
   device = "/dev/disk/by-id/usb-Samsung_Flash_Drive_FIT_0342121020007839-0:0";
 in
@@ -53,11 +53,14 @@ in
     };
   };
 
+  sops.secrets."wifi/dibux-legacy/password" = {};
+
   networking.wireless = {
     enable = true;
+    environmentFile = config.sops.secrets."wifi/dibux-legacy/password".path;
     networks = {
       "dibux-legacy" = {
-        psk = "okmijnqaz";
+        psk = "@dibux-legacy_psk@";
       };
     };
   };

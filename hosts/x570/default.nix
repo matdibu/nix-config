@@ -6,10 +6,7 @@
     inputs.self.nixosModules.profiles-lan-filesharing
   ];
 
-  modules = {
-    yubikey.enable = true;
-    system-type = "graphical-desktop";
-  };
+  modules.system-type = "graphical-desktop";
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

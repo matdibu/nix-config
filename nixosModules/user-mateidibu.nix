@@ -5,10 +5,17 @@
   };
 
   config = lib.mkIf config.modules.user-mateidibu.enable {
+    sops = {
+      secrets = {
+        "users/mateidibu/password"= {
+          neededForUsers = true;
+        };
+      };
+    };
     users.users.mateidibu = {
       isNormalUser = true;
       uid = 1000;
-      hashedPassword = "$6$BuNLpB8FLnFemGV5$cm0ZIHhA1VMvxr8oYvQyyLkrLSnWiFXIYztvmkTVprO0BLjPzEhi1S5rp0QGvjHbrHJ4UiFh2JcfFAsNDcnct.";
+      hashedPasswordFile = config.sops.secrets."users/mateidibu/password".path;
       extraGroups = [
         "wheel"
         "video"
