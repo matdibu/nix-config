@@ -15,7 +15,8 @@
     services.pcscd.enable = true;
     sops = {
       defaultSopsFile = "${inputs.self}/secrets/test.yaml";
-      age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      age.sshKeyPaths = [ "/mnt/persist/etc/ssh/ssh_host_ed25519_key" ];
+      gnupg.sshKeyPaths = [];
     };
   };
 }
