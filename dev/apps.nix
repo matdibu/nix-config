@@ -20,7 +20,7 @@
           inherit (lib.strings) hasPrefix concatLines;
           real-hosts = filter (name: (!hasPrefix "iso-" name)) (attrNames inputs.self.nixosConfigurations);
           iso-hosts = filter (name: (hasPrefix "iso-" name)) (attrNames inputs.self.nixosConfigurations);
-          user = "mateidibu";
+          user = "root";
         in
         lib.mkMerge [
           # app "nix-build-isos"
@@ -79,7 +79,6 @@
                   --max-jobs 1 \
                   --fast \
                   --flake ${inputs.self}#${host} \
-                  --use-remote-sudo \
                   --target-host "${user}@${host}.lan" \
                   $@
               '';
@@ -120,7 +119,7 @@
                 fi
 
                 ssh "${user}@${host}.lan" -tt -- \
-                  sudo systemctl reboot --when=$WHEN $@
+                  systemctl reboot --when=$WHEN $@
               '';
             in
             listToAttrs (
