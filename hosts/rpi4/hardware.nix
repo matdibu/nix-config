@@ -53,7 +53,13 @@ in
     };
   };
 
-  sops.secrets."wifi/dibux-legacy/password" = {};
+  hardware.wirelessRegulatoryDatabase = true;
+  boot.extraModprobeConfig = ''
+    options cfg80211 ieee80211_regdom="RO"
+    options brcmfmac feature_disable=0x82000
+  '';
+
+  sops.secrets."wifi/dibux-legacy/password" = { };
 
   networking.wireless = {
     enable = true;
@@ -63,5 +69,15 @@ in
         psk = "@dibux-legacy_psk@";
       };
     };
+  };
+
+  hardware.deviceTree = {
+    filter = "*-rpi-*.dtb";
+    overlays = [
+      {
+        name = "disable-bt";
+        dtboFile = ./disable-bt.dtbo;
+      }
+    ];
   };
 }

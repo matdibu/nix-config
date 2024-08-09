@@ -11,7 +11,10 @@
     system-type = "server";
   };
 
-  environment.systemPackages = [ pkgs.raspberrypi-eeprom ];
+  environment.systemPackages = [
+    pkgs.raspberrypi-eeprom
+    pkgs.libraspberrypi
+  ];
 
   system.stateVersion = "24.11";
 }
