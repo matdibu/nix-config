@@ -7,7 +7,7 @@
   config = lib.mkIf config.modules.user-mateidibu.enable {
     sops = {
       secrets = {
-        "users/mateidibu/password"= {
+        "users/mateidibu/password" = {
           neededForUsers = true;
         };
       };
